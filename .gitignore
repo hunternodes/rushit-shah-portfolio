@@ -49,3 +49,8 @@ payload.db-journal
 
 # Local logs
 /contact-submissions.log.json
+
+# Hero video (large binaries — deploy via CDN or upload manually)
+/public/hero-bg.mp4
+/public/hero-bg.mov
+/public/hero-bg.webm

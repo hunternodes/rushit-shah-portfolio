@@ -57,7 +57,14 @@
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} admin=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin)",
       "Bash(curl -s \"http://localhost:3000/api/paintings?where%5BsystemNumber%5D%5Bequals%5D=No.%2001%20%2F%20SYS&depth=0&limit=1\")",
       "Bash(python3 -m json.tool)",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(home\\): wire Spotlight hero + Gallery Five Rooms to Payload; force-dynamic so edits show on every request \\(Cloudinary-ready fallback: picsum by slug\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(home\\): wire Spotlight hero + Gallery Five Rooms to Payload; force-dynamic so edits show on every request \\(Cloudinary-ready fallback: picsum by slug\\)\")",
+      "Read(//Users/rushitshah/Downloads/**)",
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,r_frame_rate,duration -of default=noprint_wrappers=1 \"/Users/rushitshah/Downloads/A00931F5-5362-40BC-A925-ED2F21DF4D8F.mov\")",
+      "Bash(sips -g all \"/Users/rushitshah/Downloads/A00931F5-5362-40BC-A925-ED2F21DF4D8F.mov\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} mov=%{http_code} size=%{size_download}\\\\n\" http://localhost:3000 http://localhost:3000/hero-bg.mov)",
+      "Bash(ffmpeg -version)",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} mp4=%{http_code} mp4-size=%{size_download}\\\\n\" http://localhost:3000 http://localhost:3000/hero-bg.mp4)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): video backdrop with canvas fallback; gitignore large video binaries\")"
     ]
   }
 }

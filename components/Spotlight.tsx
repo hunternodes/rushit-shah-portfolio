@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
+import VideoBackdrop from '@/components/VideoBackdrop';
 
 export type SpotlightHero = {
   title: string;
@@ -53,7 +54,10 @@ export default function Spotlight({ hero }: { hero: SpotlightHero }) {
       className="relative overflow-hidden pt-16 md:pt-20 pb-16"
       style={{ background: 'var(--night)' }}
     >
-      {/* Spotlight wash */}
+      {/* Video backdrop — falls back to the canvas paint-cloud animation if the browser can't decode it */}
+      <VideoBackdrop />
+
+      {/* Existing ambient radial wash, layered on top of the backdrop */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

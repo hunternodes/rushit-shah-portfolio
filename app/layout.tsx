@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Nav from '@/components/Nav';
-import CursorTrail from '@/components/CursorTrail';
 
 export const metadata: Metadata = {
   title: 'Rushit Shah — Abstract Painter · Vadodara',
   description:
-    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Systems series. A studio practice in Vadodara, Gujarat, India.',
+    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Systems series. A studio practice between India, Singapore, and Germany.',
   keywords: [
     'abstract art',
     'abstract painter',
@@ -47,11 +45,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body>
-        <CursorTrail />
-        <Nav />
-        <main>{children}</main>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

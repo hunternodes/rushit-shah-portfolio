@@ -46,7 +46,10 @@
       "Bash(git add *)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"chore: initial commit — portfolio before Payload CMS integration\")",
       "Bash(python3 -c \"import sys, json; vs = json.load\\(sys.stdin\\); vs15 = [v for v in vs if v.startswith\\('15.4.'\\) and 'canary' not in v and 'rc' not in v]; print\\('latest 15.4.x:', vs15[-1] if vs15 else None\\); vs16 = [v for v in vs if v.startswith\\('16.2.'\\) and 'canary' not in v and 'rc' not in v]; print\\('latest 16.2.x:', vs16[-1] if vs16 else None\\)\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"chore: upgrade Next 14.2.35 → 16.2.4, ESLint 8 → 9 for Payload 3 compat\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"chore: upgrade Next 14.2.35 → 16.2.4, ESLint 8 → 9 for Payload 3 compat\")",
+      "Bash(curl -s -o /dev/null -w \"admin=%{http_code}\\\\n\" -L http://localhost:3000/admin)",
+      "Bash(curl -s -o /dev/null -w \"root=%{http_code} admin=%{http_code} admin-create=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin http://localhost:3000/admin/create-first-user)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(payload\\): scaffold Payload CMS 3.83 with SQLite; split route groups \\(public\\)/\\(payload\\); /admin now serves create-first-user form\")"
     ]
   }
 }

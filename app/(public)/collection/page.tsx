@@ -19,16 +19,6 @@ export default function CollectionPage() {
       {/* White hero — continuous with the embed below */}
       <section className="section-light relative pt-32 md:pt-40 pb-10">
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div
-            className="meta-sm flex items-center gap-2 mb-8"
-            style={{ color: '#6F6F7A' }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: '#C7FF3A' }}
-            />
-            · INDEX · 04a — COMPLETE COLLECTION · LIVE FEED
-          </div>
           <div className="grid grid-cols-12 gap-8 items-end">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}

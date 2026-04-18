@@ -12,12 +12,6 @@ export default function Frequencies() {
       style={{ background: 'var(--night)' }}
     >
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="rule-label mb-12">
-          <span className="meta" style={{ color: 'var(--dim)' }}>
-            [ 06 ]  §  STUDIO BROADCASTS · @rushitshah08
-          </span>
-        </div>
-
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

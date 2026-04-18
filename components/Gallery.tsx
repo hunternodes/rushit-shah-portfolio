@@ -38,13 +38,6 @@ export default function Gallery({ paintings }: { paintings: GalleryPainting[] })
       style={{ background: 'var(--shadow)' }}
     >
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div className="rule-label mb-16">
-          <span className="meta" style={{ color: 'var(--dim)' }}>
-            [ 04 ]  §  {total === 5 ? 'FIVE ROOMS' : `${total} ROOMS`}
-          </span>
-        </div>
-
         <div className="grid grid-cols-12 gap-8 mb-16 md:mb-24">
           <h2
             className="col-span-12 md:col-span-7 display-lg"

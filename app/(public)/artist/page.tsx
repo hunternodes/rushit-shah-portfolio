@@ -44,17 +44,6 @@ export default function ArtistPage() {
           }}
         />
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 relative">
-          <div
-            className="meta-sm flex items-center gap-2 mb-8"
-            style={{ color: 'var(--dim)' }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: 'var(--lime)' }}
-            />
-            INDEX · 02 — THE ARTIST
-          </div>
-
           <div className="grid grid-cols-12 gap-8 items-end">
             <div className="col-span-12 md:col-span-8">
               <motion.h1
@@ -111,11 +100,6 @@ export default function ArtistPage() {
       {/* Statement long-form */}
       <section className="py-24 md:py-32" style={{ background: 'var(--shadow)' }}>
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="rule-label mb-12">
-            <span className="meta" style={{ color: 'var(--dim)' }}>
-              §  STATEMENT
-            </span>
-          </div>
           <div className="grid grid-cols-12 gap-8">
             <div className="col-span-12 md:col-span-4">
               <div className="meta-sm" style={{ color: 'var(--lime)' }}>
@@ -171,11 +155,6 @@ export default function ArtistPage() {
       {/* Biography — long-form */}
       <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="rule-label mb-12">
-            <span className="meta" style={{ color: 'var(--dim)' }}>
-              §  BIOGRAPHY
-            </span>
-          </div>
           <div className="grid grid-cols-12 gap-8">
             <div className="col-span-12 md:col-span-4">
               <div className="meta-sm" style={{ color: 'var(--lime)' }}>
@@ -313,11 +292,6 @@ export default function ArtistPage() {
       {/* Techniques */}
       <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="rule-label mb-12">
-            <span className="meta" style={{ color: 'var(--dim)' }}>
-              §  SIGNATURE TECHNIQUES
-            </span>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {techniques.map((t, i) => (
               <motion.div

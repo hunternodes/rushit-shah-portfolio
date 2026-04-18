@@ -25,16 +25,6 @@ export default function ExhibitionsPage() {
           }}
         />
         <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 relative">
-          <div
-            className="meta-sm flex items-center gap-2 mb-8"
-            style={{ color: 'var(--dim)' }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: 'var(--lime)' }}
-            />
-            · INDEX · 03 — SHOWS & EXHIBITIONS
-          </div>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

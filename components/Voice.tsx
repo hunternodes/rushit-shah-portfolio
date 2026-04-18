@@ -14,12 +14,6 @@ export default function Voice() {
       style={{ background: 'var(--night)' }}
     >
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="rule-label mb-16">
-          <span className="meta" style={{ color: 'var(--dim)' }}>
-            [ 03 ]  §  STATEMENT
-          </span>
-        </div>
-
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -46,12 +46,6 @@ export default function Arc() {
       style={{ background: 'var(--night)' }}
     >
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="rule-label mb-16">
-          <span className="meta" style={{ color: 'var(--dim)' }}>
-            [ 05 ]  §  ARC
-          </span>
-        </div>
-
         <div className="grid grid-cols-12 gap-8 mb-20">
           <h2
             className="col-span-12 md:col-span-8 display-lg"

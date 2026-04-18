@@ -19,12 +19,6 @@ export default function Signals() {
       style={{ background: 'var(--shadow)' }}
     >
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="rule-label mb-16">
-          <span className="meta" style={{ color: 'var(--dim)' }}>
-            [ 05 ]  §  SIGNALS
-          </span>
-        </div>
-
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
           {stats.map((s, i) => (
             <StatBlock key={i} stat={s} index={i} />

@@ -15,15 +15,6 @@ export default function Hail() {
     >
       <div className="static-noise" style={{ mixBlendMode: 'multiply', opacity: 0.15 }} />
 
-      {/* Corner marks */}
-      <div className="absolute top-8 left-5 sm:left-8 lg:left-12 meta-sm flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--night)' }} />
-        [ 07 ] · FINAL CALL
-      </div>
-      <div className="absolute top-8 right-5 sm:right-8 lg:right-12 meta-sm">
-        COLLECTORS · GALLERIES / 2026
-      </div>
-
       <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 relative pt-16">
         <motion.h2
           initial={{ opacity: 0, y: 60 }}

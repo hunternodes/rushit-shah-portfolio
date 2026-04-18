@@ -16,16 +16,6 @@ export default function ArchivePage() {
       >
         <div className="static-noise" />
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 relative">
-          <div
-            className="meta-sm flex items-center gap-2 mb-8"
-            style={{ color: 'var(--dim)' }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: 'var(--lime)' }}
-            />
-            · INDEX · 04 — ARCHIVE
-          </div>
           <div className="grid grid-cols-12 gap-8 items-end">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}

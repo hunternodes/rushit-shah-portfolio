@@ -67,7 +67,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): video backdrop with canvas fallback; gitignore large video binaries\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): remove framed hero painting; typography sits directly on the video backdrop\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(home\\): remove 'Represented through Maio Studio' from hero, gallery, signals, CTA\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(footer\\): remove 'Represented through Maio Studio' line from footer strip\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(footer\\): remove 'Represented through Maio Studio' line from footer strip\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): chaotic magnetic headline — letters repel from cursor, RGB-split on proximity, lime flicker near pointer, idle jitter while hovered\")"
     ]
   }
 }

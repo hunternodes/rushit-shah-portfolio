@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import VideoBackdrop from '@/components/VideoBackdrop';
+import ChaoticHeadline from '@/components/ChaoticHeadline';
 
 /**
  * Hero — full-width video backdrop with a typographic statement centred on top.
@@ -33,48 +34,13 @@ export default function Spotlight() {
 
       <div className="relative max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 pt-0 pb-12">
         <motion.div className="col-span-12 md:col-span-9 lg:col-span-8 relative z-10">
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
-            }}
-            className="display-xl overflow-hidden"
-          >
-            <motion.span
-              className="block"
-              variants={{
-                hidden: { opacity: 0, x: -120, skewX: -8 },
-                visible: { opacity: 1, x: 0, skewX: 0 },
-              }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Paintings that
-            </motion.span>
-            <motion.span
-              className="block"
-              variants={{
-                hidden: { opacity: 0, x: 120, skewX: 8 },
-                visible: { opacity: 1, x: 0, skewX: 0 },
-              }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                hold their
-              </span>
-            </motion.span>
-            <motion.span
-              className="block"
-              variants={{
-                hidden: { opacity: 0, y: 80 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              breath.
-            </motion.span>
-          </motion.h1>
+          <ChaoticHeadline
+            lines={[
+              { text: 'Paintings that' },
+              { text: 'hold their', italic: true, accent: 'var(--lime)' },
+              { text: 'breath.' },
+            ]}
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

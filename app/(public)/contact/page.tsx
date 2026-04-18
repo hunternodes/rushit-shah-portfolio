@@ -88,7 +88,7 @@ export default function ContactPage() {
             </span>
           </motion.h1>
           <p
-            className="mt-8 text-lg md:text-xl max-w-xl"
+            className="font-marker mt-8 text-lg md:text-xl max-w-xl"
             style={{ color: 'var(--dim)' }}
           >
             Collector enquiries, gallery submissions, studio visits, or a hello

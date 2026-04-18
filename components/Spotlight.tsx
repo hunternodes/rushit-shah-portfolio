@@ -46,7 +46,7 @@ export default function Spotlight() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-8 text-lg md:text-xl max-w-xl"
+            className="font-marker mt-8 text-lg md:text-xl max-w-xl"
             style={{ color: 'var(--bone)' }}
           >
             A colourblind painter working between India, Singapore, and

@@ -33,7 +33,7 @@ export default function ArchivePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="col-span-12 md:col-span-4 text-lg"
+              className="font-marker col-span-12 md:col-span-4 text-lg"
               style={{ color: 'var(--dim)' }}
             >
               All completed works. Pricing on request. Collector enquiries

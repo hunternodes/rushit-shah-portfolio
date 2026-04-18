@@ -79,7 +79,7 @@ function StatBlock({ stat, index }: { stat: Stat; index: number }) {
         )}
       </div>
       <p
-        className="mt-4 text-sm max-w-[220px]"
+        className="font-marker mt-4 text-sm max-w-[220px]"
         style={{ color: 'var(--dim)' }}
       >
         {stat.label}

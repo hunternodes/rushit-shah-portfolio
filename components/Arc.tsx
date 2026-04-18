@@ -98,7 +98,7 @@ export default function Arc() {
                   {m.label}
                 </div>
                 <p
-                  className="mt-3 text-sm leading-relaxed"
+                  className="font-marker mt-3 text-base leading-relaxed"
                   style={{ color: 'var(--dim)' }}
                 >
                   {m.body}

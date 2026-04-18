@@ -64,7 +64,7 @@ export default function ArtistPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.4 }}
-                className="mt-8 text-lg md:text-xl max-w-xl"
+                className="font-marker mt-8 text-lg md:text-xl max-w-xl"
                 style={{ color: 'var(--dim)' }}
               >
                 A studio practice built on a paradox: a colourblind painter

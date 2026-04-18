@@ -50,7 +50,7 @@ export default function Gallery({ paintings }: { paintings: GalleryPainting[] })
             series.
           </h2>
           <p
-            className="col-span-12 md:col-span-4 md:col-start-9 md:self-end text-lg"
+            className="font-marker col-span-12 md:col-span-4 md:col-start-9 md:self-end text-lg"
             style={{ color: 'var(--dim)' }}
           >
             Each piece sits alone on a wall. Pricing on request — enquire for
@@ -152,7 +152,7 @@ function Room({
           {art.title}
         </h3>
         <p
-          className="mt-4 text-lg leading-snug"
+          className="font-marker mt-4 text-lg leading-snug"
           style={{ color: 'var(--bone)', opacity: 0.85 }}
         >
           {art.shortDescription}

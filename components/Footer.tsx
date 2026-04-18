@@ -45,7 +45,7 @@ export default function Footer() {
             >
               Rushit Shah
             </p>
-            <p className="mt-2" style={{ color: 'var(--dim)' }}>
+            <p className="font-marker mt-2 text-lg" style={{ color: 'var(--dim)' }}>
               Abstract paintings — crackle networks, gradient inversions,
               studio work.
               <br />

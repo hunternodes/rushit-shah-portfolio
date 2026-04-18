@@ -36,7 +36,7 @@ export default function CollectionPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="col-span-12 md:col-span-4 text-lg"
+              className="font-marker col-span-12 md:col-span-4 text-lg"
               style={{ color: '#6F6F7A' }}
             >
               Every available work, pulled live from ArtworkArchive. Click any

@@ -43,7 +43,7 @@ export default function ExhibitionsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="mt-10 text-lg md:text-xl max-w-2xl"
+            className="font-marker mt-10 text-lg md:text-xl max-w-2xl"
             style={{ color: 'var(--dim)' }}
           >
             The first exhibition is in preparation — a cohesive body of work
@@ -53,7 +53,7 @@ export default function ExhibitionsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.45 }}
-            className="mt-5 text-lg md:text-xl max-w-2xl"
+            className="font-marker mt-5 text-lg md:text-xl max-w-2xl"
             style={{ color: 'var(--dim)' }}
           >
             If you represent a gallery or curate shows and want to talk early,

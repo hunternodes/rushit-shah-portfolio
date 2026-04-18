@@ -32,8 +32,8 @@ export default function Hail() {
 
         <div className="grid grid-cols-12 gap-10 mt-16 items-end">
           <p
-            className="col-span-12 md:col-span-6 display-md max-w-xl"
-            style={{ color: 'var(--night)', fontWeight: 400 }}
+            className="font-marker col-span-12 md:col-span-6 max-w-xl text-xl md:text-2xl"
+            style={{ color: 'var(--night)', fontWeight: 400, lineHeight: 1.4 }}
           >
             Collector enquiries, gallery submissions, studio visits — every
             message answered personally within 48 hours.

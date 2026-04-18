@@ -71,7 +71,9 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): chaotic magnetic headline — letters repel from cursor, RGB-split on proximity, lime flicker near pointer, idle jitter while hovered\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"chore\\(ui\\): strip editorial section labels sitewide \\([0X] § STATEMENT etc. + page INDEX breadcrumbs\\) — sections now open directly with their content\")",
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} overdose=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/fonts/overdose/Overdose.woff)",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(typography\\): apply .font-marker \\(Overdose, Burnts fallback\\) to all body/subcopy text across home + subpages; sitewide editorial label cleanup included\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(typography\\): apply .font-marker \\(Overdose, Burnts fallback\\) to all body/subcopy text across home + subpages; sitewide editorial label cleanup included\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} grift=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/fonts/grift/Grift-Regular.woff2)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(home\\): remove Voice statement block \\(colourblind / systems / Eastern sensibility\\) — hero flows straight into gallery\")"
     ]
   }
 }

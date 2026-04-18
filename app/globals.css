@@ -87,12 +87,13 @@
   font-display: swap;
 }
 
-/* Utility: apply display/marker font to body copy / subtext.
-   Swap the first family in this stack to try a different marker font site-wide. */
+/* Utility: body/subcopy font. Swap the first family in this stack to try
+   a different face site-wide. */
 .font-marker {
-  font-family: 'Overdose', 'Burnts Marker', 'Space Grotesk', system-ui, sans-serif;
-  letter-spacing: 0.01em;
-  line-height: 1.35;
+  font-family: 'Grift', 'Overdose', 'Burnts Marker', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.45;
 }
 
 @tailwind base;

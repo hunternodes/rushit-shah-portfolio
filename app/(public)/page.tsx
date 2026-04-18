@@ -1,5 +1,4 @@
 import Spotlight from '@/components/Spotlight';
-import Voice from '@/components/Voice';
 import Gallery, { type GalleryPainting } from '@/components/Gallery';
 import Signals from '@/components/Signals';
 import Frequencies from '@/components/Frequencies';
@@ -66,7 +65,6 @@ export default async function Home() {
   return (
     <>
       <Spotlight />
-      <Voice />
       <Gallery paintings={paintings} />
       <Signals />
       <Frequencies />

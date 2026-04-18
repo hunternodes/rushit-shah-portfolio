@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ——— Grift (local self-hosted) ——— */
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/grift/Grift-BlackItalic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ——— New Yark (local self-hosted) ——— */
+@font-face {
+  font-family: 'NewYark';
+  src: url('/fonts/new-yark/NewYark.woff2') format('woff2'),
+       url('/fonts/new-yark/NewYark.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --night: #0C0B0A;
+  --shadow: #14130F;
+  --bone: #ECE8DB;
+  --dim: #6F6F7A;
+  --rule: #2A2A36;
+
+  --lime: #C7FF3A;
+  --coral: #FF4E38;
+  --ice: #7AE0FF;
+  --amber: #FFB547;
+  --plum: #B85FA0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--night);
+  color: var(--bone);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--night);
+}
+
+/* ——— Display scales ——— */
+.display-xl {
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  font-weight: 500;
+}
+.display-lg {
+  font-size: clamp(2.25rem, 5.5vw, 4.75rem);
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  font-weight: 500;
+}
+.display-md {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+/* Italic serif contrast — used inside a display word */
+.in-serif {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+/* ——— Meta / labels ——— */
+.meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.meta-sm {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ——— Painting frame (gallery-lit) ——— */
+.art-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--shadow);
+  box-shadow:
+    0 40px 120px -30px rgba(0, 0, 0, 0.8),
+    0 12px 32px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(236, 232, 219, 0.06) inset;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.art-frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+  transition: filter 600ms ease-out;
+}
+.art-frame:hover > img {
+  filter: brightness(1);
+}
+.art-frame:hover {
+  box-shadow:
+    0 60px 160px -30px rgba(199, 255, 58, 0.12),
+    0 20px 60px -20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(236, 232, 219, 0.1) inset;
+}
+
+/* Gallery-light glow — top rim */
+.lit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(236, 232, 219, 0.08) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ——— Buttons ——— */
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem 0.95rem;
+  background: var(--lime);
+  color: var(--night);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s,
+              box-shadow 0.4s;
+}
+.btn-lime:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -12px rgba(199, 255, 58, 0.5);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem 0.95rem;
+  background: transparent;
+  color: var(--bone);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  transition: all 0.35s;
+}
+.btn-ghost:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+
+/* ——— Ticker ——— */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 90s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ——— Horizontal rule with mono label ——— */
+.rule-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rule-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ——— Static/noise overlay ——— */
+.static-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: screen;
+}
+
+/* ——— Glow variants ——— */
+.glow-lime {
+  box-shadow: 0 0 40px rgba(199, 255, 58, 0.35);
+}
+.glow-coral {
+  box-shadow: 0 0 40px rgba(255, 78, 56, 0.35);
+}
+
+/* ——— Link underline (monospace style) ——— */
+.link-mono {
+  position: relative;
+  transition: color 0.3s;
+}
+.link-mono::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-mono:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* ——— Scrollbar ——— */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track { background: var(--night); }
+::-webkit-scrollbar-thumb { background: var(--rule); }
+::-webkit-scrollbar-thumb:hover { background: var(--lime); }
+
+/* ——— Light-mode section override (for /archive white page) ——— */
+.section-light {
+  background: #ffffff;
+  color: #0B0B10;
+}
+.section-light .meta,
+.section-light .meta-sm { color: #6F6F7A; }
+
+/* ——— Reduced motion ——— */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}

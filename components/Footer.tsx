@@ -112,9 +112,6 @@ export default function Footer() {
           <p className="meta-sm" style={{ color: 'var(--dim)' }}>
             Space Grotesk · Fraunces · JetBrains Mono
           </p>
-          <p className="meta-sm" style={{ color: 'var(--lime)' }}>
-            Represented through Maio Studio, Singapore
-          </p>
         </div>
       </div>
     </footer>

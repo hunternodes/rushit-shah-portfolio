@@ -5,14 +5,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 
+import { Paintings } from './collections/Paintings';
+import { Media } from './collections/Media';
+import { Enquiries } from './collections/Enquiries';
+import { SiteCopy } from './globals/SiteCopy';
+import { seed } from './lib/seed';
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-/**
- * Payload CMS — root config.
- * Step 1 scaffold: auth-only (Users collection).
- * Collections for paintings, media, enquiries and the siteCopy global land in Step 2.
- */
 export default buildConfig({
   admin: {
     user: 'users',
@@ -26,12 +27,15 @@ export default buildConfig({
       auth: true,
       admin: {
         useAsTitle: 'email',
+        hidden: false,
       },
-      fields: [
-        // email + password come from auth: true
-      ],
+      fields: [],
     },
+    Paintings,
+    Media,
+    Enquiries,
   ],
+  globals: [SiteCopy],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   db: sqliteAdapter({
@@ -42,5 +46,12 @@ export default buildConfig({
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  onInit: async (payload) => {
+    try {
+      await seed(payload);
+    } catch (err) {
+      payload.logger.error({ err }, 'Seed failed');
+    }
   },
 });

@@ -49,7 +49,11 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"chore: upgrade Next 14.2.35 → 16.2.4, ESLint 8 → 9 for Payload 3 compat\")",
       "Bash(curl -s -o /dev/null -w \"admin=%{http_code}\\\\n\" -L http://localhost:3000/admin)",
       "Bash(curl -s -o /dev/null -w \"root=%{http_code} admin=%{http_code} admin-create=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin http://localhost:3000/admin/create-first-user)",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(payload\\): scaffold Payload CMS 3.83 with SQLite; split route groups \\(public\\)/\\(payload\\); /admin now serves create-first-user form\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(payload\\): scaffold Payload CMS 3.83 with SQLite; split route groups \\(public\\)/\\(payload\\); /admin now serves create-first-user form\")",
+      "Bash(curl -s -o /dev/null -w \"admin=%{http_code} users=%{http_code}\\\\n\" http://localhost:3000/admin http://localhost:3000/admin/collections/users)",
+      "Bash(curl -s -o /dev/null -w \"admin=%{http_code}\\\\n\" http://localhost:3000/admin)",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} admin=%{http_code} admin-paintings=%{http_code} admin-site-copy=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin http://localhost:3000/admin/collections/paintings http://localhost:3000/admin/globals/site-copy)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(payload\\): define Paintings / Media / Enquiries collections + SiteCopy global; idempotent seed \\(5 paintings, all editable copy, admin user\\); split root/public layouts so Payload owns admin <html>\")"
     ]
   }
 }

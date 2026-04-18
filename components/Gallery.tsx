@@ -1,13 +1,37 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { artworks, accentColor } from '@/lib/artworks';
+
+export type GalleryPainting = {
+  id: string | number;
+  systemNumber: string;
+  title: string;
+  shortDescription: string;
+  year: number | string;
+  medium: string;
+  dimensions: string;
+  status: string;
+  imageUrl: string;
+  imageAlt: string;
+};
+
+// Accent cycle for the 5 rooms — map-by-index so the visual rhythm stays stable
+// even when paintings are reordered in admin.
+const accentCycle = ['amber', 'ice', 'coral', 'plum', 'lime'] as const;
+const accentCssVar: Record<(typeof accentCycle)[number], string> = {
+  amber: 'var(--amber)',
+  ice: 'var(--ice)',
+  coral: 'var(--coral)',
+  plum: 'var(--plum)',
+  lime: 'var(--lime)',
+};
 
 /**
- * The works as gallery rooms: each painting gets its own wall, with a big
- * serial number and the wall plaque. Alternating alignment. Asymmetric col spans.
+ * Five Rooms — each painting a gallery wall with plaque.
+ * Data comes from Payload via the server component parent.
  */
-export default function Gallery() {
+export default function Gallery({ paintings }: { paintings: GalleryPainting[] }) {
+  const total = paintings.length;
   return (
     <section
       className="relative py-20 md:py-24"
@@ -17,7 +41,7 @@ export default function Gallery() {
         {/* Header */}
         <div className="rule-label mb-16">
           <span className="meta" style={{ color: 'var(--dim)' }}>
-            [ 04 ]  §  FIVE ROOMS
+            [ 04 ]  §  {total === 5 ? 'FIVE ROOMS' : `${total} ROOMS`}
           </span>
         </div>
 
@@ -26,7 +50,7 @@ export default function Gallery() {
             className="col-span-12 md:col-span-7 display-lg"
             style={{ color: 'var(--bone)' }}
           >
-            Five pieces from{' '}
+            {total === 5 ? 'Five pieces' : `${total} pieces`} from{' '}
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
               the Systems
             </span>{' '}
@@ -42,11 +66,17 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="space-y-20 md:space-y-28">
-          {artworks.map((art, i) => (
-            <Room key={art.id} art={art} index={i} />
-          ))}
-        </div>
+        {paintings.length === 0 ? (
+          <p className="text-lg" style={{ color: 'var(--dim)' }}>
+            No featured paintings yet — mark some Featured in the admin to fill this wall.
+          </p>
+        ) : (
+          <div className="space-y-20 md:space-y-28">
+            {paintings.map((art, i) => (
+              <Room key={art.id} art={art} index={i} total={total} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -55,13 +85,17 @@ export default function Gallery() {
 function Room({
   art,
   index,
+  total,
 }: {
-  art: (typeof artworks)[number];
+  art: GalleryPainting;
   index: number;
+  total: number;
 }) {
   const left = index % 2 === 0;
-  const accent = accentColor[art.accent];
+  const accent = accentCssVar[accentCycle[index % accentCycle.length]];
   const inProgress = art.status === 'in-progress';
+  // systemNumber looks like "No. 01 / SYS" — pull the middle chunk for the giant watermark
+  const watermark = (art.systemNumber.match(/\d+/)?.[0] ?? String(index + 1).padStart(2, '0'));
 
   return (
     <div className="grid grid-cols-12 gap-6 md:gap-10 items-center relative">
@@ -73,7 +107,7 @@ function Room({
           className="display-xl opacity-[0.05]"
           style={{ color: 'var(--bone)', fontWeight: 700 }}
         >
-          {art.no.split(' / ')[0]}
+          {watermark}
         </span>
       </div>
 
@@ -89,11 +123,7 @@ function Room({
           className={`art-frame lit aspect-[4/5] relative`}
           style={{ opacity: inProgress ? 0.6 : 1 }}
         >
-          <img
-            src={art.src}
-            alt={art.title}
-            onError={(e) => ((e.currentTarget as HTMLImageElement).src = art.placeholder)}
-          />
+          <img src={art.imageUrl} alt={art.imageAlt} />
           {/* Curtain wipe overlay */}
           <motion.div
             initial={{ scaleX: 1 }}
@@ -110,7 +140,7 @@ function Room({
             className="absolute bottom-4 left-4 px-3 py-1.5 z-[3]"
             style={{ background: 'var(--night)', color: accent }}
           >
-            <div className="meta-sm">No. {art.no}</div>
+            <div className="meta-sm">{art.systemNumber}</div>
           </div>
         </div>
       </motion.div>
@@ -124,7 +154,7 @@ function Room({
         className={`col-span-12 md:col-span-4 ${left ? 'md:col-start-9' : 'md:col-start-1 md:row-start-1'}`}
       >
         <div className="meta-sm mb-3" style={{ color: accent }}>
-          ROOM {index + 1} / 5
+          ROOM {index + 1} / {total}
         </div>
         <h3 className="display-md" style={{ color: 'var(--bone)' }}>
           {art.title}
@@ -133,7 +163,7 @@ function Room({
           className="mt-4 text-lg leading-snug"
           style={{ color: 'var(--bone)', opacity: 0.85 }}
         >
-          {art.caption}
+          {art.shortDescription}
         </p>
         <dl className="mt-6 grid grid-cols-[6rem_1fr] gap-y-2 text-sm">
           <dt className="meta-sm" style={{ color: 'var(--dim)' }}>
@@ -147,7 +177,7 @@ function Room({
           <dt className="meta-sm" style={{ color: 'var(--dim)' }}>
             SIZE
           </dt>
-          <dd style={{ color: 'var(--bone)' }}>{art.dimensions ?? '—'}</dd>
+          <dd style={{ color: 'var(--bone)' }}>{art.dimensions || '—'}</dd>
           <dt className="meta-sm" style={{ color: 'var(--dim)' }}>
             STATUS
           </dt>
@@ -158,7 +188,7 @@ function Room({
               letterSpacing: '0.18em',
             }}
           >
-            {inProgress ? 'IN PROGRESS' : 'AVAILABLE'}
+            {statusLabel(art.status)}
           </dd>
         </dl>
         <a href="/contact" className="btn-ghost mt-6">
@@ -168,4 +198,15 @@ function Room({
       </motion.div>
     </div>
   );
+}
+
+function statusLabel(status: string) {
+  switch (status) {
+    case 'available': return 'AVAILABLE';
+    case 'sold': return 'SOLD';
+    case 'in-progress': return 'IN PROGRESS';
+    case 'reserved': return 'RESERVED';
+    case 'not-for-sale': return 'NOT FOR SALE';
+    default: return status.toUpperCase();
+  }
 }

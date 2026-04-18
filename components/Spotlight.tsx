@@ -3,13 +3,23 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
-import { artworks } from '@/lib/artworks';
+
+export type SpotlightHero = {
+  title: string;
+  systemNumber: string;
+  year: number | string;
+  medium: string;
+  imageUrl: string;
+  imageAlt: string;
+};
 
 /**
  * Night-studio hero. Mouse-tilt on the hero painting, plus a gentle
  * scroll-linked drift + rotate as the page moves past.
+ *
+ * Receives the hero painting from the server component (pulled from Payload).
  */
-export default function Spotlight() {
+export default function Spotlight({ hero }: { hero: SpotlightHero }) {
   const ref = useRef<HTMLElement>(null);
 
   // Scroll parallax on the hero painting
@@ -36,8 +46,6 @@ export default function Spotlight() {
     mx.set(0);
     my.set(0);
   };
-
-  const hero = artworks[0];
 
   return (
     <section
@@ -157,9 +165,8 @@ export default function Spotlight() {
                 className="art-frame lit aspect-[4/5] max-w-[520px] md:ml-auto"
               >
                 <img
-                  src={hero.src}
-                  alt={hero.title}
-                  onError={(e) => ((e.currentTarget as HTMLImageElement).src = hero.placeholder)}
+                  src={hero.imageUrl}
+                  alt={hero.imageAlt}
                 />
                 {/* Wall label */}
                 <div
@@ -170,7 +177,7 @@ export default function Spotlight() {
                     transform: 'translateZ(20px)',
                   }}
                 >
-                  <div className="meta-sm">No. {hero.no}</div>
+                  <div className="meta-sm">{hero.systemNumber}</div>
                 </div>
               </motion.div>
             </motion.div>

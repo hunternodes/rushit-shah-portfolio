@@ -53,7 +53,11 @@
       "Bash(curl -s -o /dev/null -w \"admin=%{http_code} users=%{http_code}\\\\n\" http://localhost:3000/admin http://localhost:3000/admin/collections/users)",
       "Bash(curl -s -o /dev/null -w \"admin=%{http_code}\\\\n\" http://localhost:3000/admin)",
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} admin=%{http_code} admin-paintings=%{http_code} admin-site-copy=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin http://localhost:3000/admin/collections/paintings http://localhost:3000/admin/globals/site-copy)",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(payload\\): define Paintings / Media / Enquiries collections + SiteCopy global; idempotent seed \\(5 paintings, all editable copy, admin user\\); split root/public layouts so Payload owns admin <html>\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(payload\\): define Paintings / Media / Enquiries collections + SiteCopy global; idempotent seed \\(5 paintings, all editable copy, admin user\\); split root/public layouts so Payload owns admin <html>\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} admin=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin)",
+      "Bash(curl -s \"http://localhost:3000/api/paintings?where%5BsystemNumber%5D%5Bequals%5D=No.%2001%20%2F%20SYS&depth=0&limit=1\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(home\\): wire Spotlight hero + Gallery Five Rooms to Payload; force-dynamic so edits show on every request \\(Cloudinary-ready fallback: picsum by slug\\)\")"
     ]
   }
 }

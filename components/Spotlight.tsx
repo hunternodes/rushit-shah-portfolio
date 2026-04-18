@@ -86,7 +86,6 @@ export default function Spotlight() {
             A colourblind painter working between India, Singapore, and
             Germany. Crackle networks and gradient-splatter inversions — a
             practice built on the tension between chaos and control.
-            Represented through Maio Studio, Singapore.
           </motion.p>
 
           <motion.div

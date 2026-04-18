@@ -45,8 +45,7 @@ export default function Hail() {
             style={{ color: 'var(--night)', fontWeight: 400 }}
           >
             Collector enquiries, gallery submissions, studio visits — every
-            message answered personally within 48 hours. Represented through
-            Maio Studio, Singapore.
+            message answered personally within 48 hours.
           </p>
 
           <div className="col-span-12 md:col-span-5 md:col-start-8 flex flex-col gap-5">

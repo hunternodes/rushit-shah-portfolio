@@ -61,8 +61,7 @@ export default function Gallery({ paintings }: { paintings: GalleryPainting[] })
             style={{ color: 'var(--dim)' }}
           >
             Each piece sits alone on a wall. Pricing on request — enquire for
-            availability, shipping, and collector details. Represented through
-            Maio Studio, Singapore.
+            availability, shipping, and collector details.
           </p>
         </div>
 

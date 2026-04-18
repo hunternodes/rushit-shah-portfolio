@@ -65,7 +65,8 @@
       "Bash(ffmpeg -version)",
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} mp4=%{http_code} mp4-size=%{size_download}\\\\n\" http://localhost:3000 http://localhost:3000/hero-bg.mp4)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): video backdrop with canvas fallback; gitignore large video binaries\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): remove framed hero painting; typography sits directly on the video backdrop\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(hero\\): remove framed hero painting; typography sits directly on the video backdrop\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(home\\): remove 'Represented through Maio Studio' from hero, gallery, signals, CTA\")"
     ]
   }
 }

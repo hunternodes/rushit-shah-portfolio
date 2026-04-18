@@ -8,7 +8,7 @@ type Stat = { label: string; value: number; suffix?: string; accent: string };
 const stats: Stat[] = [
   { label: 'works · Systems series in progress', value: 3, accent: 'var(--lime)' },
   { label: 'signature techniques', value: 2, accent: 'var(--coral)' },
-  { label: 'gallery · Maio Studio, Singapore', value: 1, accent: 'var(--ice)' },
+  { label: 'paintings · archive', value: 5, accent: 'var(--ice)' },
   { label: 'countries · IN / SG / DE', value: 3, accent: 'var(--amber)' },
 ];
 

@@ -1,52 +1,16 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import VideoBackdrop from '@/components/VideoBackdrop';
 
-export type SpotlightHero = {
-  title: string;
-  systemNumber: string;
-  year: number | string;
-  medium: string;
-  imageUrl: string;
-  imageAlt: string;
-};
-
 /**
- * Night-studio hero. Mouse-tilt on the hero painting, plus a gentle
- * scroll-linked drift + rotate as the page moves past.
- *
- * Receives the hero painting from the server component (pulled from Payload).
+ * Hero — full-width video backdrop with a typographic statement centred on top.
+ * The framed hero painting has been retired; the video carries the visual weight.
  */
-export default function Spotlight({ hero }: { hero: SpotlightHero }) {
+export default function Spotlight() {
   const ref = useRef<HTMLElement>(null);
-
-  // Scroll parallax on the hero painting
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
-  const artY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const artRotate = useTransform(scrollYProgress, [0, 1], [0, -1.5]);
-  const artOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.7]);
-
-  // Tilt on mouse
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const rx = useSpring(useTransform(my, [-0.5, 0.5], [4, -4]), { stiffness: 120, damping: 20 });
-  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-5, 5]), { stiffness: 120, damping: 20 });
-
-  const onMove = (e: React.MouseEvent) => {
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    mx.set((e.clientX - rect.left) / rect.width - 0.5);
-    my.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-  const onLeave = () => {
-    mx.set(0);
-    my.set(0);
-  };
 
   return (
     <section
@@ -68,141 +32,79 @@ export default function Spotlight({ hero }: { hero: SpotlightHero }) {
       <div className="static-noise" />
 
       <div className="relative max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 pt-0 pb-12">
-        <div className="grid grid-cols-12 gap-6 md:gap-10 items-end">
-          {/* Title block */}
-          <motion.div
-            className="col-span-12 md:col-span-7 relative z-10"
+        <motion.div className="col-span-12 md:col-span-9 lg:col-span-8 relative z-10">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
+            }}
+            className="display-xl overflow-hidden"
           >
-            <motion.h1
-              initial="hidden"
-              animate="visible"
+            <motion.span
+              className="block"
               variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.18, delayChildren: 0.1 } },
+                hidden: { opacity: 0, x: -120, skewX: -8 },
+                visible: { opacity: 1, x: 0, skewX: 0 },
               }}
-              className="display-xl overflow-hidden"
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, x: -120, skewX: -8 },
-                  visible: { opacity: 1, x: 0, skewX: 0 },
-                }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Paintings that
-              </motion.span>
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, x: 120, skewX: 8 },
-                  visible: { opacity: 1, x: 0, skewX: 0 },
-                }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                  hold their
-                </span>
-              </motion.span>
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, y: 80 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                breath.
-              </motion.span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.6 }}
-              className="mt-8 text-lg md:text-xl max-w-md"
-              style={{ color: 'var(--dim)' }}
+              Paintings that
+            </motion.span>
+            <motion.span
+              className="block"
+              variants={{
+                hidden: { opacity: 0, x: 120, skewX: 8 },
+                visible: { opacity: 1, x: 0, skewX: 0 },
+              }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              A colourblind painter working between India, Singapore, and
-              Germany. Crackle networks and gradient-splatter inversions — a
-              practice built on the tension between chaos and control.
-              Represented through Maio Studio, Singapore.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.8 }}
-              className="flex flex-wrap items-center gap-4 mt-10"
+              <span className="in-serif" style={{ color: 'var(--lime)' }}>
+                hold their
+              </span>
+            </motion.span>
+            <motion.span
+              className="block"
+              variants={{
+                hidden: { opacity: 0, y: 80 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Link href="/archive" className="btn-lime">
-                Enter the archive
-                <span aria-hidden>→</span>
-              </Link>
-              <Link href="/contact" className="btn-ghost">
-                Collector enquiries
-                <span aria-hidden>→</span>
-              </Link>
-            </motion.div>
-          </motion.div>
+              breath.
+            </motion.span>
+          </motion.h1>
 
-          {/* Hero artwork with mouse-tilt + scroll parallax */}
-          <motion.div
-            style={{ y: artY, rotate: artRotate, opacity: artOpacity }}
-            className="col-span-12 md:col-span-5 relative"
-            onMouseMove={onMove}
-            onMouseLeave={onLeave}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.6 }}
+            className="mt-8 text-lg md:text-xl max-w-xl"
+            style={{ color: 'var(--bone)' }}
           >
-            <motion.div
-              style={{
-                rotateX: rx,
-                rotateY: ry,
-                transformStyle: 'preserve-3d',
-                transformPerspective: 1200,
-              }}
-              className="relative"
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="art-frame lit aspect-[4/5] max-w-[520px] md:ml-auto"
-              >
-                <img
-                  src={hero.imageUrl}
-                  alt={hero.imageAlt}
-                />
-                {/* Wall label */}
-                <div
-                  className="absolute -bottom-3 -left-3 px-3 py-2"
-                  style={{
-                    background: 'var(--lime)',
-                    color: 'var(--night)',
-                    transform: 'translateZ(20px)',
-                  }}
-                >
-                  <div className="meta-sm">{hero.systemNumber}</div>
-                </div>
-              </motion.div>
-            </motion.div>
+            A colourblind painter working between India, Singapore, and
+            Germany. Crackle networks and gradient-splatter inversions — a
+            practice built on the tension between chaos and control.
+            Represented through Maio Studio, Singapore.
+          </motion.p>
 
-            {/* Caption */}
-            <div className="flex justify-between items-baseline mt-6 max-w-[520px] md:ml-auto">
-              <div>
-                <div className="display-md" style={{ color: 'var(--bone)' }}>
-                  {hero.title}
-                </div>
-                <div className="meta-sm mt-1" style={{ color: 'var(--dim)' }}>
-                  {hero.year} · {hero.medium}
-                </div>
-              </div>
-              <div className="meta-sm" style={{ color: 'var(--lime)' }}>
-                MAIO STUDIO · SG
-              </div>
-            </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.8 }}
+            className="flex flex-wrap items-center gap-4 mt-10"
+          >
+            <Link href="/archive" className="btn-lime">
+              Enter the archive
+              <span aria-hidden>→</span>
+            </Link>
+            <Link href="/contact" className="btn-ghost">
+              Collector enquiries
+              <span aria-hidden>→</span>
+            </Link>
           </motion.div>
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );

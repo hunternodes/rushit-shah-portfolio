@@ -1,4 +1,4 @@
-import Spotlight, { type SpotlightHero } from '@/components/Spotlight';
+import Spotlight from '@/components/Spotlight';
 import Voice from '@/components/Voice';
 import Gallery, { type GalleryPainting } from '@/components/Gallery';
 import Signals from '@/components/Signals';
@@ -63,29 +63,9 @@ export default async function Home() {
     };
   });
 
-  // Hero = first featured painting (falls back to a safe placeholder if none)
-  const heroSource = featured[0];
-  const hero: SpotlightHero = heroSource
-    ? {
-        title: heroSource.title ?? 'Untitled',
-        systemNumber: heroSource.systemNumber ?? '',
-        year: heroSource.year ?? '',
-        medium: heroSource.medium ?? '',
-        imageUrl: imageFor(heroSource).url,
-        imageAlt: imageFor(heroSource).alt,
-      }
-    : {
-        title: 'Studio',
-        systemNumber: 'No. 00 / SYS',
-        year: new Date().getFullYear(),
-        medium: 'Forthcoming',
-        imageUrl: 'https://picsum.photos/seed/shah-studio/1400/1750',
-        imageAlt: 'Studio',
-      };
-
   return (
     <>
-      <Spotlight hero={hero} />
+      <Spotlight />
       <Voice />
       <Gallery paintings={paintings} />
       <Signals />

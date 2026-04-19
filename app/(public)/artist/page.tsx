@@ -169,11 +169,8 @@ export default function ArtistPage() {
                   alt="Rushit Shah — portrait, Paris"
                 />
               </motion.div>
-              <div className="meta-sm" style={{ color: 'var(--lime)' }}>
-                THE LONG VERSION
-              </div>
               <div
-                className="display-md mt-3 in-serif"
+                className="display-md in-serif"
                 style={{ color: 'var(--bone)' }}
               >
                 b. 1986 · Vadodara

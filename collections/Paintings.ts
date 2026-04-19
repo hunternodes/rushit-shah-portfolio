@@ -122,6 +122,21 @@ export const Paintings: CollectionConfig = {
       },
     },
     {
+      name: 'series',
+      type: 'select',
+      required: true,
+      defaultValue: 'fragment',
+      admin: {
+        position: 'sidebar',
+        description: 'Which body of work this painting belongs to. Each series gets its own gallery section on the homepage.',
+      },
+      options: [
+        { label: 'Fragment', value: 'fragment' },
+        { label: 'Vyākulatā', value: 'vyakulata' },
+        { label: 'Other', value: 'other' },
+      ],
+    },
+    {
       name: 'technique',
       type: 'select',
       required: true,
@@ -137,7 +152,8 @@ export const Paintings: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Primary hero image of the painting.',
+        description:
+          'Primary hero image. Click to upload a new file (JPG/PNG/WebP) or pick from existing Media. Uploads save to /public/uploads.',
       },
     },
     {
@@ -145,7 +161,8 @@ export const Paintings: CollectionConfig = {
       type: 'array',
       maxRows: 8,
       admin: {
-        description: 'Up to 8 close-ups, side views, or process shots.',
+        description:
+          'Up to 8 close-ups, side views, or process shots. Click "Add Item" then upload each image.',
       },
       fields: [
         { name: 'image', type: 'upload', relationTo: 'media' },

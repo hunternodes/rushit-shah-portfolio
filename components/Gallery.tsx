@@ -30,8 +30,23 @@ const accentCss: Record<(typeof accentCycle)[number], string> = {
  * Gallery — bento grid + lightbox.
  * Click any tile to open the painting at full aspect ratio in a fullscreen
  * modal. ← → arrow keys navigate between pieces; Esc or backdrop click closes.
+ *
+ * Reused for every series (Fragment, Vyākulatā, …). The heading + italic
+ * accent are parameterised.
  */
-export default function Gallery({ paintings }: { paintings: GalleryPainting[] }) {
+export default function Gallery({
+  paintings,
+  seriesAccent = 'var(--lime)',
+  italicPhrase = 'the Fragment',
+  italicBeforeSeries = ' series.',
+}: {
+  paintings: GalleryPainting[];
+  seriesAccent?: string;
+  /** The italic coloured word(s) in the heading — e.g. 'the Vyākulatā' */
+  italicPhrase?: string;
+  /** The plain text immediately after the italic phrase — e.g. ' series.' */
+  italicBeforeSeries?: string;
+}) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   // Keyboard nav when lightbox is open
@@ -68,10 +83,10 @@ export default function Gallery({ paintings }: { paintings: GalleryPainting[] })
             style={{ color: 'var(--bone)', fontSize: 'clamp(2.25rem, 5vw, 4rem)' }}
           >
             {paintings.length === 5 ? 'Five pieces' : `${paintings.length} pieces`} from{' '}
-            <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              the Fragment
-            </span>{' '}
-            series.
+            <span className="in-serif" style={{ color: seriesAccent }}>
+              {italicPhrase}
+            </span>
+            {italicBeforeSeries}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}

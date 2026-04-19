@@ -29,7 +29,7 @@ export async function seed(payload: Payload): Promise<void> {
     payload.logger.info('Seed: siteCopy done.');
   }
 
-  // 3. Seed paintings only if collection is empty
+  // 3. Seed Fragment paintings only if collection is empty
   const paintingCount = await payload.count({ collection: 'paintings' });
   if (paintingCount.totalDocs === 0) {
     payload.logger.info('Seed: populating paintings collection...');
@@ -37,9 +37,46 @@ export async function seed(payload: Payload): Promise<void> {
     payload.logger.info('Seed: paintings done.');
   } else {
     payload.logger.info(
-      `Seed: paintings collection already has ${paintingCount.totalDocs} doc(s), skipping.`,
+      `Seed: paintings collection already has ${paintingCount.totalDocs} doc(s), skipping initial seed.`,
     );
   }
+
+  // 4. Backfill `series='fragment'` on any painting missing the new series field
+  await backfillSeries(payload);
+
+  // 5. Seed Vyākulatā paintings (drafts) if none exist
+  const vyakCount = await payload.count({
+    collection: 'paintings',
+    where: { series: { equals: 'vyakulata' } },
+  });
+  if (vyakCount.totalDocs === 0) {
+    payload.logger.info('Seed: adding Vyākulatā series drafts...');
+    await seedVyakulataPaintings(payload);
+    payload.logger.info('Seed: Vyākulatā drafts created.');
+  }
+}
+
+async function backfillSeries(payload: Payload) {
+  // Any painting created before the `series` field was introduced comes back
+  // with no value — set them to 'fragment' (the original body of work).
+  const { docs } = await payload.find({
+    collection: 'paintings',
+    limit: 1000,
+    depth: 0,
+    draft: true,
+  });
+  const needing = docs.filter(
+    (p: { series?: string | null }) => !p.series || p.series === null,
+  );
+  if (needing.length === 0) return;
+  for (const p of needing) {
+    await payload.update({
+      collection: 'paintings',
+      id: p.id,
+      data: { series: 'fragment' } as Record<string, unknown>,
+    });
+  }
+  payload.logger.info(`Seed: backfilled series='fragment' on ${needing.length} painting(s).`);
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -317,12 +354,87 @@ async function seedPaintings(payload: Payload) {
         shortDescription: p.shortDescription,
         longDescription: lex(p.shortDescription) as unknown as Record<string, unknown>,
         technique: p.technique,
+        series: 'fragment',
         status: p.status,
         featured: p.featured,
         ...(p.featuredOrder ? { featuredOrder: p.featuredOrder } : {}),
         published: p.published,
         ...(p.published ? { publishedAt: new Date().toISOString() } : {}),
-      },
+      } as Record<string, unknown>,
+    });
+  }
+}
+
+// ──────────────────────────────────────────────────────────────
+// Vyākulatā series seed — 5 drafts, in-progress, ready for Rushit
+// to upload images and flip to Published when done.
+// ──────────────────────────────────────────────────────────────
+
+type VyakulataSeed = {
+  title: string;
+  systemNumber: string;
+  slug: string;
+  shortDescription: string;
+};
+
+const vyakulataSeeds: VyakulataSeed[] = [
+  {
+    title: 'Vyākulatā I — Restless Hand',
+    systemNumber: 'No. 01 / VYA',
+    slug: 'vyakulata-i-restless-hand',
+    shortDescription:
+      'The first mark, laid before the body has settled. Restlessness as the ground everything else is painted on.',
+  },
+  {
+    title: 'Vyākulatā II — Spilled Prayer',
+    systemNumber: 'No. 02 / VYA',
+    slug: 'vyakulata-ii-spilled-prayer',
+    shortDescription:
+      'A devotional gesture that loses its shape in transit — gold leaking from certainty into doubt.',
+  },
+  {
+    title: 'Vyākulatā III — Gold Anxiety',
+    systemNumber: 'No. 03 / VYA',
+    slug: 'vyakulata-iii-gold-anxiety',
+    shortDescription:
+      'Where the crackle outpaces the surface — fissures arriving faster than pigment can seal.',
+  },
+  {
+    title: 'Vyākulatā IV — Tremor Pattern',
+    systemNumber: 'No. 04 / VYA',
+    slug: 'vyakulata-iv-tremor-pattern',
+    shortDescription:
+      'A controlled vibration held just at the threshold of collapse. Order built from continuous unrest.',
+  },
+  {
+    title: 'Vyākulatā V — The Composed Chaos',
+    systemNumber: 'No. 05 / VYA',
+    slug: 'vyakulata-v-the-composed-chaos',
+    shortDescription:
+      'The last panel. Everything the series was circling around — agitation as a form of prayer.',
+  },
+];
+
+async function seedVyakulataPaintings(payload: Payload) {
+  for (let i = 0; i < vyakulataSeeds.length; i++) {
+    const s = vyakulataSeeds[i];
+    await payload.create({
+      collection: 'paintings',
+      data: {
+        title: s.title,
+        systemNumber: s.systemNumber,
+        slug: s.slug,
+        year: 2026,
+        medium: 'Acrylic, crackle medium & gold leaf on canvas',
+        shortDescription: s.shortDescription,
+        longDescription: lex(s.shortDescription) as unknown as Record<string, unknown>,
+        technique: 'crackle',
+        series: 'vyakulata',
+        status: 'in-progress',
+        featured: true,
+        featuredOrder: i + 1,
+        published: false,
+      } as Record<string, unknown>,
     });
   }
 }

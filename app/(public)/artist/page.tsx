@@ -273,32 +273,6 @@ export default function ArtistPage() {
                   </p>
                 </Reveal>
 
-                {/* Dramatic callout — "He is colourblind." */}
-                <motion.p
-                  initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: '-10%' }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  className="in-serif relative"
-                  style={{
-                    color: 'var(--lime)',
-                    fontSize: 'clamp(2rem, 4vw, 3.4rem)',
-                    lineHeight: 1.02,
-                    padding: '0.6rem 0',
-                  }}
-                >
-                  He is colourblind.
-                  <motion.span
-                    aria-hidden
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true, margin: '-10%' }}
-                    transition={{ duration: 1.1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute left-0 -bottom-1 h-[2px] origin-left"
-                    style={{ background: 'var(--lime)', width: '7.5em' }}
-                  />
-                </motion.p>
-
                 <Reveal delay={0.05}>
                   <p style={{ color: 'var(--dim)' }}>
                     This is not a footnote. It is the foundation of everything he

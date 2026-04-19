@@ -112,7 +112,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove hero subtext paragraph \\('A studio practice built on a paradox...'\\)\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(artist-hero\\): rebuild hero — vertically-centered layout \\(items-center + min-h-[88vh]\\), add small 'RUSHIT SHAH' eyebrow + BORN/STUDIO/PRACTICE meta row to balance the text column against the portrait; ditch heavy art-frame, replace with soft shadow + amber inset border + integrated gold halo glow + deepening vignette so the image blends into the aubergine backdrop instead of sitting as a UI card\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist-hero\\): remove '· Colourblind' from Practice meta field\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove the 'Featured piece + REPRESENTATION' block at the bottom of the page \\(Gradient Inversion image, 'see the full collection' link, Maio Studio rep strip\\); drop dead Link + artworks imports\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove the 'Featured piece + REPRESENTATION' block at the bottom of the page \\(Gradient Inversion image, 'see the full collection' link, Maio Studio rep strip\\); drop dead Link + artworks imports\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove the 'He is colourblind.' pullquote from the long-version biography\")"
     ]
   }
 }

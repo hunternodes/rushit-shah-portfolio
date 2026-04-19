@@ -247,16 +247,22 @@ function AnimatedWordmark({ color }: { color: string }) {
 
 function BlinkBox() {
   return (
-    <span
+    <svg
       aria-hidden
       className="blink-box inline-block"
+      viewBox="0 0 24 24"
       style={{
-        // Same size as the logo wordmark so it reads as a matched block
         width: 'clamp(1.4rem, 2vw, 1.9rem)',
         height: 'clamp(1.4rem, 2vw, 1.9rem)',
-        background: '#FFE812',
+        overflow: 'visible',
       }}
-    />
+    >
+      {/* Paint drop */}
+      <path
+        d="M12 2 C 12 2, 4 12, 4 16 C 4 20, 7.5 23, 12 23 C 16.5 23, 20 20, 20 16 C 20 12, 12 2, 12 2 Z"
+        fill="#FFE812"
+      />
+    </svg>
   );
 }
 

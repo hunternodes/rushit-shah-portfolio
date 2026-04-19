@@ -16,7 +16,7 @@ export default function Spotlight() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden pt-16 md:pt-20 pb-16"
+      className="relative overflow-hidden min-h-[92vh] flex flex-col justify-center pt-24 md:pt-28 pb-20 md:pb-24"
       style={{ background: 'var(--night)' }}
     >
       {/* Video backdrop — falls back to the canvas paint-cloud animation if the browser can't decode it */}

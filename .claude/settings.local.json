@@ -89,7 +89,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(flicker\\): rewrite flicker keyframe — hard on/off steps at irregular moments over 1.8s cycle; actually visible now\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): pin-and-scrub horizontal scroll — section pins while vertical scroll slides paintings sideways; per-card mouse-tilt, base rotation wobble, scroll-linked fade/scale, lime progress rail\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): \\(1\\) image zooms to 1.2x on hover for closer look at the work \\(2\\) measure real track width so scrub stops exactly at last painting — no over-scroll past Room 05\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): rebuild as exhibition-wall layout — each painting full-viewport, image dominates \\(78vh max, contain-fit\\), minimal caption below, parallax + counter-drift watermark, hover zoom 1.04x with brightness lift\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): rebuild as exhibition-wall layout — each painting full-viewport, image dominates \\(78vh max, contain-fit\\), minimal caption below, parallax + counter-drift watermark, hover zoom 1.04x with brightness lift\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery + hero\\): rebuild gallery as tight bento grid — all 5 paintings visible at once, one big featured tile + 4 supporting tiles, captions slide in on hover, image scales 1.06x; give hero section min-h-[92vh] + vertical center for proper impact\")"
     ]
   }
 }

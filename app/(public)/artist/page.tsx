@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { artworks } from '@/lib/artworks';
 import Arc from '@/components/Arc';
 import Footer from '@/components/Footer';
 
@@ -504,65 +502,6 @@ export default function ArtistPage() {
                 </p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured piece + representation block */}
-      <section className="pb-24" style={{ background: 'var(--night)' }}>
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="art-frame lit aspect-[21/9]">
-            <img
-              src={artworks[0].src}
-              alt={artworks[0].title}
-              onError={(e) =>
-                ((e.currentTarget as HTMLImageElement).src = artworks[0].placeholder)
-              }
-            />
-          </div>
-          <div className="flex flex-wrap items-baseline justify-between gap-4 mt-6">
-            <div>
-              <p className="display-md" style={{ color: 'var(--bone)' }}>
-                {artworks[0].title}
-              </p>
-              <p className="meta-sm mt-1" style={{ color: 'var(--dim)' }}>
-                {artworks[0].year} · {artworks[0].medium}
-              </p>
-            </div>
-            <Link href="/collection" className="btn-ghost">
-              see the full collection
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-
-          {/* Representation block */}
-          <div
-            className="mt-12 pt-6 max-w-xl"
-            style={{ borderTop: '1px solid var(--rule)' }}
-          >
-            <div className="meta-sm flex items-center gap-2" style={{ color: 'var(--lime)' }}>
-              <span
-                className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ background: 'var(--lime)' }}
-              />
-              REPRESENTATION
-            </div>
-            <p
-              className="meta mt-3"
-              style={{ color: 'var(--bone)', fontSize: '0.82rem', lineHeight: 1.7 }}
-            >
-              Maio Studio · Singapore
-              <br />
-              Collector enquiries and gallery submissions welcome.
-              <br />
-              <a
-                href="mailto:rs@rushitshah.com"
-                className="link-mono"
-                style={{ color: 'var(--lime)' }}
-              >
-                rs@rushitshah.com →
-              </a>
-            </p>
           </div>
         </div>
       </section>

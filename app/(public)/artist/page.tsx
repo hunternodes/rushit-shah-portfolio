@@ -23,9 +23,18 @@ const techniques = [
   },
 ];
 
+/**
+ * /artist runs in its own theme — deep aubergine with warm amber-gold
+ * replacing the site's acid lime. Feels like a gallery salon / library.
+ * All child sections that reference these vars pick it up automatically.
+ */
 const artistTheme = {
-  '--night': '#0C3E2D',
-  '--shadow': '#082A1F',
+  '--night': '#1A0E20',   // deep aubergine base
+  '--shadow': '#241528',  // slightly lifted aubergine panel
+  '--bone': '#F4E8D4',    // warm parchment text
+  '--dim': '#A08A9B',     // muted mauve-rose for secondary copy
+  '--rule': '#3A2A3E',    // plum rule lines
+  '--lime': '#D9A94B',    // amber-gold accent (replaces acid lime)
 } as React.CSSProperties;
 
 export default function ArtistPage() {
@@ -40,8 +49,28 @@ export default function ArtistPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(60% 50% at 30% 30%, rgba(122,224,255,0.06) 0%, transparent 70%)',
+              'radial-gradient(65% 55% at 28% 25%, rgba(217, 169, 75, 0.12) 0%, transparent 65%), radial-gradient(55% 50% at 78% 75%, rgba(184, 95, 160, 0.10) 0%, transparent 65%)',
           }}
+        />
+        {/* Drifting ambient glow — soft coloured blob that drifts across the hero */}
+        <motion.div
+          aria-hidden
+          className="absolute pointer-events-none"
+          style={{
+            width: '38vw',
+            height: '38vw',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(217,169,75,0.12) 0%, transparent 60%)',
+            filter: 'blur(30px)',
+            mixBlendMode: 'screen',
+            top: '10%',
+            left: '55%',
+          }}
+          animate={{
+            x: ['0%', '-8%', '5%', '0%'],
+            y: ['0%', '6%', '-4%', '0%'],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         />
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 relative">
           <div className="grid grid-cols-12 gap-8 items-end">
@@ -103,139 +132,171 @@ export default function ArtistPage() {
           <div className="grid grid-cols-12 gap-8">
             <div className="col-span-12 md:col-span-4">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                 className="art-frame lit aspect-[4/5] mb-6"
               >
-                <img
+                <motion.img
                   src="/images/rushit-portrait.png"
                   alt="Rushit Shah — portrait, Paris"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
                 />
               </motion.div>
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="display-md in-serif"
                 style={{ color: 'var(--bone)' }}
               >
                 b. 1986 · Vadodara
-              </div>
+              </motion.div>
             </div>
             <div className="col-span-12 md:col-span-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+              <div
                 className="space-y-7 text-lg md:text-xl leading-snug"
                 style={{ color: 'var(--bone)' }}
               >
-                <p>
-                  Rushit Shah was born in Vadodara, Gujarat, on 8 September
-                  1986. He lives and works between India, Singapore, and
-                  Germany.
-                </p>
+                <Reveal>
+                  <p>
+                    Rushit Shah was born in Vadodara, Gujarat, on 8 September
+                    1986. He lives and works between India, Singapore, and
+                    Germany.
+                  </p>
+                </Reveal>
 
-                <p
-                  className="in-serif"
+                {/* Dramatic callout — "He is colourblind." */}
+                <motion.p
+                  initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-10%' }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  className="in-serif relative"
                   style={{
                     color: 'var(--lime)',
-                    fontSize: 'clamp(1.75rem, 3.2vw, 2.6rem)',
-                    lineHeight: 1.05,
-                    padding: '0.5rem 0',
+                    fontSize: 'clamp(2rem, 4vw, 3.4rem)',
+                    lineHeight: 1.02,
+                    padding: '0.6rem 0',
                   }}
                 >
                   He is colourblind.
-                </p>
+                  <motion.span
+                    aria-hidden
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, margin: '-10%' }}
+                    transition={{ duration: 1.1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute left-0 -bottom-1 h-[2px] origin-left"
+                    style={{ background: 'var(--lime)', width: '7.5em' }}
+                  />
+                </motion.p>
 
-                <p style={{ color: 'var(--dim)' }}>
-                  This is not a footnote. It is the foundation of everything he
-                  makes. Where other painters see colour as fact, Shah
-                  experiences it as force — approximate, atmospheric, felt
-                  before it is named. Unable to rely on the eye's easy
-                  certainties, he has built a practice around what colour does
-                  rather than what it is: its weight, its temperature, the
-                  pressure it exerts against an adjacent tone. The result is an
-                  instinctive colour intelligence that trained painters spend
-                  decades trying to acquire. Shah arrived at it by necessity,
-                  and it shows.
-                </p>
+                <Reveal delay={0.05}>
+                  <p style={{ color: 'var(--dim)' }}>
+                    This is not a footnote. It is the foundation of everything he
+                    makes. Where other painters see colour as fact, Shah
+                    experiences it as force — approximate, atmospheric, felt
+                    before it is named. Unable to rely on the eye's easy
+                    certainties, he has built a practice around what colour does
+                    rather than what it is: its weight, its temperature, the
+                    pressure it exerts against an adjacent tone. The result is an
+                    instinctive colour intelligence that trained painters spend
+                    decades trying to acquire. Shah arrived at it by necessity,
+                    and it shows.
+                  </p>
+                </Reveal>
 
-                <p style={{ color: 'var(--dim)' }}>
-                  His path to painting was not direct. He has travelled to more
-                  than eighty countries — not as tourism, but as a kind of
-                  extended looking. Deserts, coastlines, markets, ruins, other
-                  people's ordinary days. The accumulation of those images, and
-                  the losses that came alongside them — including the death of
-                  his father — pushed him toward abstraction as the only form
-                  capacious enough to hold what he was carrying.
-                </p>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    His path to painting was not direct. He has travelled to more
+                    than eighty countries — not as tourism, but as a kind of
+                    extended looking. Deserts, coastlines, markets, ruins, other
+                    people's ordinary days. The accumulation of those images, and
+                    the losses that came alongside them — including the death of
+                    his father — pushed him toward abstraction as the only form
+                    capacious enough to hold what he was carrying.
+                  </p>
+                </Reveal>
 
-                <p style={{ color: 'var(--dim)' }}>
-                  He found his way into the work through Carl Jung's ideas on
-                  the unconscious — the notion that what we cannot say
-                  directly, we express in symbol and image — and through J.
-                  Krishnamurti's understanding of perception: that how we see
-                  is inseparable from who we are, and that truly clear looking
-                  requires the dismantling of what we already believe we know.
-                  Both thinkers remain active in his practice. Every layer laid
-                  down, every craze pulled through, every splatter inverted is
-                  a form of not-knowing-in-advance — an argument with his own
-                  certainty.
-                </p>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    He found his way into the work through Carl Jung's ideas on
+                    the unconscious — the notion that what we cannot say
+                    directly, we express in symbol and image — and through J.
+                    Krishnamurti's understanding of perception: that how we see
+                    is inseparable from who we are, and that truly clear looking
+                    requires the dismantling of what we already believe we know.
+                    Both thinkers remain active in his practice. Every layer laid
+                    down, every craze pulled through, every splatter inverted is
+                    a form of not-knowing-in-advance — an argument with his own
+                    certainty.
+                  </p>
+                </Reveal>
 
-                <p style={{ color: 'var(--dim)' }}>
-                  His early work absorbed the energy of action painting —
-                  Pollock's physicality, Klee's structural wit, Kandinsky's
-                  belief that form carries emotional necessity, Van Gogh's
-                  refusal to let surface lie flat. These were formative
-                  encounters. He has moved through them and arrived somewhere
-                  that belongs to no one else.
-                </p>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    His early work absorbed the energy of action painting —
+                    Pollock's physicality, Klee's structural wit, Kandinsky's
+                    belief that form carries emotional necessity, Van Gogh's
+                    refusal to let surface lie flat. These were formative
+                    encounters. He has moved through them and arrived somewhere
+                    that belongs to no one else.
+                  </p>
+                </Reveal>
 
-                <p style={{ color: 'var(--dim)' }}>
-                  The current work is built on two signature techniques. The
-                  first: a cobalt ground broken by gold craze — crackle
-                  networks that behave like capillaries, like fault lines, like
-                  the maps of systems under stress. Red arrives only where the
-                  surface cannot hold. The second: a gold-to-silver gradient
-                  interrupted by inverted black-and-white splatter — black
-                  claiming the warm zone, white claiming the cool. The
-                  counterintuition is the point. Both techniques ask the same
-                  question: what does order look like at the moment it begins
-                  to fail?
-                </p>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    The current work is built on two signature techniques. The
+                    first: a cobalt ground broken by gold craze — crackle
+                    networks that behave like capillaries, like fault lines, like
+                    the maps of systems under stress. Red arrives only where the
+                    surface cannot hold. The second: a gold-to-silver gradient
+                    interrupted by inverted black-and-white splatter — black
+                    claiming the warm zone, white claiming the cool. The
+                    counterintuition is the point. Both techniques ask the same
+                    question: what does order look like at the moment it begins
+                    to fail?
+                  </p>
+                </Reveal>
 
-                <p style={{ color: 'var(--dim)' }}>
-                  Shah calls the current body of work{' '}
-                  <span className="in-serif" style={{ color: 'var(--bone)' }}>
-                    Fragment
-                  </span>{' '}
-                  — a series of eight to ten paintings building toward a debut
-                  exhibition. The reference is biological and cosmic
-                  simultaneously: neural networks, constellations, decay
-                  patterns, the moment before a structure collapses into
-                  something new. An Eastern ornamental sensibility filtered
-                  through an international abstract grammar. The friction
-                  between those two things is, as he puts it, so far, the thing
-                  I have most to say.
-                </p>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    Shah calls the current body of work{' '}
+                    <span className="in-serif" style={{ color: 'var(--bone)' }}>
+                      Fragment
+                    </span>{' '}
+                    — a series of eight to ten paintings building toward a debut
+                    exhibition. The reference is biological and cosmic
+                    simultaneously: neural networks, constellations, decay
+                    patterns, the moment before a structure collapses into
+                    something new. An Eastern ornamental sensibility filtered
+                    through an international abstract grammar. The friction
+                    between those two things is, as he puts it, so far, the thing
+                    I have most to say.
+                  </p>
+                </Reveal>
 
-                <p
-                  className="meta pt-4"
-                  style={{
-                    color: 'var(--bone)',
-                    borderTop: '1px solid var(--rule)',
-                    fontSize: '0.82rem',
-                    letterSpacing: '0.18em',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Currently represented through Maio Studio, Singapore.
-                  <br />
-                  Collector enquiries and gallery submissions welcome directly.
-                </p>
-              </motion.div>
+                <Reveal>
+                  <p
+                    className="meta pt-4"
+                    style={{
+                      color: 'var(--bone)',
+                      borderTop: '1px solid var(--rule)',
+                      fontSize: '0.82rem',
+                      letterSpacing: '0.18em',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Currently represented through Maio Studio, Singapore.
+                    <br />
+                    Collector enquiries and gallery submissions welcome directly.
+                  </p>
+                </Reveal>
+              </div>
             </div>
           </div>
         </div>
@@ -257,40 +318,42 @@ export default function ArtistPage() {
               </div>
             </div>
             <div className="col-span-12 md:col-span-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+              <div
                 className="space-y-8 text-xl md:text-2xl leading-snug"
                 style={{ color: 'var(--bone)' }}
               >
-                <p>
-                  I am interested in the places where organic systems fail
-                  gracefully — neural maps, cracked skin, constellations, decay.
-                  My paintings are attempts to hold that failure still long
-                  enough to look at it. I am colourblind. I have spent my whole
-                  life feeling colour rather than naming it. I think that is why
-                  I trust it.
-                </p>
-                <p style={{ color: 'var(--dim)' }}>
-                  The work is made in layers. Cobalt laid flat. Gold pulled
-                  through craze. Splatter inverted against gradient. Each
-                  technique is a way of arguing with my own hand — laying
-                  something down and then asking whether it was true. I
-                  travelled to eighty countries before I understood that I had
-                  been looking for a way to stay still. The paintings are where
-                  I stay still.
-                </p>
-                <p style={{ color: 'var(--dim)' }}>
-                  Jung taught me that what we cannot say directly, we say in
-                  image. Krishnamurti taught me that clear seeing requires the
-                  destruction of what I already think I know. I grew up looking
-                  at Eastern miniatures and ornament. I paint in an
-                  international abstract grammar. The friction between those
-                  two things is, so far, the thing I have most to say.
-                </p>
-              </motion.div>
+                <Reveal>
+                  <p>
+                    I am interested in the places where organic systems fail
+                    gracefully — neural maps, cracked skin, constellations, decay.
+                    My paintings are attempts to hold that failure still long
+                    enough to look at it. I am colourblind. I have spent my whole
+                    life feeling colour rather than naming it. I think that is why
+                    I trust it.
+                  </p>
+                </Reveal>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    The work is made in layers. Cobalt laid flat. Gold pulled
+                    through craze. Splatter inverted against gradient. Each
+                    technique is a way of arguing with my own hand — laying
+                    something down and then asking whether it was true. I
+                    travelled to eighty countries before I understood that I had
+                    been looking for a way to stay still. The paintings are where
+                    I stay still.
+                  </p>
+                </Reveal>
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    Jung taught me that what we cannot say directly, we say in
+                    image. Krishnamurti taught me that clear seeing requires the
+                    destruction of what I already think I know. I grew up looking
+                    at Eastern miniatures and ornament. I paint in an
+                    international abstract grammar. The friction between those
+                    two things is, so far, the thing I have most to say.
+                  </p>
+                </Reveal>
+              </div>
             </div>
           </div>
         </div>
@@ -400,5 +463,23 @@ export default function ArtistPage() {
 
       <Footer />
     </div>
+  );
+}
+
+/**
+ * Reveal — wraps its children in a motion.div that fades + slides up when it
+ * enters the viewport. Used throughout the biography + three-notes sections so
+ * each paragraph lands on its own beat, cascading as the visitor scrolls.
+ */
+function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-12%' }}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
   );
 }

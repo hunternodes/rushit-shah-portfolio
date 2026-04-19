@@ -167,7 +167,7 @@ export default function ArtistPage() {
                     className="mt-2"
                     style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
                   >
-                    Abstract painter · Colourblind
+                    Abstract painter
                   </div>
                 </div>
               </motion.div>

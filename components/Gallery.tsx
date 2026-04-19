@@ -1,14 +1,12 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
-  useMotionValue,
-  type MotionValue,
 } from 'framer-motion';
+import Link from 'next/link';
 
 export type GalleryPainting = {
   id: string | number;
@@ -31,264 +29,208 @@ const accentCss: Record<(typeof accentCycle)[number], string> = {
   plum: 'var(--plum)',
   lime: 'var(--lime)',
 };
-
-// Use layout effect on client only — avoids SSR "useLayoutEffect on server" warning
-const useIsoLayout = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+const accentRgb: Record<(typeof accentCycle)[number], string> = {
+  amber: '255, 181, 71',
+  ice: '122, 224, 255',
+  coral: '255, 78, 56',
+  plum: '184, 95, 160',
+  lime: '199, 255, 58',
+};
 
 /**
- * Pin-and-scrub gallery. Section is tall; inner wrapper pins; horizontal track
- * translates left as vertical scroll advances. We measure the real track width
- * in px so the scroll ends EXACTLY when the last card is flush with the viewport
- * edge — no over-scroll, no dead space past the final painting.
+ * Gallery — exhibition-wall style.
+ * Each painting gets its own full-viewport section. Image dominates.
+ * Scroll triggers parallax + fade; hover enlarges the painting for closer study.
+ * Caption sits minimally beneath each piece.
  */
 export default function Gallery({ paintings }: { paintings: GalleryPainting[] }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const [slide, setSlide] = useState(0);
-
-  // Measure track + viewport widths so we know how far to translate
-  useIsoLayout(() => {
-    const measure = () => {
-      const t = trackRef.current;
-      const v = viewportRef.current;
-      if (!t || !v) return;
-      const trackWidth = t.scrollWidth;
-      const viewWidth = v.clientWidth;
-      setSlide(Math.max(0, trackWidth - viewWidth));
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    const ro = new ResizeObserver(measure);
-    if (trackRef.current) ro.observe(trackRef.current);
-    return () => {
-      window.removeEventListener('resize', measure);
-      ro.disconnect();
-    };
-  }, [paintings.length]);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  });
-  const smooth = useSpring(scrollYProgress, { damping: 30, stiffness: 80, mass: 0.6 });
-  const x = useTransform(smooth, [0.02, 0.98], [0, -slide]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative"
-      style={{
-        background: 'var(--shadow)',
-        height: `${Math.max(paintings.length, 2) * 100}vh`,
-      }}
-    >
-      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
-        {/* Header */}
-        <div className="px-5 sm:px-8 lg:px-12 pt-24 pb-6 md:pt-28 md:pb-8">
-          <div className="grid grid-cols-12 gap-8 items-end">
-            <h2
-              className="col-span-12 md:col-span-7 display-lg"
-              style={{ color: 'var(--bone)', fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}
-            >
-              {paintings.length === 5 ? 'Five pieces' : `${paintings.length} pieces`} from{' '}
-              <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                the Fragment
-              </span>{' '}
-              series.
-            </h2>
-            <p
-              className="font-marker col-span-12 md:col-span-4 md:col-start-9 md:self-end text-base md:text-lg"
-              style={{ color: 'var(--dim)' }}
-            >
-              Scroll — the wall slides across. Hover a piece to enlarge.
-            </p>
-          </div>
-
-          {/* Progress rail */}
-          <div
-            className="mt-8 relative h-[2px] w-full md:w-1/2"
-            style={{ background: 'var(--rule)' }}
+    <section className="relative" style={{ background: 'var(--shadow)' }}>
+      {/* Opening header */}
+      <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 pt-24 md:pt-32 pb-8">
+        <div className="grid grid-cols-12 gap-8 items-end">
+          <h2
+            className="col-span-12 md:col-span-8 display-lg"
+            style={{ color: 'var(--bone)', fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}
           >
-            <motion.div
-              className="absolute left-0 top-0 h-full"
-              style={{ background: 'var(--lime)', scaleX: smooth, transformOrigin: 'left' }}
-            />
-          </div>
-        </div>
-
-        {/* Viewport (clips the track) */}
-        <div ref={viewportRef} className="relative flex-1 overflow-hidden">
-          {paintings.length === 0 ? (
-            <p className="px-8 text-lg" style={{ color: 'var(--dim)' }}>
-              No featured paintings yet.
-            </p>
-          ) : (
-            <motion.div
-              ref={trackRef}
-              style={{ x }}
-              className="flex items-center h-full gap-8 md:gap-14 pl-[5vw] pr-[10vw]"
-            >
-              {paintings.map((art, i) => (
-                <Card
-                  key={art.id}
-                  art={art}
-                  index={i}
-                  progress={smooth}
-                  total={paintings.length}
-                />
-              ))}
-            </motion.div>
-          )}
+            {paintings.length === 5 ? 'Five pieces' : `${paintings.length} pieces`} from{' '}
+            <span className="in-serif" style={{ color: 'var(--lime)' }}>
+              the Fragment
+            </span>{' '}
+            series.
+          </h2>
+          <p
+            className="font-marker col-span-12 md:col-span-4 md:self-end text-base md:text-lg"
+            style={{ color: 'var(--dim)' }}
+          >
+            Scroll through — hover any painting to see it up close.
+          </p>
         </div>
       </div>
+
+      {paintings.length === 0 ? (
+        <p className="px-8 py-20 text-lg" style={{ color: 'var(--dim)' }}>
+          No featured paintings yet.
+        </p>
+      ) : (
+        paintings.map((art, i) => (
+          <Room key={art.id} art={art} index={i} total={paintings.length} />
+        ))
+      )}
     </section>
   );
 }
 
-function Card({
+function Room({
   art,
   index,
-  progress,
   total,
 }: {
   art: GalleryPainting;
   index: number;
-  progress: MotionValue<number>;
   total: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const accentKey = accentCycle[index % accentCycle.length];
+  const accent = accentCss[accentKey];
+  const accentRgbVal = accentRgb[accentKey];
   const inProgress = art.status === 'in-progress';
-  const accent = accentCss[accentCycle[index % accentCycle.length]];
-  const baseRotation = index % 2 === 0 ? -1.4 : 1.2;
 
-  // Each card gets a scroll-progress band: it's brightest when centered on screen
-  const band = 1 / Math.max(total, 1);
-  const center = (index + 0.5) * band;
-  const near = (d: number) => (p: number) => 1 - Math.min(1, Math.abs(p - center) / d);
-  const scale = useTransform(progress, (p) => 0.94 + 0.06 * Math.max(0, near(band * 1.2)(p)));
-  const cardOpacity = useTransform(progress, (p) => 0.55 + 0.45 * Math.max(0, near(band * 1.4)(p)));
+  // Scroll progress relative to this room's entry/exit
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
 
-  // Mouse tilt (3D)
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const rx = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 180, damping: 18 });
-  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-8, 8]), { stiffness: 180, damping: 18 });
-
-  const onMove = (e: React.MouseEvent) => {
-    const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    mx.set((e.clientX - r.left) / r.width - 0.5);
-    my.set((e.clientY - r.top) / r.height - 0.5);
-  };
-  const onLeave = () => {
-    mx.set(0);
-    my.set(0);
-  };
+  // Parallax: image drifts slower than the page
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  // Fade-in as it enters, fade-out as it leaves
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0, 1, 1, 0]);
+  // Subtle scale arc — biggest when centered
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1, 0.94]);
+  // Watermark number drifts opposite direction
+  const numberY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
   return (
-    <motion.article
-      className="shrink-0 w-[78vw] md:w-[64vw] lg:w-[56vw] xl:w-[48vw] relative"
-      style={{ scale, opacity: cardOpacity, rotate: baseRotation }}
-      whileHover={{ rotate: 0, y: -8 }}
-      transition={{ type: 'spring', stiffness: 220, damping: 20 }}
+    <div
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center py-20 md:py-28 overflow-hidden"
     >
-      <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
-        {/* Painting column — 3D perspective wrapper */}
-        <motion.div
-          onMouseMove={onMove}
-          onMouseLeave={onLeave}
-          className="col-span-12 md:col-span-8 relative"
-          style={{
-            rotateX: rx,
-            rotateY: ry,
-            transformStyle: 'preserve-3d',
-            transformPerspective: 1200,
-          }}
-        >
-          {/* Inner frame — this scales up on hover so the painting grows bigger for better view */}
-          <motion.div
-            className="art-frame lit aspect-[4/5] relative origin-center"
-            style={{ opacity: inProgress ? 0.6 : 1, zIndex: 1 }}
-            whileHover={{ scale: 1.2, zIndex: 20 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-          >
-            <img src={art.imageUrl} alt={art.imageAlt} />
-          </motion.div>
+      {/* Accent wash — coloured radial glow behind the piece */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(55% 60% at 50% 50%, rgba(${accentRgbVal}, 0.08) 0%, rgba(${accentRgbVal}, 0) 70%)`,
+        }}
+      />
 
-          {/* Giant watermark number bleeding off the top */}
-          <div
-            className="absolute -top-8 md:-top-12 -right-3 pointer-events-none select-none"
+      {/* Giant watermark number behind the piece, drifting counter-parallax */}
+      <motion.div
+        aria-hidden
+        style={{
+          y: numberY,
+          fontFamily: '"Space Grotesk", system-ui, sans-serif',
+          fontSize: 'clamp(14rem, 35vw, 42rem)',
+          lineHeight: 0.8,
+          color: accent,
+          opacity: 0.06,
+          fontWeight: 700,
+          letterSpacing: '-0.06em',
+        }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+      >
+        {(index + 1).toString().padStart(2, '0')}
+      </motion.div>
+
+      {/* The painting — centered, dominant */}
+      <motion.figure
+        style={{ y, opacity, scale, opacity: inProgress ? 0.7 : opacity }}
+        className="relative z-10 w-full max-w-[min(92vw,1100px)] mx-auto px-5"
+      >
+        <motion.div
+          className="relative group cursor-zoom-in"
+          whileHover={{ scale: 1.04 }}
+          transition={{ type: 'spring', stiffness: 160, damping: 22 }}
+        >
+          <img
+            src={art.imageUrl}
+            alt={art.imageAlt}
+            className="block w-auto mx-auto"
             style={{
-              fontFamily: '"Space Grotesk", system-ui, sans-serif',
-              fontSize: 'clamp(6rem, 12vw, 11rem)',
-              lineHeight: 0.8,
-              color: accent,
-              opacity: 0.12,
-              fontWeight: 700,
-              letterSpacing: '-0.04em',
+              maxHeight: '78vh',
+              maxWidth: '100%',
+              objectFit: 'contain',
+              boxShadow: `0 30px 100px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(${accentRgbVal}, 0.12)`,
+              filter: 'brightness(0.92)',
+              transition: 'filter 500ms ease',
             }}
-          >
-            {(index + 1).toString().padStart(2, '0')}
-          </div>
-        </motion.div>
+            onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(1.0)')}
+            onMouseLeave={(e) => (e.currentTarget.style.filter = 'brightness(0.92)')}
+          />
 
-        {/* Plaque */}
-        <motion.div
-          className="col-span-12 md:col-span-4 md:pt-10"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          <div className="meta-sm mb-3" style={{ color: accent }}>
-            ROOM {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-          </div>
-          <h3
-            className="display-md"
-            style={{ color: 'var(--bone)', fontSize: 'clamp(1.5rem, 2.6vw, 2.25rem)' }}
-          >
-            {art.title}
-          </h3>
-          <p
-            className="font-marker mt-4 text-lg leading-snug"
-            style={{ color: 'var(--bone)', opacity: 0.85 }}
-          >
-            {art.shortDescription}
-          </p>
-          <dl className="mt-6 grid grid-cols-[6rem_1fr] gap-y-2 text-sm">
-            <dt className="meta-sm" style={{ color: 'var(--dim)' }}>YEAR</dt>
-            <dd style={{ color: 'var(--bone)' }}>{art.year}</dd>
-            <dt className="meta-sm" style={{ color: 'var(--dim)' }}>MEDIUM</dt>
-            <dd style={{ color: 'var(--bone)' }}>{art.medium}</dd>
-            <dt className="meta-sm" style={{ color: 'var(--dim)' }}>SIZE</dt>
-            <dd style={{ color: 'var(--bone)' }}>{art.dimensions || '—'}</dd>
-            <dt className="meta-sm" style={{ color: 'var(--dim)' }}>STATUS</dt>
-            <dd
-              className="meta-sm"
+          {/* In-progress overlay label */}
+          {inProgress && (
+            <div
+              className="absolute top-4 right-4 px-3 py-1.5 meta-sm"
               style={{
-                color: inProgress ? 'var(--lime)' : 'var(--bone)',
+                background: 'var(--night)',
+                color: 'var(--lime)',
                 letterSpacing: '0.18em',
               }}
             >
-              {statusLabel(art.status)}
-            </dd>
-          </dl>
-          <a href="/contact" className="btn-ghost mt-6">
-            {inProgress ? 'notify on completion' : 'enquire'}
-            <span aria-hidden>→</span>
-          </a>
+              IN PROGRESS
+            </div>
+          )}
         </motion.div>
-      </div>
-    </motion.article>
-  );
-}
 
-function statusLabel(status: string) {
-  switch (status) {
-    case 'available': return 'AVAILABLE';
-    case 'sold': return 'SOLD';
-    case 'in-progress': return 'IN PROGRESS';
-    case 'reserved': return 'RESERVED';
-    case 'not-for-sale': return 'NOT FOR SALE';
-    default: return status.toUpperCase();
-  }
+        {/* Minimal caption — title + year/medium + description */}
+        <figcaption className="mt-8 md:mt-10 flex flex-wrap items-end justify-between gap-4 md:gap-8 max-w-[min(92vw,900px)] mx-auto">
+          <div className="flex-1 min-w-[220px]">
+            <div className="meta-sm mb-2" style={{ color: accent }}>
+              ROOM {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            </div>
+            <h3
+              className="in-serif"
+              style={{
+                color: 'var(--bone)',
+                fontSize: 'clamp(1.5rem, 3vw, 2.4rem)',
+                lineHeight: 1.05,
+              }}
+            >
+              {art.title}
+            </h3>
+            <p
+              className="font-marker mt-3 text-base md:text-lg leading-snug max-w-prose"
+              style={{ color: 'var(--dim)' }}
+            >
+              {art.shortDescription}
+            </p>
+          </div>
+          <div className="text-right min-w-[180px] pt-2">
+            <div className="meta-sm" style={{ color: 'var(--bone)' }}>{art.year}</div>
+            <div
+              className="meta-sm mt-1"
+              style={{ color: 'var(--dim)', letterSpacing: '0.14em' }}
+            >
+              {art.medium}
+            </div>
+            {art.dimensions && art.dimensions !== '—' && (
+              <div className="meta-sm mt-1" style={{ color: 'var(--dim)' }}>
+                {art.dimensions}
+              </div>
+            )}
+            <Link
+              href="/contact"
+              className="btn-ghost mt-4 inline-flex"
+              style={{ fontSize: '0.7rem' }}
+            >
+              {inProgress ? 'notify' : 'enquire'}
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </figcaption>
+      </motion.figure>
+    </div>
+  );
 }

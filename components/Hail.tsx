@@ -70,7 +70,6 @@ export default function Hail() {
           style={{ borderTop: '1px solid var(--night)' }}
         >
           <div className="meta-sm">Studio · Vadodara / Singapore / Berlin · 2026</div>
-          <div className="meta-sm">Space Grotesk · Fraunces · JetBrains Mono</div>
           <div className="meta-sm">© Rushit Shah — all marks his own</div>
         </div>
       </div>

@@ -109,9 +109,6 @@ export default function Footer() {
           <p className="meta-sm" style={{ color: 'var(--dim)' }}>
             © Rushit Shah — all marks his own · {year}
           </p>
-          <p className="meta-sm" style={{ color: 'var(--dim)' }}>
-            Space Grotesk · Fraunces · JetBrains Mono
-          </p>
         </div>
       </div>
     </footer>

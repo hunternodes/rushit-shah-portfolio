@@ -554,64 +554,6 @@ export default function ArtistPage() {
         </div>
       </section>
 
-      {/* Minimal evolution line — when each technique arrived */}
-      <section className="py-16 md:py-20" style={{ background: 'var(--shadow)' }}>
-        <div className="max-w-[1100px] mx-auto px-5 sm:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="meta-sm mb-8 flex items-center gap-3"
-            style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
-          >
-            <span
-              className="inline-block w-6 h-px"
-              style={{ background: 'var(--lime)' }}
-            />
-            EVOLUTION
-          </motion.div>
-
-          <div className="space-y-5 md:space-y-6">
-            {[
-              { year: '2024', body: 'the crackle arrived.' },
-              { year: '2025', body: 'the inversion followed.' },
-              { year: '2026', body: 'Fragment begins.' },
-            ].map((row, i) => (
-              <motion.div
-                key={row.year}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10%' }}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-baseline gap-6 md:gap-10"
-              >
-                <span
-                  className="meta-sm"
-                  style={{
-                    color: 'var(--lime)',
-                    letterSpacing: '0.22em',
-                    minWidth: '4.5rem',
-                  }}
-                >
-                  {row.year}
-                </span>
-                <span
-                  className="in-serif"
-                  style={{
-                    color: 'var(--bone)',
-                    fontSize: 'clamp(1.35rem, 2.2vw, 1.9rem)',
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {row.body}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );

@@ -29,13 +29,8 @@ const moments = [
   },
   {
     year: '2026',
-    label: 'Fragment · Maio Studio',
-    body: 'A cohesive body of work begins — eight to ten paintings toward a debut exhibition. Currently represented through Maio Studio, Singapore.',
-  },
-  {
-    year: '+',
-    label: 'Longer view',
-    body: 'Museum walls, international fairs, collectors who see the long arc of a practice. Present tense.',
+    label: 'Fragment',
+    body: 'A cohesive body of work begins — eight to ten paintings toward a debut exhibition.',
   },
 ];
 

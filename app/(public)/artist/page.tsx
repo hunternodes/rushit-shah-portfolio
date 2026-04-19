@@ -9,14 +9,14 @@ const techniques = [
     no: '01',
     title: 'Crackle Network',
     body:
-      'Cobalt is laid as ground — dense, flat, unbroken. Over it, a crackle medium is worked until the surface fails on its own terms: fissures open like capillaries, fault lines, the aftermath of a system under pressure. Gold is pulled through the craze; red arrives only at the points of maximum stress, only where the surface could not hold. The network that results is not designed. It is allowed.',
+      "Cobalt is laid as ground — dense, flat, unbroken. Over it, a crackle medium is worked until the surface fails on its own terms: fissures open like capillaries, like fault lines. Gold is pulled through the craze. Red only arrives at the breakages — and I'm still not sure why. Some cobalt grounds hold the medium cleanly; others reject it in the first hour, and the panel has to be started again.",
     accent: 'var(--lime)',
   },
   {
     no: '02',
     title: 'Gradient-Splatter Inversion',
     body:
-      "A ground moves from warm gold to cool silver — a gradient laid as smooth as the hand allows. Then: splatter, inverted. Black lands in the warm zone; white in the cool. The logic reverses what the eye expects. The result is a surface in argument with itself — order and disruption occupying the same gesture, neither winning, both present. This is the technique most fully Shah's own.",
+      "A ground moves from warm gold to cool silver — a gradient laid as smooth as the hand allows. Then: splatter, inverted. Black goes into the warm zone, white into the cool — the reverse of what the eye wants. Order and disruption occupying the same gesture, neither winning. I am still learning what the inversion is asking for.",
     accent: 'var(--coral)',
   },
 ];
@@ -103,12 +103,15 @@ export default function ArtistPage() {
                   letterSpacing: '-0.02em',
                 }}
               >
-                A painter{' '}
-                <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                  between chaos
-                </span>
+                An abstract painter,
                 <br />
-                and control.
+                working{' '}
+                <span className="in-serif" style={{ color: 'var(--lime)' }}>
+                  between
+                </span>{' '}
+                India, Singapore,
+                <br />
+                and Germany.
               </motion.h1>
 
               {/* Meta row — balances the column against the portrait */}
@@ -230,158 +233,8 @@ export default function ArtistPage() {
         </div>
       </section>
 
-      {/* Biography — long-form (comes first now, on --shadow for alternation after the hero) */}
+      {/* Three notes — first-person voice leads the page (comes before the 3rd-person bio) */}
       <section className="py-24 md:py-32" style={{ background: 'var(--shadow)' }}>
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-12 md:col-span-4">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="art-frame lit aspect-[4/5] mb-6"
-              >
-                <motion.img
-                  src="/images/rushit-portrait.png"
-                  alt="Rushit Shah — portrait, Paris"
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="display-md in-serif"
-                style={{ color: 'var(--bone)' }}
-              >
-                b. 1986 · Vadodara
-              </motion.div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <div
-                className="space-y-7 text-lg md:text-xl leading-snug"
-                style={{ color: 'var(--bone)' }}
-              >
-                <Reveal>
-                  <p>
-                    Rushit Shah was born in Vadodara, Gujarat, on 8 September
-                    1986. He lives and works between India, Singapore, and
-                    Germany.
-                  </p>
-                </Reveal>
-
-                <Reveal delay={0.05}>
-                  <p style={{ color: 'var(--dim)' }}>
-                    This is not a footnote. It is the foundation of everything he
-                    makes. Where other painters see colour as fact, Shah
-                    experiences it as force — approximate, atmospheric, felt
-                    before it is named. Unable to rely on the eye's easy
-                    certainties, he has built a practice around what colour does
-                    rather than what it is: its weight, its temperature, the
-                    pressure it exerts against an adjacent tone. The result is an
-                    instinctive colour intelligence that trained painters spend
-                    decades trying to acquire. Shah arrived at it by necessity,
-                    and it shows.
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    His path to painting was not direct. He has travelled to more
-                    than eighty countries — not as tourism, but as a kind of
-                    extended looking. Deserts, coastlines, markets, ruins, other
-                    people's ordinary days. The accumulation of those images, and
-                    the losses that came alongside them — including the death of
-                    his father — pushed him toward abstraction as the only form
-                    capacious enough to hold what he was carrying.
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    He found his way into the work through Carl Jung's ideas on
-                    the unconscious — the notion that what we cannot say
-                    directly, we express in symbol and image — and through J.
-                    Krishnamurti's understanding of perception: that how we see
-                    is inseparable from who we are, and that truly clear looking
-                    requires the dismantling of what we already believe we know.
-                    Both thinkers remain active in his practice. Every layer laid
-                    down, every craze pulled through, every splatter inverted is
-                    a form of not-knowing-in-advance — an argument with his own
-                    certainty.
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    His early work absorbed the energy of action painting —
-                    Pollock's physicality, Klee's structural wit, Kandinsky's
-                    belief that form carries emotional necessity, Van Gogh's
-                    refusal to let surface lie flat. These were formative
-                    encounters. He has moved through them and arrived somewhere
-                    that belongs to no one else.
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    The current work is built on two signature techniques. The
-                    first: a cobalt ground broken by gold craze — crackle
-                    networks that behave like capillaries, like fault lines, like
-                    the maps of systems under stress. Red arrives only where the
-                    surface cannot hold. The second: a gold-to-silver gradient
-                    interrupted by inverted black-and-white splatter — black
-                    claiming the warm zone, white claiming the cool. The
-                    counterintuition is the point. Both techniques ask the same
-                    question: what does order look like at the moment it begins
-                    to fail?
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    Shah calls the current body of work{' '}
-                    <span className="in-serif" style={{ color: 'var(--bone)' }}>
-                      Fragment
-                    </span>{' '}
-                    — a series of eight to ten paintings building toward a debut
-                    exhibition. The reference is biological and cosmic
-                    simultaneously: neural networks, constellations, decay
-                    patterns, the moment before a structure collapses into
-                    something new. An Eastern ornamental sensibility filtered
-                    through an international abstract grammar. The friction
-                    between those two things is, as he puts it, so far, the thing
-                    I have most to say.
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p
-                    className="meta pt-4"
-                    style={{
-                      color: 'var(--bone)',
-                      borderTop: '1px solid var(--rule)',
-                      fontSize: '0.82rem',
-                      letterSpacing: '0.18em',
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    Currently represented through Maio Studio, Singapore.
-                    <br />
-                    Collector enquiries and gallery submissions welcome directly.
-                  </p>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Statement — three notes (now sits BELOW the biography) */}
-      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-12 gap-8">
             <div className="col-span-12 md:col-span-4">
@@ -429,6 +282,87 @@ export default function ArtistPage() {
                     at Eastern miniatures and ornament. I paint in an
                     international abstract grammar. The friction between those
                     two things is, so far, the thing I have most to say.
+                  </p>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Biography — trimmed, third-person facts only, sits beneath the artist's own voice */}
+      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
+        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-8">
+            <div className="col-span-12 md:col-span-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className="art-frame lit aspect-[4/5] mb-6"
+              >
+                <motion.img
+                  src="/images/rushit-portrait.png"
+                  alt="Rushit Shah — portrait, Paris"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="display-md in-serif"
+                style={{ color: 'var(--bone)' }}
+              >
+                b. 1986 · Vadodara
+              </motion.div>
+            </div>
+            <div className="col-span-12 md:col-span-8">
+              <div
+                className="space-y-7 text-lg md:text-xl leading-snug"
+                style={{ color: 'var(--bone)' }}
+              >
+                <Reveal>
+                  <p>
+                    Rushit Shah was born in Vadodara, Gujarat, on 8 September
+                    1986. He lives and works between India, Singapore, and
+                    Germany.
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    He is colourblind. The work started there — with what colour
+                    does against its neighbour rather than what it is called.
+                    Weight, temperature, the pressure of one tone pressed next
+                    to another. He trusts those signals more than the names.
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    His path to painting was not direct. He has travelled to
+                    more than eighty countries — not as tourism, but as a kind
+                    of extended looking. Deserts, coastlines, markets, ruins,
+                    other people's ordinary days. The accumulation of those
+                    images, and the losses that came alongside them — including
+                    the death of his father — pushed him toward abstraction as
+                    the only form capacious enough to hold what he was
+                    carrying.
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <p style={{ color: 'var(--dim)' }}>
+                    He found the work through Carl Jung — that what we cannot
+                    say directly, we say in symbol and image — and through J.
+                    Krishnamurti: that how we see is inseparable from who we
+                    are, and that clear looking asks us to let go of what we
+                    already think we know. Both thinkers are still active in
+                    his practice.
                   </p>
                 </Reveal>
               </div>

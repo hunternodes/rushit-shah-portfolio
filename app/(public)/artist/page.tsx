@@ -31,10 +31,10 @@ const techniques = [
 const artistTheme = {
   '--night': '#1A0E20',   // deep aubergine base
   '--shadow': '#241528',  // slightly lifted aubergine panel
-  '--bone': '#F7EFDE',    // brighter warm parchment (lifted from #F4E8D4)
-  '--dim': '#C9B5C2',     // lighter mauve for secondary copy (lifted from #A08A9B)
-  '--rule': '#3A2A3E',    // plum rule lines
-  '--lime': '#E5B354',    // amber-gold accent, slightly brighter
+  '--bone': '#FBF4E4',    // warm parchment — readable at a glance, not pure white
+  '--dim': '#E4D5DC',     // brighter mauve so body copy clears the muted-grey problem
+  '--rule': '#4A374E',    // plum rule lines, slightly lifted
+  '--lime': '#EFBE5D',    // amber-gold accent, brighter for legibility
 } as React.CSSProperties;
 
 export default function ArtistPage() {
@@ -327,8 +327,9 @@ export default function ArtistPage() {
                   className="in-serif mb-12"
                   style={{
                     color: 'var(--bone)',
-                    fontSize: 'clamp(1.75rem, 2.6vw, 2.4rem)',
-                    lineHeight: 1.05,
+                    fontSize: 'clamp(2.25rem, 3.4vw, 3.2rem)',
+                    lineHeight: 1.02,
+                    fontWeight: 500,
                   }}
                 >
                   three notes
@@ -371,7 +372,7 @@ export default function ArtistPage() {
                       >
                         II.
                       </span>
-                      <p>
+                      <p style={{ color: 'var(--bone)' }}>
                         The work is made in layers. Cobalt laid flat. Gold
                         pulled through craze. Splatter inverted against
                         gradient. Each technique is a way of arguing with my
@@ -393,7 +394,7 @@ export default function ArtistPage() {
                       >
                         III.
                       </span>
-                      <p>
+                      <p style={{ color: 'var(--bone)' }}>
                         Jung taught me that what we cannot say directly, we
                         say in image. Krishnamurti taught me that clear
                         seeing requires the destruction of what I already
@@ -458,33 +459,23 @@ export default function ArtistPage() {
                 <Reveal>
                   <p>
                     His path to painting was not direct. He has travelled to
-                    more than eighty countries — not as tourism, but as a kind
-                    of extended looking. Deserts, coastlines, markets, ruins,
+                    more than eighty countries — less as tourism than as
+                    extended looking. Deserts, coastlines, markets, ruins,
                     other people's ordinary days. The accumulation of those
                     images, and the losses that came alongside them —
                     including the death of his father — pushed him toward
-                    abstraction as the only form capacious enough to hold what
-                    he was carrying.
+                    abstraction as the only form capacious enough to hold
+                    what he was carrying.
                   </p>
                 </Reveal>
 
                 <Reveal>
                   <p>
                     His visual vocabulary sits between two traditions: the
-                    ornamental density of Eastern miniature painting, which he
-                    grew up inside, and the looser grammar of international
+                    ornamental density of Eastern miniature painting, which
+                    he grew up inside, and the looser grammar of international
                     abstraction, which he came to later. Much of the tension
                     in the work comes from refusing to choose.
-                  </p>
-                </Reveal>
-
-                <Reveal>
-                  <p>
-                    He found his way into the work through Carl Jung — that
-                    what we cannot say directly, we say in symbol and image —
-                    and through J. Krishnamurti: that how we see is
-                    inseparable from who we are, and that clear looking asks
-                    us to let go of what we already think we know.
                   </p>
                 </Reveal>
               </div>
@@ -551,6 +542,64 @@ export default function ArtistPage() {
                 >
                   {t.body}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Minimal evolution line — when each technique arrived */}
+      <section className="py-16 md:py-20" style={{ background: 'var(--shadow)' }}>
+        <div className="max-w-[1100px] mx-auto px-5 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="meta-sm mb-8 flex items-center gap-3"
+            style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
+          >
+            <span
+              className="inline-block w-6 h-px"
+              style={{ background: 'var(--lime)' }}
+            />
+            EVOLUTION
+          </motion.div>
+
+          <div className="space-y-5 md:space-y-6">
+            {[
+              { year: '2024', body: 'the crackle arrived.' },
+              { year: '2025', body: 'the inversion followed.' },
+              { year: '2026', body: 'Fragment begins.' },
+            ].map((row, i) => (
+              <motion.div
+                key={row.year}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10%' }}
+                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-baseline gap-6 md:gap-10"
+              >
+                <span
+                  className="meta-sm"
+                  style={{
+                    color: 'var(--lime)',
+                    letterSpacing: '0.22em',
+                    minWidth: '4.5rem',
+                  }}
+                >
+                  {row.year}
+                </span>
+                <span
+                  className="in-serif"
+                  style={{
+                    color: 'var(--bone)',
+                    fontSize: 'clamp(1.35rem, 2.2vw, 1.9rem)',
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {row.body}
+                </span>
               </motion.div>
             ))}
           </div>

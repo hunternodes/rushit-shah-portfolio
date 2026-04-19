@@ -87,7 +87,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): replace blinking square with a yellow paint-drop SVG — on-brand for an abstract painter\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): restore original tiny lime square indicator with flicker animation \\(2\\\\u00d72 w-2 h-2, var\\(--lime\\), animate-flicker\\)\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(flicker\\): rewrite flicker keyframe — hard on/off steps at irregular moments over 1.8s cycle; actually visible now\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): pin-and-scrub horizontal scroll — section pins while vertical scroll slides paintings sideways; per-card mouse-tilt, base rotation wobble, scroll-linked fade/scale, lime progress rail\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): pin-and-scrub horizontal scroll — section pins while vertical scroll slides paintings sideways; per-card mouse-tilt, base rotation wobble, scroll-linked fade/scale, lime progress rail\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): \\(1\\) image zooms to 1.2x on hover for closer look at the work \\(2\\) measure real track width so scrub stops exactly at last painting — no over-scroll past Room 05\")"
     ]
   }
 }

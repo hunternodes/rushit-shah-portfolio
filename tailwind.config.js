@@ -28,7 +28,8 @@ module.exports = {
       animation: {
         ticker: 'ticker 42s linear infinite',
         pulse: 'pulse 2.8s ease-in-out infinite',
-        flicker: 'flicker 5s linear infinite',
+        // Hard-step neon flicker — clearly visible on/off at irregular moments
+        flicker: 'flicker 1.8s steps(1, end) infinite',
         drift: 'drift 24s ease-in-out infinite',
       },
       keyframes: {
@@ -40,11 +41,15 @@ module.exports = {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.4' },
         },
+        // Irregular on/off flicker — evokes a bad neon-sign connection
         flicker: {
-          '0%, 96%, 100%': { opacity: '1' },
-          '97%': { opacity: '0.6' },
-          '98%': { opacity: '1' },
-          '99%': { opacity: '0.7' },
+          '0%, 22%':  { opacity: '1' },
+          '23%, 26%': { opacity: '0' },
+          '27%, 48%': { opacity: '1' },
+          '49%, 50%': { opacity: '0' },
+          '51%, 72%': { opacity: '1' },
+          '73%, 77%': { opacity: '0' },
+          '78%, 100%': { opacity: '1' },
         },
         drift: {
           '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },

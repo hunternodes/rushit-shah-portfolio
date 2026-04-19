@@ -85,7 +85,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): enlarge blink-box to match logo font size \\(clamp 1.4-1.9rem\\); speed blink to 0.32s cycle; respect prefers-reduced-motion\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"fix\\(nav\\): switch BlinkBox from framer-motion to CSS @keyframes + steps\\(\\) — reliable hard on/off strobe at 0.35s cycle\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): replace blinking square with a yellow paint-drop SVG — on-brand for an abstract painter\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): restore original tiny lime square indicator with flicker animation \\(2\\\\u00d72 w-2 h-2, var\\(--lime\\), animate-flicker\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): restore original tiny lime square indicator with flicker animation \\(2\\\\u00d72 w-2 h-2, var\\(--lime\\), animate-flicker\\)\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(flicker\\): rewrite flicker keyframe — hard on/off steps at irregular moments over 1.8s cycle; actually visible now\")"
     ]
   }
 }

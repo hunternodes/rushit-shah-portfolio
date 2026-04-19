@@ -41,46 +41,69 @@ export default function ArtistPage() {
   return (
     <div style={artistTheme}>
       <section
-        className="relative pt-32 md:pt-40 pb-16 overflow-hidden"
+        className="relative min-h-[88vh] flex items-center overflow-hidden pt-28 md:pt-32 pb-20"
         style={{ background: 'var(--night)' }}
       >
         <div className="static-noise" />
+        {/* Two warm radial washes anchoring the composition */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(65% 55% at 28% 25%, rgba(217, 169, 75, 0.12) 0%, transparent 65%), radial-gradient(55% 50% at 78% 75%, rgba(184, 95, 160, 0.10) 0%, transparent 65%)',
+              'radial-gradient(65% 55% at 22% 30%, rgba(217, 169, 75, 0.14) 0%, transparent 65%), radial-gradient(55% 50% at 82% 72%, rgba(184, 95, 160, 0.10) 0%, transparent 65%)',
           }}
         />
-        {/* Drifting ambient glow — soft coloured blob that drifts across the hero */}
+        {/* Drifting ambient glow */}
         <motion.div
           aria-hidden
           className="absolute pointer-events-none"
           style={{
-            width: '38vw',
-            height: '38vw',
+            width: '42vw',
+            height: '42vw',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(217,169,75,0.12) 0%, transparent 60%)',
-            filter: 'blur(30px)',
+            background:
+              'radial-gradient(circle, rgba(217,169,75,0.15) 0%, transparent 60%)',
+            filter: 'blur(40px)',
             mixBlendMode: 'screen',
-            top: '10%',
-            left: '55%',
+            top: '5%',
+            right: '-8%',
           }}
           animate={{
-            x: ['0%', '-8%', '5%', '0%'],
-            y: ['0%', '6%', '-4%', '0%'],
+            x: ['0%', '-6%', '4%', '0%'],
+            y: ['0%', '8%', '-5%', '0%'],
           }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
         />
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 relative">
-          <div className="grid grid-cols-12 gap-8 items-end">
-            <div className="col-span-12 md:col-span-8">
+
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 relative w-full">
+          <div className="grid grid-cols-12 gap-10 md:gap-14 items-center">
+            {/* Text column — centered vertically against the portrait */}
+            <div className="col-span-12 md:col-span-7 lg:col-span-7 order-2 md:order-1">
+              {/* Small editorial caption above the headline */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                className="meta-sm mb-6 flex items-center gap-3"
+                style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
+              >
+                <span
+                  className="inline-block w-6 h-px"
+                  style={{ background: 'var(--lime)' }}
+                />
+                RUSHIT SHAH
+              </motion.div>
+
               <motion.h1
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 className="display-xl"
-                style={{ color: 'var(--bone)' }}
+                style={{
+                  color: 'var(--bone)',
+                  lineHeight: 0.95,
+                  letterSpacing: '-0.02em',
+                }}
               >
                 A painter{' '}
                 <span className="in-serif" style={{ color: 'var(--lime)' }}>
@@ -89,23 +112,119 @@ export default function ArtistPage() {
                 <br />
                 and control.
               </motion.h1>
+
+              {/* Meta row — balances the column against the portrait */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.5 }}
+                className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5"
+              >
+                <div>
+                  <div
+                    className="meta-sm"
+                    style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
+                  >
+                    BORN
+                  </div>
+                  <div
+                    className="mt-2"
+                    style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
+                  >
+                    1986 · Vadodara
+                  </div>
+                </div>
+                <div
+                  className="w-px h-10 hidden sm:block"
+                  style={{ background: 'var(--rule)' }}
+                />
+                <div>
+                  <div
+                    className="meta-sm"
+                    style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
+                  >
+                    STUDIO
+                  </div>
+                  <div
+                    className="mt-2"
+                    style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
+                  >
+                    IN / SG / DE
+                  </div>
+                </div>
+                <div
+                  className="w-px h-10 hidden sm:block"
+                  style={{ background: 'var(--rule)' }}
+                />
+                <div>
+                  <div
+                    className="meta-sm"
+                    style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
+                  >
+                    PRACTICE
+                  </div>
+                  <div
+                    className="mt-2"
+                    style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
+                  >
+                    Abstract painter · Colourblind
+                  </div>
+                </div>
+              </motion.div>
             </div>
+
+            {/* Portrait column — simpler treatment, no heavy UI frame */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="col-span-12 md:col-span-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="col-span-12 md:col-span-5 lg:col-span-5 order-1 md:order-2 relative"
             >
-              <div className="art-frame lit aspect-[4/5]">
-                <img
+              {/* Gold glow halo behind the image so it integrates with the bg */}
+              <div
+                aria-hidden
+                className="absolute inset-0 -m-8 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(60% 60% at 50% 45%, rgba(217,169,75,0.25) 0%, transparent 70%)',
+                  filter: 'blur(40px)',
+                }}
+              />
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  aspectRatio: '4 / 5',
+                  boxShadow:
+                    '0 40px 100px -20px rgba(0,0,0,0.65), 0 0 0 1px rgba(217,169,75,0.18) inset',
+                }}
+              >
+                <motion.img
                   src="/images/rushit-hands.png"
                   alt="Rushit Shah — paint-covered hands in the studio, a yellow canvas behind"
+                  className="block w-full h-full object-cover"
+                  style={{ filter: 'saturate(0.9) contrast(1.04) brightness(0.95)' }}
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                {/* Soft vignette that deepens toward the aubergine base */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(26,14,32,0.55) 100%)',
+                  }}
                 />
                 <div
-                  className="absolute bottom-3 left-3 px-2 py-1"
-                  style={{ background: 'var(--night)', color: 'var(--lime)' }}
+                  className="absolute bottom-4 left-4 px-2 py-1 meta-sm"
+                  style={{
+                    background: 'rgba(26,14,32,0.85)',
+                    color: 'var(--lime)',
+                    backdropFilter: 'blur(6px)',
+                    letterSpacing: '0.18em',
+                  }}
                 >
-                  <div className="meta-sm">PORTRAIT · STUDIO</div>
+                  PORTRAIT · STUDIO
                 </div>
               </div>
             </motion.div>

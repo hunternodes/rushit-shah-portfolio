@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const items = [
   { label: 'Home', href: '/' },
@@ -246,24 +246,15 @@ function AnimatedWordmark({ color }: { color: string }) {
 }
 
 function BlinkBox() {
-  // Respect the OS "reduce motion" setting — don't strobe users who opted out.
-  const reduceMotion = useReducedMotion();
   return (
-    <motion.span
+    <span
       aria-hidden
-      className="inline-block"
+      className="blink-box inline-block"
       style={{
         // Same size as the logo wordmark so it reads as a matched block
         width: 'clamp(1.4rem, 2vw, 1.9rem)',
         height: 'clamp(1.4rem, 2vw, 1.9rem)',
         background: '#FFE812',
-      }}
-      animate={reduceMotion ? { opacity: 1 } : { opacity: [1, 1, 0, 0] }}
-      transition={{
-        duration: 0.32,
-        times: [0, 0.55, 0.58, 1],
-        repeat: reduceMotion ? 0 : Infinity,
-        ease: 'linear',
       }}
     />
   );

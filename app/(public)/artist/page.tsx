@@ -301,8 +301,14 @@ export default function ArtistPage() {
             </div>
 
             {/* Text column — first-person voice on top, third-person facts below,
-                separated by a small editorial divider */}
-            <div className="col-span-12 md:col-span-7 space-y-14 md:space-y-16">
+                separated by a small editorial divider. Rendered in Reynard for
+                an editorial/literary feel distinct from the hero above. */}
+            <div
+              className="col-span-12 md:col-span-7 space-y-14 md:space-y-16"
+              style={{
+                fontFamily: "'Reynard', 'Fraunces', Georgia, serif",
+              }}
+            >
               {/* First-person voice — three notes with numeral markers */}
               <div>
                 <motion.div

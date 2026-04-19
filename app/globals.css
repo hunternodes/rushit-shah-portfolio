@@ -68,6 +68,16 @@
   font-display: swap;
 }
 
+/* ——— Reynard (used on /artist section two — three notes + facts) ——— */
+@font-face {
+  font-family: 'Reynard';
+  src: url('/fonts/reynard/Reynard.otf') format('opentype'),
+       url('/fonts/reynard/Reynard.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ——— Overdose (used for body / small text) ——— */
 @font-face {
   font-family: 'Overdose';

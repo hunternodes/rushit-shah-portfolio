@@ -3,18 +3,38 @@
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 
+const techniques = [
+  {
+    no: '01',
+    title: 'Crackle Network',
+    body:
+      "Cobalt is laid as ground — dense, flat, unbroken. Over it, a crackle medium is worked until the surface fails on its own terms: fissures open like capillaries, like fault lines. Gold is pulled through the craze. Red only arrives at the breakages — and I'm still not sure why. Some cobalt grounds hold the medium cleanly; others reject it in the first hour, and the panel has to be started again.",
+    accent: 'var(--lime)',
+  },
+  {
+    no: '02',
+    title: 'Gradient-Splatter Inversion',
+    body:
+      "A ground moves from warm gold to cool silver — a gradient laid as smooth as the hand allows. Then: splatter, inverted. Black goes into the warm zone, white into the cool — the reverse of what the eye wants. Order and disruption occupying the same gesture, neither winning. I am still learning what the inversion is asking for.",
+    accent: 'var(--coral)',
+  },
+];
+
 /**
  * /artist runs in its own theme — deep aubergine with warm amber-gold
  * replacing the site's acid lime. Feels like a gallery salon / library.
  * All child sections that reference these vars pick it up automatically.
+ *
+ * Body-copy tones (--bone, --dim) are lifted brighter than the site default
+ * so prose on the aubergine background doesn't dim into the noise.
  */
 const artistTheme = {
   '--night': '#1A0E20',   // deep aubergine base
   '--shadow': '#241528',  // slightly lifted aubergine panel
-  '--bone': '#F4E8D4',    // warm parchment text
-  '--dim': '#A08A9B',     // muted mauve-rose for secondary copy
+  '--bone': '#F7EFDE',    // brighter warm parchment (lifted from #F4E8D4)
+  '--dim': '#C9B5C2',     // lighter mauve for secondary copy (lifted from #A08A9B)
   '--rule': '#3A2A3E',    // plum rule lines
-  '--lime': '#D9A94B',    // amber-gold accent (replaces acid lime)
+  '--lime': '#E5B354',    // amber-gold accent, slightly brighter
 } as React.CSSProperties;
 
 export default function ArtistPage() {
@@ -89,7 +109,7 @@ export default function ArtistPage() {
                 <br />
                 then{' '}
                 <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                  argue with them.
+                  argue.
                 </span>
               </motion.h1>
 
@@ -277,51 +297,20 @@ export default function ArtistPage() {
                   </div>
                 </motion.div>
 
-                {/* Meta stack directly under the portrait — ties the image to the text */}
-                <motion.div
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.9, delay: 0.25 }}
-                  className="mt-6"
-                >
-                  <div
-                    className="meta-sm"
-                    style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
-                  >
-                    b. 1986
-                  </div>
-                  <div
-                    className="in-serif mt-2"
-                    style={{
-                      color: 'var(--bone)',
-                      fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
-                      lineHeight: 1.05,
-                    }}
-                  >
-                    Vadodara
-                  </div>
-                  <div
-                    className="meta-sm mt-4"
-                    style={{ color: 'var(--dim)', letterSpacing: '0.2em' }}
-                  >
-                    Studio · IN / SG / DE
-                  </div>
-                </motion.div>
               </div>
             </div>
 
             {/* Text column — first-person voice on top, third-person facts below,
                 separated by a small editorial divider */}
             <div className="col-span-12 md:col-span-7 space-y-14 md:space-y-16">
-              {/* First-person voice */}
+              {/* First-person voice — three notes with numeral markers */}
               <div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className="meta-sm mb-6 flex items-center gap-3"
+                  className="meta-sm mb-3 flex items-center gap-3"
                   style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
                 >
                   <span
@@ -330,42 +319,90 @@ export default function ArtistPage() {
                   />
                   IN THE ARTIST'S WORDS
                 </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.15 }}
+                  className="in-serif mb-12"
+                  style={{
+                    color: 'var(--bone)',
+                    fontSize: 'clamp(1.75rem, 2.6vw, 2.4rem)',
+                    lineHeight: 1.05,
+                  }}
+                >
+                  three notes
+                </motion.div>
 
                 <div
-                  className="space-y-7 text-xl md:text-2xl leading-snug"
+                  className="space-y-12 text-xl md:text-2xl leading-snug"
                   style={{ color: 'var(--bone)' }}
                 >
                   <Reveal>
-                    <p>
-                      I am interested in the places where organic systems fail
-                      gracefully — neural maps, cracked skin, constellations,
-                      decay. My paintings are attempts to hold that failure
-                      still long enough to look at it. I am colourblind. I have
-                      spent my whole life feeling colour rather than naming it.
-                      I think that is why I trust it.
-                    </p>
+                    <div className="relative pl-8 md:pl-12">
+                      <span
+                        className="absolute left-0 top-2 meta-sm"
+                        style={{
+                          color: 'var(--lime)',
+                          letterSpacing: '0.2em',
+                        }}
+                      >
+                        I.
+                      </span>
+                      <p>
+                        I am interested in the places where organic systems
+                        fail gracefully — neural maps, cracked skin,
+                        constellations, decay. My paintings are attempts to
+                        hold that failure still long enough to look at it. I
+                        am colourblind. I have spent my whole life feeling
+                        colour rather than naming it. I think that is why I
+                        trust it.
+                      </p>
+                    </div>
                   </Reveal>
                   <Reveal>
-                    <p style={{ color: 'var(--dim)' }}>
-                      The work is made in layers. Cobalt laid flat. Gold pulled
-                      through craze. Splatter inverted against gradient. Each
-                      technique is a way of arguing with my own hand — laying
-                      something down and then asking whether it was true. I
-                      travelled to eighty countries before I understood that I
-                      had been looking for a way to stay still. The paintings
-                      are where I stay still.
-                    </p>
+                    <div className="relative pl-8 md:pl-12">
+                      <span
+                        className="absolute left-0 top-2 meta-sm"
+                        style={{
+                          color: 'var(--lime)',
+                          letterSpacing: '0.2em',
+                        }}
+                      >
+                        II.
+                      </span>
+                      <p>
+                        The work is made in layers. Cobalt laid flat. Gold
+                        pulled through craze. Splatter inverted against
+                        gradient. Each technique is a way of arguing with my
+                        own hand — laying something down and then asking
+                        whether it was true. I travelled to eighty countries
+                        before I understood that I had been looking for a way
+                        to stay still. The paintings are where I stay still.
+                      </p>
+                    </div>
                   </Reveal>
                   <Reveal>
-                    <p style={{ color: 'var(--dim)' }}>
-                      Jung taught me that what we cannot say directly, we say
-                      in image. Krishnamurti taught me that clear seeing
-                      requires the destruction of what I already think I know.
-                      I grew up looking at Eastern miniatures and ornament. I
-                      paint in an international abstract grammar. The friction
-                      between those two things is, so far, the thing I have
-                      most to say.
-                    </p>
+                    <div className="relative pl-8 md:pl-12">
+                      <span
+                        className="absolute left-0 top-2 meta-sm"
+                        style={{
+                          color: 'var(--lime)',
+                          letterSpacing: '0.2em',
+                        }}
+                      >
+                        III.
+                      </span>
+                      <p>
+                        Jung taught me that what we cannot say directly, we
+                        say in image. Krishnamurti taught me that clear
+                        seeing requires the destruction of what I already
+                        think I know. I grew up looking at Eastern miniatures
+                        and ornament. I paint in an international abstract
+                        grammar. The friction between those two things is,
+                        so far, the thing I have most to say.
+                      </p>
+                    </div>
                   </Reveal>
                 </div>
               </div>
@@ -433,12 +470,21 @@ export default function ArtistPage() {
 
                 <Reveal>
                   <p>
-                    He found the work through Carl Jung — that what we cannot
-                    say directly, we say in symbol and image — and through J.
-                    Krishnamurti: that how we see is inseparable from who we
-                    are, and that clear looking asks us to let go of what we
-                    already think we know. Both thinkers are still active in
-                    his practice.
+                    His visual vocabulary sits between two traditions: the
+                    ornamental density of Eastern miniature painting, which he
+                    grew up inside, and the looser grammar of international
+                    abstraction, which he came to later. Much of the tension
+                    in the work comes from refusing to choose.
+                  </p>
+                </Reveal>
+
+                <Reveal>
+                  <p>
+                    He found his way into the work through Carl Jung — that
+                    what we cannot say directly, we say in symbol and image —
+                    and through J. Krishnamurti: that how we see is
+                    inseparable from who we are, and that clear looking asks
+                    us to let go of what we already think we know.
                   </p>
                 </Reveal>
               </div>
@@ -447,6 +493,69 @@ export default function ArtistPage() {
         </div>
       </section>
 
+      {/* Two signature techniques — concrete craft detail, sits below the voice section */}
+      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="meta-sm mb-10 flex items-center gap-3"
+            style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
+          >
+            <span
+              className="inline-block w-6 h-px"
+              style={{ background: 'var(--lime)' }}
+            />
+            TWO TECHNIQUES · HOW THE WORK IS MADE
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {techniques.map((t, i) => (
+              <motion.div
+                key={t.no}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10%' }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="relative p-8 md:p-10"
+                style={{
+                  background: 'var(--shadow)',
+                  borderLeft: `3px solid ${t.accent}`,
+                }}
+              >
+                <span
+                  className="meta-sm absolute -top-3 left-6 px-2 py-0.5"
+                  style={{
+                    background: 'var(--night)',
+                    color: t.accent,
+                    letterSpacing: '0.22em',
+                  }}
+                >
+                  {t.no}
+                </span>
+                <h3
+                  className="display-md in-serif"
+                  style={{
+                    color: 'var(--bone)',
+                    fontSize: 'clamp(1.5rem, 2.6vw, 2.4rem)',
+                    lineHeight: 1.05,
+                  }}
+                >
+                  {t.title}
+                </h3>
+                <p
+                  className="text-lg md:text-xl leading-snug mt-5"
+                  style={{ color: 'var(--bone)', opacity: 0.92 }}
+                >
+                  {t.body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -128,12 +128,6 @@ function Room({
               transformOrigin: left ? 'right center' : 'left center',
             }}
           />
-          <div
-            className="absolute bottom-4 left-4 px-3 py-1.5 z-[3]"
-            style={{ background: 'var(--night)', color: accent }}
-          >
-            <div className="meta-sm">{art.systemNumber}</div>
-          </div>
         </div>
       </motion.div>
 

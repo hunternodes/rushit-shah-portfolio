@@ -75,7 +75,9 @@
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} grift=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/fonts/grift/Grift-Regular.woff2)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(home\\): remove Voice statement block \\(colourblind / systems / Eastern sensibility\\) — hero flows straight into gallery\")",
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} artist=%{http_code} exhibitions=%{http_code} archive=%{http_code} collection=%{http_code} contact=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/artist http://localhost:3000/exhibitions http://localhost:3000/archive http://localhost:3000/collection http://localhost:3000/contact)",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content: rename series sitewide — 'Systems series' → 'Fragment series' \\(home, artist, exhibitions, archive, collection, signals, arc, seed, metadata\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content: rename series sitewide — 'Systems series' → 'Fragment series' \\(home, artist, exhibitions, archive, collection, signals, arc, seed, metadata\\)\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} archive=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/archive)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(images\\): remove 'No. 0X / SYS' catalogue badge from Gallery + Archive painting images\")"
     ]
   }
 }

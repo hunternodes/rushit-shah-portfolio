@@ -90,12 +90,6 @@ export default function ArchivePage() {
                         ((e.currentTarget as HTMLImageElement).src = art.placeholder)
                       }
                     />
-                    <div
-                      className="absolute bottom-3 left-3 px-2 py-1"
-                      style={{ background: 'var(--night)', color: accent }}
-                    >
-                      <div className="meta-sm">No. {art.no}</div>
-                    </div>
                   </div>
 
                   <div className="mt-5">

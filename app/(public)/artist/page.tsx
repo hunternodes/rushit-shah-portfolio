@@ -97,63 +97,8 @@ export default function ArtistPage() {
         </div>
       </section>
 
-      {/* Statement long-form */}
+      {/* Biography — long-form (comes first now, on --shadow for alternation after the hero) */}
       <section className="py-24 md:py-32" style={{ background: 'var(--shadow)' }}>
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-12 md:col-span-4">
-              <div className="meta-sm" style={{ color: 'var(--lime)' }}>
-                IN THE ARTIST'S WORDS
-              </div>
-              <div
-                className="display-md mt-3 in-serif"
-                style={{ color: 'var(--bone)' }}
-              >
-                three notes
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="space-y-8 text-xl md:text-2xl leading-snug"
-                style={{ color: 'var(--bone)' }}
-              >
-                <p>
-                  I am interested in the places where organic systems fail
-                  gracefully — neural maps, cracked skin, constellations, decay.
-                  My paintings are attempts to hold that failure still long
-                  enough to look at it. I am colourblind. I have spent my whole
-                  life feeling colour rather than naming it. I think that is why
-                  I trust it.
-                </p>
-                <p style={{ color: 'var(--dim)' }}>
-                  The work is made in layers. Cobalt laid flat. Gold pulled
-                  through craze. Splatter inverted against gradient. Each
-                  technique is a way of arguing with my own hand — laying
-                  something down and then asking whether it was true. I
-                  travelled to eighty countries before I understood that I had
-                  been looking for a way to stay still. The paintings are where
-                  I stay still.
-                </p>
-                <p style={{ color: 'var(--dim)' }}>
-                  Jung taught me that what we cannot say directly, we say in
-                  image. Krishnamurti taught me that clear seeing requires the
-                  destruction of what I already think I know. I grew up looking
-                  at Eastern miniatures and ornament. I paint in an
-                  international abstract grammar. The friction between those
-                  two things is, so far, the thing I have most to say.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Biography — long-form */}
-      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-12 gap-8">
             <div className="col-span-12 md:col-span-4">
@@ -289,6 +234,61 @@ export default function ArtistPage() {
                   Currently represented through Maio Studio, Singapore.
                   <br />
                   Collector enquiries and gallery submissions welcome directly.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statement — three notes (now sits BELOW the biography) */}
+      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
+        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-8">
+            <div className="col-span-12 md:col-span-4">
+              <div className="meta-sm" style={{ color: 'var(--lime)' }}>
+                IN THE ARTIST'S WORDS
+              </div>
+              <div
+                className="display-md mt-3 in-serif"
+                style={{ color: 'var(--bone)' }}
+              >
+                three notes
+              </div>
+            </div>
+            <div className="col-span-12 md:col-span-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-8 text-xl md:text-2xl leading-snug"
+                style={{ color: 'var(--bone)' }}
+              >
+                <p>
+                  I am interested in the places where organic systems fail
+                  gracefully — neural maps, cracked skin, constellations, decay.
+                  My paintings are attempts to hold that failure still long
+                  enough to look at it. I am colourblind. I have spent my whole
+                  life feeling colour rather than naming it. I think that is why
+                  I trust it.
+                </p>
+                <p style={{ color: 'var(--dim)' }}>
+                  The work is made in layers. Cobalt laid flat. Gold pulled
+                  through craze. Splatter inverted against gradient. Each
+                  technique is a way of arguing with my own hand — laying
+                  something down and then asking whether it was true. I
+                  travelled to eighty countries before I understood that I had
+                  been looking for a way to stay still. The paintings are where
+                  I stay still.
+                </p>
+                <p style={{ color: 'var(--dim)' }}>
+                  Jung taught me that what we cannot say directly, we say in
+                  image. Krishnamurti taught me that clear seeing requires the
+                  destruction of what I already think I know. I grew up looking
+                  at Eastern miniatures and ornament. I paint in an
+                  international abstract grammar. The friction between those
+                  two things is, so far, the thing I have most to say.
                 </p>
               </motion.div>
             </div>

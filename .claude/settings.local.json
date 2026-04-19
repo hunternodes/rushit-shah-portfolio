@@ -81,7 +81,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(contact\\): wire form to Web3Forms submission \\(email delivery\\); subject + from_name include the artist name\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui: remove 'Space Grotesk · Fraunces · JetBrains Mono' typography credit line from footer and hail CTA strip\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(collection\\): swap footer accent from acid lime to neon red \\(#E60026\\) for readability on the white footer\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): replace colour-cycling paint splash with a small yellow square that blinks — steady on/off broadcast indicator\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): replace colour-cycling paint splash with a small yellow square that blinks — steady on/off broadcast indicator\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(nav\\): enlarge blink-box to match logo font size \\(clamp 1.4-1.9rem\\); speed blink to 0.32s cycle; respect prefers-reduced-motion\")"
     ]
   }
 }

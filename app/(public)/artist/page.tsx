@@ -103,15 +103,12 @@ export default function ArtistPage() {
                   letterSpacing: '-0.02em',
                 }}
               >
-                An abstract painter,
-                <br />
-                working{' '}
+                A painter{' '}
                 <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                  between
-                </span>{' '}
-                India, Singapore,
+                  between chaos
+                </span>
                 <br />
-                and Germany.
+                and control.
               </motion.h1>
 
               {/* Meta row — balances the column against the portrait */}

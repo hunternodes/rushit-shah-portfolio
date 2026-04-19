@@ -47,7 +47,7 @@ export default function ExhibitionsPage() {
             style={{ color: 'var(--dim)' }}
           >
             The first exhibition is in preparation — a cohesive body of work
-            from the Systems series. Target: 2026, Vadodara and beyond.
+            from the Fragment series. Target: 2026, Vadodara and beyond.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -99,7 +99,7 @@ export default function ExhibitionsPage() {
               className="display-md mt-3"
               style={{ color: 'var(--bone)' }}
             >
-              SYSTEMS —{' '}
+              FRAGMENT —{' '}
               <span className="in-serif" style={{ color: 'var(--lime)' }}>
                 A Debut Exhibition
               </span>

@@ -75,7 +75,7 @@ export default function CollectionPage() {
             className="mt-6 text-lg max-w-lg mx-auto"
             style={{ color: 'var(--dim)' }}
           >
-            The archive shows the Systems series in sequence — one piece at a
+            The archive shows the Fragment series in sequence — one piece at a
             time, on a black wall.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">

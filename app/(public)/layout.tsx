@@ -6,7 +6,7 @@ import CursorTrail from '@/components/CursorTrail';
 export const metadata: Metadata = {
   title: 'Rushit Shah — Abstract Painter · Vadodara',
   description:
-    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Systems series. A studio practice between India, Singapore, and Germany.',
+    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Fragment series. A studio practice between India, Singapore, and Germany.',
   keywords: [
     'abstract art',
     'abstract painter',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'Gujarat artist',
     'crackle network painting',
     'gradient splatter',
-    'Systems series',
+    'Fragment series',
     'art collector India',
   ],
   authors: [{ name: 'Rushit Shah' }],
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     siteName: 'Rushit Shah',
     title: 'Rushit Shah — Abstract Painter · Vadodara',
     description:
-      'Crackle networks. Gradient-splatter inversions. The Systems series — a studio practice in Vadodara.',
+      'Crackle networks. Gradient-splatter inversions. The Fragment series — a studio practice in Vadodara.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Rushit Shah — Abstract Painter · Vadodara',
-    description: 'Crackle networks, gradient-splatter inversions, the Systems series.',
+    description: 'Crackle networks, gradient-splatter inversions, the Fragment series.',
   },
 };
 

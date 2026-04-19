@@ -3,7 +3,7 @@
 const items = [
   'VADODARA',
   'INDIA',
-  'SYSTEMS',
+  'FRAGMENT',
   'CRACKLE NETWORKS',
   'GRADIENT · SPLATTER',
   'ACRYLIC · GOLD LEAF',

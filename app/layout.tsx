@@ -12,7 +12,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Rushit Shah — Abstract Painter · Vadodara',
   description:
-    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Systems series. A studio practice between India, Singapore, and Germany.',
+    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Fragment series. A studio practice between India, Singapore, and Germany.',
 };
 
 export default function RootLayout({

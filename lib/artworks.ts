@@ -104,7 +104,7 @@ export const artworks: Artwork[] = [
 export const exhibitions = [
   {
     year: '2027',
-    title: 'Systems — Debut Solo (in preparation)',
+    title: 'Fragment — Debut Solo (in preparation)',
     venue: 'Seeking representation',
     city: 'Mumbai / Delhi / Bangalore',
     type: 'Solo',

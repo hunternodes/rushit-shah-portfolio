@@ -45,7 +45,7 @@ export default function Gallery({ paintings }: { paintings: GalleryPainting[] })
           >
             {total === 5 ? 'Five pieces' : `${total} pieces`} from{' '}
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              the Systems
+              the Fragment
             </span>{' '}
             series.
           </h2>

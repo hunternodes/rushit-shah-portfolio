@@ -255,7 +255,7 @@ export default function ArtistPage() {
                 <p style={{ color: 'var(--dim)' }}>
                   Shah calls the current body of work{' '}
                   <span className="in-serif" style={{ color: 'var(--bone)' }}>
-                    Systems
+                    Fragment
                   </span>{' '}
                   — a series of eight to ten paintings building toward a debut
                   exhibition. The reference is biological and cosmic

@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 type Stat = { label: string; value: number; suffix?: string; accent: string };
 
 const stats: Stat[] = [
-  { label: 'works · Systems series in progress', value: 3, accent: 'var(--lime)' },
+  { label: 'works · Fragment series in progress', value: 3, accent: 'var(--lime)' },
   { label: 'signature techniques', value: 2, accent: 'var(--coral)' },
   { label: 'paintings · archive', value: 5, accent: 'var(--ice)' },
   { label: 'countries · IN / SG / DE', value: 3, accent: 'var(--amber)' },

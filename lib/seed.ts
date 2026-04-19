@@ -54,7 +54,7 @@ async function seedSiteCopy(payload: Payload) {
 
       // ─── Home ─────────────────────────────────────
       home_subNavText: '· STUDIO · IN / SG / DE · OPEN',
-      home_heroTagline: 'SYSTEMS · ABSTRACT PAINTER · IN / SG / DE',
+      home_heroTagline: 'FRAGMENT · ABSTRACT PAINTER · IN / SG / DE',
       home_heroHeadline: lexMixed([
         { text: 'Paintings that ' },
         { text: 'hold their', italic: true },
@@ -71,7 +71,7 @@ async function seedSiteCopy(payload: Payload) {
         { line: 'An Eastern sensibility in an international grammar.' },
       ],
       home_fiveRoomsIntro:
-        'Five pieces from the Systems series. Each piece sits alone on a wall. Pricing on request — enquire for availability, shipping, and collector details. Represented through Maio Studio, Singapore.',
+        'Five pieces from the Fragment series. Each piece sits alone on a wall. Pricing on request — enquire for availability, shipping, and collector details. Represented through Maio Studio, Singapore.',
       home_finalCallHeadline: lexMixed([
         { text: "Let's " },
         { text: 'put colour', italic: true },
@@ -107,7 +107,7 @@ async function seedSiteCopy(payload: Payload) {
         "He found his way into the work through Carl Jung's ideas on the unconscious — the notion that what we cannot say directly, we express in symbol and image — and through J. Krishnamurti's understanding of perception: that how we see is inseparable from who we are, and that truly clear looking requires the dismantling of what we already believe we know. Both thinkers remain active in his practice. Every layer laid down, every craze pulled through, every splatter inverted is a form of not-knowing-in-advance — an argument with his own certainty.",
         "His early work absorbed the energy of action painting — Pollock's physicality, Klee's structural wit, Kandinsky's belief that form carries emotional necessity, Van Gogh's refusal to let surface lie flat. These were formative encounters. He has moved through them and arrived somewhere that belongs to no one else.",
         'The current work is built on two signature techniques. The first: a cobalt ground broken by gold craze — crackle networks that behave like capillaries, like fault lines, like the maps of systems under stress. Red arrives only where the surface cannot hold. The second: a gold-to-silver gradient interrupted by inverted black-and-white splatter — black claiming the warm zone, white claiming the cool. The counterintuition is the point. Both techniques ask the same question: what does order look like at the moment it begins to fail?',
-        'Shah calls the current body of work Systems — a series of eight to ten paintings building toward a debut exhibition. The reference is biological and cosmic simultaneously: neural networks, constellations, decay patterns, the moment before a structure collapses into something new. An Eastern ornamental sensibility filtered through an international abstract grammar.',
+        'Shah calls the current body of work Fragment — a series of eight to ten paintings building toward a debut exhibition. The reference is biological and cosmic simultaneously: neural networks, constellations, decay patterns, the moment before a structure collapses into something new. An Eastern ornamental sensibility filtered through an international abstract grammar.',
         'Currently represented through Maio Studio, Singapore. Collector enquiries and gallery submissions welcome directly.',
       ]) as unknown as Record<string, unknown>,
       artist_arcItems: [
@@ -137,7 +137,7 @@ async function seedSiteCopy(payload: Payload) {
         },
         {
           year: '2026',
-          title: 'Systems · Maio Studio',
+          title: 'Fragment · Maio Studio',
           description:
             'A cohesive body of work begins — eight to ten paintings toward a debut exhibition. Currently represented through Maio Studio, Singapore.',
         },
@@ -169,8 +169,8 @@ async function seedSiteCopy(payload: Payload) {
         { text: ' Working on it.' },
       ]) as unknown as Record<string, unknown>,
       shows_subtext:
-        'The first exhibition is in preparation — a cohesive body of work from the Systems series. Target: 2027, Vadodara / Mumbai and beyond. If you represent a gallery or curate shows and want to talk early, I would like to hear from you.',
-      shows_upcomingTitle: 'SYSTEMS — A Debut Exhibition',
+        'The first exhibition is in preparation — a cohesive body of work from the Fragment series. Target: 2027, Vadodara / Mumbai and beyond. If you represent a gallery or curate shows and want to talk early, I would like to hear from you.',
+      shows_upcomingTitle: 'FRAGMENT — A Debut Exhibition',
       shows_upcomingDetails: lexParas([
         'Work in progress · 8–10 paintings',
         'Venue: TBC · Vadodara / Mumbai',
@@ -206,7 +206,7 @@ async function seedSiteCopy(payload: Payload) {
       global_siteName: 'Rushit Shah',
       global_siteTagline: 'Abstract Painter · Vadodara',
       global_metaDescription:
-        'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Systems series. A studio practice between India, Singapore, and Germany.',
+        'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Fragment series. A studio practice between India, Singapore, and Germany.',
       global_representationLine: 'Represented through Maio Studio, Singapore',
       global_studioLocations: 'IN / SG / DE',
     },
@@ -214,7 +214,7 @@ async function seedSiteCopy(payload: Payload) {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Paintings seed (5 from the Systems series)
+// Paintings seed (5 from the Fragment series)
 // ──────────────────────────────────────────────────────────────
 
 type PaintingSeed = {

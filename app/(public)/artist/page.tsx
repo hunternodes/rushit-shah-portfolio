@@ -82,8 +82,8 @@ export default function ArtistPage() {
             >
               <div className="art-frame lit aspect-[4/5]">
                 <img
-                  src="https://picsum.photos/seed/rushit-portrait/900/1100"
-                  alt="Rushit Shah in the studio"
+                  src="/images/rushit-hands.png"
+                  alt="Rushit Shah — paint-covered hands in the studio, a yellow canvas behind"
                 />
                 <div
                   className="absolute bottom-3 left-3 px-2 py-1"

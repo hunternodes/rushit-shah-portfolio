@@ -101,7 +101,9 @@
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} admin=%{http_code} media=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/admin http://localhost:3000/admin/collections/media)",
       "Bash(curl -s \"http://localhost:3000/api/paintings?limit=20&depth=0\")",
       "Bash(python3 -c \"import sys, json; d = json.load\\(sys.stdin\\); print\\(f\\\\\"total: {d['totalDocs']}\\\\\"\\); [print\\(f\\\\\"  {p['title']:42s} series={p.get\\('series', 'NULL'\\)} featured={p.get\\('featured'\\)} published={p.get\\('published'\\)}\\\\\"\\) for p in d['docs']]\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(series\\): add Vyākulatā — series field on Paintings, seed 5 Vyākulatā drafts, backfill existing work with series=fragment, parameterise Gallery with accent + italic phrase, home renders two gallery sections \\(Fragment + Vyākulatā\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(series\\): add Vyākulatā — series field on Paintings, seed 5 Vyākulatā drafts, backfill existing work with series=fragment, parameterise Gallery with accent + italic phrase, home renders two gallery sections \\(Fragment + Vyākulatā\\)\")",
+      "Bash(curl -s -o /dev/null -w \"artist=%{http_code} image=%{http_code}\\\\n\" http://localhost:3000/artist http://localhost:3000/images/rushit-hands.png)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): replace picsum placeholder portrait with the paint-covered hands studio shot\")"
     ]
   }
 }

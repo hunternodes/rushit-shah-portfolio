@@ -64,7 +64,7 @@ export default function Nav() {
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-16 md:h-20">
             <Link href="/" className="group flex items-center gap-3">
-              <SplashMark />
+              <BlinkBox />
               <AnimatedWordmark color={fg} />
             </Link>
 
@@ -245,55 +245,24 @@ function AnimatedWordmark({ color }: { color: string }) {
   );
 }
 
-function SplashMark() {
-  // Color-cycling organic splash — main blob + satellite specks.
-  const palette = ['#C7FF3A', '#FF4E38', '#FFB547', '#7AE0FF', '#B85FA0'];
+function BlinkBox() {
   return (
-    <motion.svg
+    <motion.span
       aria-hidden
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      style={{ overflow: 'visible' }}
-      animate={{ rotate: [0, 360] }}
-      transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-    >
-      <motion.path
-        d="M12 4 C 15 5, 18 7, 18 11 C 18 15, 15 18, 12 19 C 8 19, 5 16, 5 12 C 5 8, 8 5, 12 4 Z"
-        animate={{
-          fill: palette,
-          scale: [1, 1.08, 0.94, 1.05, 1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        style={{ transformOrigin: '12px 12px' }}
-      />
-      <motion.circle
-        cx="3"
-        cy="6"
-        r="1.2"
-        animate={{ fill: palette, opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-      />
-      <motion.circle
-        cx="21"
-        cy="17"
-        r="1.5"
-        animate={{ fill: palette, opacity: [0.3, 1, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }}
-      />
-      <motion.circle
-        cx="20"
-        cy="4"
-        r="0.9"
-        animate={{ fill: palette, opacity: [0.2, 0.9, 0.2] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2.1 }}
-      />
-    </motion.svg>
+      className="inline-block"
+      style={{
+        width: 12,
+        height: 12,
+        background: '#FFE812',
+      }}
+      animate={{ opacity: [1, 1, 0, 0] }}
+      transition={{
+        duration: 1.1,
+        times: [0, 0.65, 0.68, 1],
+        repeat: Infinity,
+        ease: 'linear',
+      }}
+    />
   );
 }
 

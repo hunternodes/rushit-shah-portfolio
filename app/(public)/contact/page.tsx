@@ -31,12 +31,34 @@ export default function ContactPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/contact', {
+      const topicLabel: Record<string, string> = {
+        inquiry: 'General enquiry',
+        commission: 'Collector / commission',
+        exhibition: 'Gallery / exhibition',
+        other: 'Other',
+      };
+
+      const payload = new FormData();
+      payload.append('access_key', '1e756e4d-a754-49d7-a5e4-dcfd18fe6855');
+      payload.append('name', form.name);
+      payload.append('email', form.email);
+      payload.append('inquiryType', topicLabel[form.inquiryType] ?? form.inquiryType);
+      payload.append('message', form.message);
+      payload.append('subject', `rushitshah.com — ${topicLabel[form.inquiryType] ?? 'Enquiry'} from ${form.name}`);
+      payload.append('from_name', `${form.name} · rushitshah.com`);
+      // Web3Forms honeypot (optional but recommended)
+      payload.append('botcheck', '');
+
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: payload,
       });
-      if (!res.ok) throw new Error('Failed to send message');
+      const data = await res.json().catch(() => ({ success: false }));
+
+      if (!res.ok || !data.success) {
+        throw new Error(data?.message || 'Failed to send message');
+      }
+
       setSubmitted(true);
       setForm({ name: '', email: '', inquiryType: 'inquiry', message: '' });
       setTimeout(() => setSubmitted(false), 6000);

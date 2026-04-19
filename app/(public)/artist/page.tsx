@@ -212,100 +212,196 @@ export default function ArtistPage() {
         </div>
       </section>
 
-      {/* Three notes — first-person voice leads the page (comes before the 3rd-person bio) */}
-      <section className="py-24 md:py-32" style={{ background: 'var(--shadow)' }}>
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-12 md:col-span-4">
-              <div className="meta-sm" style={{ color: 'var(--lime)' }}>
-                IN THE ARTIST'S WORDS
-              </div>
-              <div
-                className="display-md mt-3 in-serif"
-                style={{ color: 'var(--bone)' }}
-              >
-                three notes
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <div
-                className="space-y-8 text-xl md:text-2xl leading-snug"
-                style={{ color: 'var(--bone)' }}
-              >
-                <Reveal>
-                  <p>
-                    I am interested in the places where organic systems fail
-                    gracefully — neural maps, cracked skin, constellations, decay.
-                    My paintings are attempts to hold that failure still long
-                    enough to look at it. I am colourblind. I have spent my whole
-                    life feeling colour rather than naming it. I think that is why
-                    I trust it.
-                  </p>
-                </Reveal>
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    The work is made in layers. Cobalt laid flat. Gold pulled
-                    through craze. Splatter inverted against gradient. Each
-                    technique is a way of arguing with my own hand — laying
-                    something down and then asking whether it was true. I
-                    travelled to eighty countries before I understood that I had
-                    been looking for a way to stay still. The paintings are where
-                    I stay still.
-                  </p>
-                </Reveal>
-                <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    Jung taught me that what we cannot say directly, we say in
-                    image. Krishnamurti taught me that clear seeing requires the
-                    destruction of what I already think I know. I grew up looking
-                    at Eastern miniatures and ornament. I paint in an
-                    international abstract grammar. The friction between those
-                    two things is, so far, the thing I have most to say.
-                  </p>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Merged voice + portrait — three notes (first person) and biographical facts
+          (third person) woven around a sticky portrait. An amber halo bleeds from the
+          image into the text column so they read as one composition. */}
+      <section
+        className="relative overflow-hidden py-24 md:py-32"
+        style={{ background: 'var(--shadow)' }}
+      >
+        {/* Amber halo behind the portrait that blurs into the text column */}
+        <div
+          aria-hidden
+          className="absolute pointer-events-none"
+          style={{
+            width: '60vw',
+            height: '60vw',
+            left: '-10vw',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(circle, rgba(217,169,75,0.14) 0%, transparent 65%)',
+            filter: 'blur(60px)',
+            mixBlendMode: 'screen',
+          }}
+        />
 
-      {/* Biography — trimmed, third-person facts only, sits beneath the artist's own voice */}
-      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-12 md:col-span-4">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 relative">
+          <div className="grid grid-cols-12 gap-10 md:gap-16">
+            {/* Portrait column — sticky so it stays in view while the visitor reads */}
+            <div className="col-span-12 md:col-span-5">
+              <div className="md:sticky md:top-28">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative"
+                >
+                  <div
+                    className="relative overflow-hidden"
+                    style={{
+                      aspectRatio: '4 / 5',
+                      boxShadow:
+                        '0 40px 100px -20px rgba(0,0,0,0.65), 0 0 0 1px rgba(217,169,75,0.18) inset',
+                    }}
+                  >
+                    <motion.img
+                      src="/images/rushit-portrait.png"
+                      alt="Rushit Shah — portrait, Paris"
+                      className="block w-full h-full object-cover"
+                      style={{ filter: 'saturate(0.9) contrast(1.04) brightness(0.95)' }}
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    {/* soft vignette fading into aubergine base */}
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          'linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(36,21,40,0.55) 100%)',
+                      }}
+                    />
+                  </div>
+                </motion.div>
+
+                {/* Meta stack directly under the portrait — ties the image to the text */}
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, delay: 0.25 }}
+                  className="mt-6"
+                >
+                  <div
+                    className="meta-sm"
+                    style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
+                  >
+                    b. 1986
+                  </div>
+                  <div
+                    className="in-serif mt-2"
+                    style={{
+                      color: 'var(--bone)',
+                      fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
+                      lineHeight: 1.05,
+                    }}
+                  >
+                    Vadodara
+                  </div>
+                  <div
+                    className="meta-sm mt-4"
+                    style={{ color: 'var(--dim)', letterSpacing: '0.2em' }}
+                  >
+                    Studio · IN / SG / DE
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Text column — first-person voice on top, third-person facts below,
+                separated by a small editorial divider */}
+            <div className="col-span-12 md:col-span-7 space-y-14 md:space-y-16">
+              {/* First-person voice */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="meta-sm mb-6 flex items-center gap-3"
+                  style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
+                >
+                  <span
+                    className="inline-block w-6 h-px"
+                    style={{ background: 'var(--lime)' }}
+                  />
+                  IN THE ARTIST'S WORDS
+                </motion.div>
+
+                <div
+                  className="space-y-7 text-xl md:text-2xl leading-snug"
+                  style={{ color: 'var(--bone)' }}
+                >
+                  <Reveal>
+                    <p>
+                      I am interested in the places where organic systems fail
+                      gracefully — neural maps, cracked skin, constellations,
+                      decay. My paintings are attempts to hold that failure
+                      still long enough to look at it. I am colourblind. I have
+                      spent my whole life feeling colour rather than naming it.
+                      I think that is why I trust it.
+                    </p>
+                  </Reveal>
+                  <Reveal>
+                    <p style={{ color: 'var(--dim)' }}>
+                      The work is made in layers. Cobalt laid flat. Gold pulled
+                      through craze. Splatter inverted against gradient. Each
+                      technique is a way of arguing with my own hand — laying
+                      something down and then asking whether it was true. I
+                      travelled to eighty countries before I understood that I
+                      had been looking for a way to stay still. The paintings
+                      are where I stay still.
+                    </p>
+                  </Reveal>
+                  <Reveal>
+                    <p style={{ color: 'var(--dim)' }}>
+                      Jung taught me that what we cannot say directly, we say
+                      in image. Krishnamurti taught me that clear seeing
+                      requires the destruction of what I already think I know.
+                      I grew up looking at Eastern miniatures and ornament. I
+                      paint in an international abstract grammar. The friction
+                      between those two things is, so far, the thing I have
+                      most to say.
+                    </p>
+                  </Reveal>
+                </div>
+              </div>
+
+              {/* Editorial divider between voices */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="art-frame lit aspect-[4/5] mb-6"
+                transition={{ duration: 0.8 }}
+                className="flex items-center gap-4"
+                aria-hidden
               >
-                <motion.img
-                  src="/images/rushit-portrait.png"
-                  alt="Rushit Shah — portrait, Paris"
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                <span
+                  className="inline-block w-10 h-px"
+                  style={{ background: 'var(--lime)' }}
+                />
+                <span
+                  className="meta-sm"
+                  style={{ color: 'var(--dim)', letterSpacing: '0.28em' }}
+                >
+                  THE FACTS
+                </span>
+                <span
+                  className="flex-1 h-px"
+                  style={{ background: 'var(--rule)' }}
                 />
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="display-md in-serif"
-                style={{ color: 'var(--bone)' }}
-              >
-                b. 1986 · Vadodara
-              </motion.div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
+
+              {/* Third-person facts — quieter register, smaller type */}
               <div
-                className="space-y-7 text-lg md:text-xl leading-snug"
-                style={{ color: 'var(--bone)' }}
+                className="space-y-6 text-base md:text-lg leading-relaxed"
+                style={{ color: 'var(--dim)' }}
               >
                 <Reveal>
-                  <p>
+                  <p style={{ color: 'var(--bone)' }}>
                     Rushit Shah was born in Vadodara, Gujarat, on 8 September
                     1986. He lives and works between India, Singapore, and
                     Germany.
@@ -313,29 +409,30 @@ export default function ArtistPage() {
                 </Reveal>
 
                 <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
-                    He is colourblind. The work started there — with what colour
-                    does against its neighbour rather than what it is called.
-                    Weight, temperature, the pressure of one tone pressed next
-                    to another. He trusts those signals more than the names.
+                  <p>
+                    He is colourblind. The work started there — with what
+                    colour does against its neighbour rather than what it is
+                    called. Weight, temperature, the pressure of one tone
+                    pressed next to another. He trusts those signals more than
+                    the names.
                   </p>
                 </Reveal>
 
                 <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
+                  <p>
                     His path to painting was not direct. He has travelled to
                     more than eighty countries — not as tourism, but as a kind
                     of extended looking. Deserts, coastlines, markets, ruins,
                     other people's ordinary days. The accumulation of those
-                    images, and the losses that came alongside them — including
-                    the death of his father — pushed him toward abstraction as
-                    the only form capacious enough to hold what he was
-                    carrying.
+                    images, and the losses that came alongside them —
+                    including the death of his father — pushed him toward
+                    abstraction as the only form capacious enough to hold what
+                    he was carrying.
                   </p>
                 </Reveal>
 
                 <Reveal>
-                  <p style={{ color: 'var(--dim)' }}>
+                  <p>
                     He found the work through Carl Jung — that what we cannot
                     say directly, we say in symbol and image — and through J.
                     Krishnamurti: that how we see is inseparable from who we

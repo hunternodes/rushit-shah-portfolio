@@ -89,19 +89,6 @@ export default function ArtistPage() {
                 <br />
                 and control.
               </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.4 }}
-                className="font-marker mt-8 text-lg md:text-xl max-w-xl"
-                style={{ color: 'var(--dim)' }}
-              >
-                A studio practice built on a paradox: a colourblind painter
-                whose entire language is colour. Working between India,
-                Singapore, and Germany — built on two signature techniques and
-                a single question: what does a painting look like when it is
-                also a system?
-              </motion.p>
             </div>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}

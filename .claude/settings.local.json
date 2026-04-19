@@ -108,7 +108,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): add B&W portrait \\(Paris, Eiffel Tower behind\\) above the 'b. 1986 · Vadodara' label in the Biography section's left column\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(artist\\): remove 'THE LONG VERSION' lime label under the biography portrait\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(artist\\): reorder — Biography \\(long version + portrait\\) now comes first, 'IN THE ARTIST'S WORDS / three notes' moves below it; swap bg shades to keep night/shadow alternation\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(artist\\): reskin with aubergine/amber-gold gallery-salon palette + layered motion — drifting ambient glow in hero, per-paragraph scroll reveals \\(new Reveal helper\\), bigger 'He is colourblind' with underline draw-in, breathing animation on biography portrait\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(artist\\): reskin with aubergine/amber-gold gallery-salon palette + layered motion — drifting ambient glow in hero, per-paragraph scroll reveals \\(new Reveal helper\\), bigger 'He is colourblind' with underline draw-in, breathing animation on biography portrait\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove hero subtext paragraph \\('A studio practice built on a paradox...'\\)\")"
     ]
   }
 }

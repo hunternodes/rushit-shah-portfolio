@@ -85,12 +85,12 @@ export default function ArtistPage() {
                   letterSpacing: '-0.02em',
                 }}
               >
-                A painter{' '}
-                <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                  between chaos
-                </span>
+                I paint in layers,
                 <br />
-                and control.
+                then{' '}
+                <span className="in-serif" style={{ color: 'var(--lime)' }}>
+                  argue with them.
+                </span>
               </motion.h1>
 
               {/* Meta row — balances the column against the portrait */}

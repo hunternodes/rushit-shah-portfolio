@@ -94,7 +94,7 @@ export default function Gallery({ paintings }: { paintings: GalleryPainting[] })
         )}
 
         <div className="mt-12 flex justify-end">
-          <Link href="/archive" className="btn-ghost">
+          <Link href="/collection" className="btn-ghost">
             see every piece
             <span aria-hidden>→</span>
           </Link>

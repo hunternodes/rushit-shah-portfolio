@@ -60,8 +60,8 @@ export default function Spotlight() {
             transition={{ duration: 0.9, delay: 0.8 }}
             className="flex flex-wrap items-center gap-4 mt-10"
           >
-            <Link href="/archive" className="btn-lime">
-              Enter the archive
+            <Link href="/collection" className="btn-lime">
+              Enter the collection
               <span aria-hidden>→</span>
             </Link>
             <Link href="/contact" className="btn-ghost">

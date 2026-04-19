@@ -13,7 +13,7 @@ export const Paintings: CollectionConfig = {
     defaultColumns: ['title', 'year', 'status', 'featured', 'published'],
     listSearchableFields: ['title', 'medium', 'shortDescription'],
     description:
-      'Every artwork lives here. Published + featured paintings appear in homepage Five Rooms; all published paintings appear in /archive.',
+      'Every artwork lives here. Published + featured paintings appear in homepage Five Rooms; all paintings are surfaced via /collection (ArtworkArchive embed).',
   },
   versions: {
     drafts: true,
@@ -48,7 +48,7 @@ export const Paintings: CollectionConfig = {
       unique: true,
       index: true,
       admin: {
-        description: 'Auto-generated from title. Used in /archive/[slug] URLs.',
+        description: 'Auto-generated from title. Reserved for detail-page URLs.',
         position: 'sidebar',
       },
       hooks: {

@@ -351,8 +351,8 @@ export default function ArtistPage() {
                 {artworks[0].year} · {artworks[0].medium}
               </p>
             </div>
-            <Link href="/archive" className="btn-ghost">
-              see the full archive
+            <Link href="/collection" className="btn-ghost">
+              see the full collection
               <span aria-hidden>→</span>
             </Link>
           </div>

@@ -16,6 +16,14 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  async redirects() {
+    return [
+      // The dark curated archive has been retired — Collection is now the
+      // single source of truth. Redirect any lingering /archive hits.
+      { source: '/archive', destination: '/collection', permanent: true },
+      { source: '/archive/:path*', destination: '/collection', permanent: true },
+    ];
+  },
 };
 
 export default withPayload(nextConfig);

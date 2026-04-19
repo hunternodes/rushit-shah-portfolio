@@ -91,7 +91,13 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): \\(1\\) image zooms to 1.2x on hover for closer look at the work \\(2\\) measure real track width so scrub stops exactly at last painting — no over-scroll past Room 05\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): rebuild as exhibition-wall layout — each painting full-viewport, image dominates \\(78vh max, contain-fit\\), minimal caption below, parallax + counter-drift watermark, hover zoom 1.04x with brightness lift\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery + hero\\): rebuild gallery as tight bento grid — all 5 paintings visible at once, one big featured tile + 4 supporting tiles, captions slide in on hover, image scales 1.06x; give hero section min-h-[92vh] + vertical center for proper impact\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): add fullscreen lightbox — click any tile to view the whole painting at true aspect ratio; arrow keys navigate, Esc or backdrop closes, scroll locked while open\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(gallery\\): add fullscreen lightbox — click any tile to view the whole painting at true aspect ratio; arrow keys navigate, Esc or backdrop closes, scroll locked while open\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} artist=%{http_code} collection=%{http_code} contact=%{http_code} exhibitions=%{http_code} archive=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/artist http://localhost:3000/collection http://localhost:3000/contact http://localhost:3000/exhibitions http://localhost:3000/archive)",
+      "Bash(echo \"restarted pid $!\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} archive=%{http_code} collection=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/archive http://localhost:3000/collection)",
+      "Bash(curl -s http://localhost:3000/archive)",
+      "Bash(curl -s -o /dev/null -w \"archive=%{http_code} archive-followed=%{http_code}\\\\n\" http://localhost:3000/archive -L -o /dev/null -w \"archive\\(no-follow\\)=%{http_code} redirect_url=%{redirect_url}\\\\n\" http://localhost:3000/archive)",
+      "Bash(curl -s -I http://localhost:3000/archive)"
     ]
   }
 }

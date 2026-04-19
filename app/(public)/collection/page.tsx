@@ -64,31 +64,25 @@ export default function CollectionPage() {
         </div>
       </section>
 
-      {/* Dark CTA back to the curated archive */}
+      {/* Dark CTA — collector enquiries */}
       <section className="py-20" style={{ background: 'var(--night)' }}>
         <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 text-center">
           <h2 className="display-lg" style={{ color: 'var(--bone)' }}>
-            Looking for the{' '}
+            Something{' '}
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              curated
+              caught
             </span>{' '}
-            view?
+            your eye?
           </h2>
           <p
             className="mt-6 text-lg max-w-lg mx-auto"
             style={{ color: 'var(--dim)' }}
           >
-            The archive shows the Fragment series in sequence — one piece at a
-            time, on a black wall.
+            Reach out for pricing, shipping, and availability on any piece.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href="/archive" className="btn-lime">
-              enter the archive →
-            </Link>
-            <Link href="/contact" className="btn-ghost">
-              collector enquiries
-            </Link>
-          </div>
+          <Link href="/contact" className="btn-lime mt-8">
+            enquire about a piece →
+          </Link>
         </div>
       </section>
 

@@ -79,7 +79,8 @@
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} archive=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/archive)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(images\\): remove 'No. 0X / SYS' catalogue badge from Gallery + Archive painting images\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(contact\\): wire form to Web3Forms submission \\(email delivery\\); subject + from_name include the artist name\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui: remove 'Space Grotesk · Fraunces · JetBrains Mono' typography credit line from footer and hail CTA strip\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui: remove 'Space Grotesk · Fraunces · JetBrains Mono' typography credit line from footer and hail CTA strip\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(collection\\): swap footer accent from acid lime to neon red \\(#E60026\\) for readability on the white footer\")"
     ]
   }
 }

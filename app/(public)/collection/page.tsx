@@ -11,6 +11,9 @@ const collectionFooterTheme = {
   '--bone': '#0B0B10',
   '--dim': '#6F6F7A',
   '--rule': '#D5D2C5',
+  // Override the lime accent on this white footer — acid lime is unreadable on white;
+  // neon red reads bold and keeps the same "accent link" role.
+  '--lime': '#E60026',
 } as React.CSSProperties;
 
 export default function CollectionPage() {

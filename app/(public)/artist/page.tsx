@@ -157,6 +157,18 @@ export default function ArtistPage() {
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-12 gap-8">
             <div className="col-span-12 md:col-span-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="art-frame lit aspect-[4/5] mb-6"
+              >
+                <img
+                  src="/images/rushit-portrait.png"
+                  alt="Rushit Shah — portrait, Paris"
+                />
+              </motion.div>
               <div className="meta-sm" style={{ color: 'var(--lime)' }}>
                 THE LONG VERSION
               </div>

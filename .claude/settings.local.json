@@ -116,7 +116,8 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove the 'He is colourblind.' pullquote from the long-version biography\")",
       "Bash(curl -s -o /dev/null -w \"home=%{http_code} artist=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/artist)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"refactor\\(artist\\): authenticity pass per line-by-line critique — \\(1\\) hero: plain sentence replaces 'A painter between chaos and control' tagline, \\(2\\) three notes now leads the page above the biography so first-person voice gets heard first, \\(3\\) biography trimmed 8 paras → 4 \\(cut superiority sentence, Pollock/Klee/Kandinsky/Van Gogh list, 'belongs to no one else', 'This is not a footnote', duplicate 'so far' line, Maio Studio rep line\\), \\(4\\) techniques rewritten with moments of not-knowing \\('I'm still not sure why', 'still learning what the inversion is asking'\\) and without the 'not designed / it is allowed' and 'most fully Shah's own' tics, \\(5\\) Arc timeline ends at 2026 Fragment instead of the aspirational '+ Longer view' marker, \\(6\\) dedupe 'all marks his own' \\(removed from Hail strip, kept only in Footer\\)\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"revert\\(artist-hero\\): restore 'A painter between chaos and control.' headline \\(user preference\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"revert\\(artist-hero\\): restore 'A painter between chaos and control.' headline \\(user preference\\)\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove Arc timeline \\('A practice still arriving'\\) + Signature Techniques sections from /artist; page now ends at the biography\")"
     ]
   }
 }

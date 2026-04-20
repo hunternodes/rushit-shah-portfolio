@@ -1,6 +1,5 @@
 import Spotlight from '@/components/Spotlight';
 import Gallery, { type GalleryPainting } from '@/components/Gallery';
-import Signals from '@/components/Signals';
 import Frequencies from '@/components/Frequencies';
 import Hail from '@/components/Hail';
 import Footer from '@/components/Footer';
@@ -115,7 +114,6 @@ export default async function Home() {
         />
       )}
 
-      <Signals />
       <Frequencies />
       <Hail />
       <Footer />

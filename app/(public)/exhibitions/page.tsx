@@ -185,7 +185,7 @@ export default function ExhibitionsPage() {
             material, availability, and shipping.
           </p>
           <Link href="/contact" className="btn-lime mt-8">
-            get in touch →
+            Get in Touch →
           </Link>
         </div>
       </section>

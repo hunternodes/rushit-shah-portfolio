@@ -69,7 +69,7 @@ export default function CollectionPage() {
             Reach out for pricing, shipping, and availability on any piece.
           </p>
           <Link href="/contact" className="btn-lime mt-8">
-            enquire about a piece →
+            Enquire About a Piece →
           </Link>
         </div>
       </section>

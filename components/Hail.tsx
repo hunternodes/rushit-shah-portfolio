@@ -49,7 +49,7 @@ export default function Hail() {
               style={{ background: 'var(--night)', color: 'var(--lime)' }}
             >
               <span className="display-md" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)' }}>
-                start a conversation
+                Start a Conversation
               </span>
               <span aria-hidden="true" className="text-4xl transition-transform group-hover:translate-x-2 ml-3">→</span>
             </Link>

@@ -110,8 +110,8 @@ export default function Gallery({
 
         <div className="mt-12 flex justify-end">
           <Link href="/collection" className="btn-ghost">
-            see every piece
-            <span aria-hidden>→</span>
+            See Every Piece
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>

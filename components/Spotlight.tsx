@@ -64,14 +64,14 @@ export default function Spotlight() {
               href="/collection"
               className="btn-lime justify-center sm:justify-start whitespace-nowrap"
             >
-              enter the collection
+              Enter the Collection
               <span aria-hidden="true">→</span>
             </Link>
             <Link
               href="/contact"
               className="btn-ghost justify-center sm:justify-start whitespace-nowrap"
             >
-              collector enquiries
+              Collector Enquiries
               <span aria-hidden="true">→</span>
             </Link>
           </motion.div>

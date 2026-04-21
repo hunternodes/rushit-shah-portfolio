@@ -103,10 +103,11 @@ export default function Nav() {
             <div className="hidden lg:flex items-center gap-4">
               <span
                 className="meta-sm"
-                title="Studio time · Vadodara (IST)"
-                aria-label="Studio time · Vadodara, India"
+                title="Studio time, Vadodara (IST)"
                 style={{ color: isLight ? '#6F6F7A' : 'var(--dim)' }}
               >
+                <span aria-hidden="true">STUDIO · </span>
+                <span className="sr-only">Studio time, Vadodara, </span>
                 {currentTimeIST()}
               </span>
               <Link href="/contact" className="btn-lime !py-2 !px-4 text-[0.7rem]">

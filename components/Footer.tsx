@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const nav = [
   { label: 'Home', href: '/' },
@@ -18,6 +19,9 @@ const socials = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname?.startsWith(href);
 
   return (
     <footer
@@ -65,16 +69,35 @@ export default function Footer() {
               [02] INDEX
             </div>
             <ul className="space-y-2">
-              {nav.map((l, i) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="flex items-baseline gap-3 link-mono">
-                    <span className="meta-sm" style={{ color: 'var(--lime)' }}>
-                      {`0${i + 1}`.slice(-2)}
-                    </span>
-                    <span>{l.label}</span>
-                  </Link>
-                </li>
-              ))}
+              {nav.map((l, i) => {
+                const active = isActive(l.href);
+                return (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      aria-current={active ? 'page' : undefined}
+                      className="flex items-baseline gap-3 link-mono"
+                      style={{ opacity: active ? 1 : 0.72 }}
+                    >
+                      <span className="meta-sm" style={{ color: 'var(--lime)' }}>
+                        {`0${i + 1}`.slice(-2)}
+                      </span>
+                      <span style={{ fontWeight: active ? 600 : 400 }}>
+                        {l.label}
+                      </span>
+                      {active && (
+                        <span
+                          aria-hidden="true"
+                          className="meta-sm"
+                          style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
+                        >
+                          · HERE
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

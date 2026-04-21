@@ -22,30 +22,18 @@ export default function CollectionPage() {
       {/* White hero — continuous with the embed below */}
       <section className="section-light relative pt-32 md:pt-40 pb-10">
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-12 gap-8 items-end">
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="col-span-12 md:col-span-8 display-xl"
-              style={{ color: '#0B0B10' }}
-            >
-              The{' '}
-              <span className="in-serif" style={{ color: '#B23A1E' }}>
-                full folio.
-              </span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="font-marker col-span-12 md:col-span-4 text-lg"
-              style={{ color: '#6F6F7A' }}
-            >
-              Every available work, pulled live from ArtworkArchive. Click any
-              piece for full details, dimensions, and enquiries.
-            </motion.p>
-          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="display-xl"
+            style={{ color: '#0B0B10' }}
+          >
+            The{' '}
+            <span className="in-serif" style={{ color: '#B23A1E' }}>
+              full folio.
+            </span>
+          </motion.h1>
         </div>
       </section>
 

@@ -134,7 +134,8 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/exhibitions)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(shows\\): replace placeholder 'No shows yet' page with the four real exhibitions — Fragments of Passage \\(Düsseldorf, May 2025, Solo\\), KOSEI Art Exhibition \\(Shades Gallery Bengaluru, Nov 2025, Group\\), A Measure of Many \\(IIWC Bengaluru, Mar 2026, Group\\), A Measure of Many \\(CKP Bengaluru, Apr 2026, Group\\); grouped by year most-recent-first, editorial row layout with date / title / venue / type; 'Four shows, so far.' hero; CTA swapped to press/gallery enquiries\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content: rename 'Shows' \\\\u2192 'Exhibitions' sitewide — nav + footer nav labels; exhibitions page headline 'Four shows' \\\\u2192 'Four exhibitions'; per-year row count 'SHOW/SHOWS' \\\\u2192 'EXHIBITION/EXHIBITIONS'. URL /exhibitions unchanged \\(already matches\\)\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(exhibitions\\): headline 'Four exhibitions, so far' \\\\u2192 'Rooms the work has lived in.' \\(drops the counting tic, keeps gallery/editorial voice\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(exhibitions\\): headline 'Four exhibitions, so far' \\\\u2192 'Rooms the work has lived in.' \\(drops the counting tic, keeps gallery/editorial voice\\)\")",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(exhibitions\\): swap bg from ochre-brown \\(#4A2B04\\) to deep forest green \\(#14261C\\) with warm coral \\(#FF6A4A\\) accent \\\\u2014 classic museum gallery-wall palette, distinct from every other page\")"
     ]
   }
 }

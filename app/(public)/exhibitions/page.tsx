@@ -4,9 +4,15 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 
+/**
+ * /exhibitions — deep forest-green gallery-wall palette with a warm coral
+ * accent. Replaces the previous ochre/brown bg; different in mood from every
+ * other page (home black, artist aubergine, contact navy, collection white).
+ */
 const exhibitionsTheme = {
-  '--night': '#4A2B04',
-  '--shadow': '#351D02',
+  '--night': '#14261C',    // deep forest green
+  '--shadow': '#0C1A14',   // darker green panel
+  '--lime': '#FF6A4A',     // warm coral accent (replaces acid lime on this page)
 } as React.CSSProperties;
 
 /**

@@ -98,10 +98,10 @@ export default function ExhibitionsPage() {
               letterSpacing: '-0.02em',
             }}
           >
-            Four exhibitions,
+            Rooms the work
             <br />
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              so far.
+              has lived in.
             </span>
           </motion.h1>
         </div>

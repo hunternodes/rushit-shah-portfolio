@@ -3,23 +3,6 @@
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 
-const techniques = [
-  {
-    no: '01',
-    title: 'Crackle Network',
-    body:
-      "Cobalt is laid as ground — dense, flat, unbroken. Over it, a crackle medium is worked until the surface fails on its own terms: fissures open like capillaries, like fault lines. Gold is pulled through the craze. Red only arrives at the breakages — and I'm still not sure why. Some cobalt grounds hold the medium cleanly; others reject it in the first hour, and the panel has to be started again.",
-    accent: 'var(--lime)',
-  },
-  {
-    no: '02',
-    title: 'Gradient-Splatter Inversion',
-    body:
-      "A ground moves from warm gold to cool silver — a gradient laid as smooth as the hand allows. Then: splatter, inverted. Black goes into the warm zone, white into the cool — the reverse of what the eye wants. Order and disruption occupying the same gesture, neither winning. I am still learning what the inversion is asking for.",
-    accent: 'var(--coral)',
-  },
-];
-
 /**
  * /artist runs in its own theme — deep aubergine with warm amber-gold
  * replacing the site's acid lime. Feels like a gallery salon / library.
@@ -487,70 +470,6 @@ export default function ArtistPage() {
                 </Reveal>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Two signature techniques — concrete craft detail, sits below the voice section */}
-      <section className="py-24 md:py-32" style={{ background: 'var(--night)' }}>
-        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="meta-sm mb-10 flex items-center gap-3"
-            style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
-          >
-            <span
-              className="inline-block w-6 h-px"
-              style={{ background: 'var(--lime)' }}
-            />
-            TWO TECHNIQUES · HOW THE WORK IS MADE
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {techniques.map((t, i) => (
-              <motion.div
-                key={t.no}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10%' }}
-                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="relative p-8 md:p-10"
-                style={{
-                  background: 'var(--shadow)',
-                  borderLeft: `3px solid ${t.accent}`,
-                }}
-              >
-                <span
-                  className="meta-sm absolute -top-3 left-6 px-2 py-0.5"
-                  style={{
-                    background: 'var(--night)',
-                    color: t.accent,
-                    letterSpacing: '0.22em',
-                  }}
-                >
-                  {t.no}
-                </span>
-                <h3
-                  className="display-md in-serif"
-                  style={{
-                    color: 'var(--bone)',
-                    fontSize: 'clamp(1.5rem, 2.6vw, 2.4rem)',
-                    lineHeight: 1.05,
-                  }}
-                >
-                  {t.title}
-                </h3>
-                <p
-                  className="text-lg md:text-xl leading-snug mt-5"
-                  style={{ color: 'var(--bone)', opacity: 0.92 }}
-                >
-                  {t.body}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

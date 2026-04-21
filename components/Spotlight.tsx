@@ -1,82 +1,74 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import VideoBackdrop from '@/components/VideoBackdrop';
-import ChaoticHeadline from '@/components/ChaoticHeadline';
+import PageHero from '@/components/PageHero';
 
 /**
- * Hero — full-width video backdrop with a typographic statement centred on top.
- * The framed hero painting has been retired; the video carries the visual weight.
+ * Home hero.
+ *
+ * Locked against the unified hero spec (see PageHero). The H1 is plain text
+ * so `document.querySelector('h1').textContent` comes out clean
+ * ("Paintings that hold their breath.") — the previous ChaoticHeadline
+ * decomposed each glyph into RGB-split ghost <span>s and blew up the
+ * accessible text. If we want shimmer back later, we do it with
+ * ::before/::after pseudo-elements so it stays invisible to the DOM.
+ *
+ * The video + ambient washes + static-noise stay, but they ride in on the
+ * <PageHero> `backdrop` slot so they're absolute-positioned behind the text
+ * and don't inflate the hero's height.
  */
 export default function Spotlight() {
-  const ref = useRef<HTMLElement>(null);
-
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden min-h-[92vh] flex flex-col justify-center pt-24 md:pt-28 pb-20 md:pb-24"
-      style={{ background: 'var(--night)' }}
-    >
-      {/* Video backdrop — falls back to the canvas paint-cloud animation if the browser can't decode it */}
-      <VideoBackdrop />
-
-      {/* Existing ambient radial wash, layered on top of the backdrop */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(80% 60% at 55% 30%, rgba(199,255,58,0.06) 0%, rgba(11,11,16,0) 60%), radial-gradient(50% 40% at 70% 80%, rgba(255,78,56,0.05) 0%, rgba(11,11,16,0) 70%)',
-        }}
-      />
-      <div className="static-noise" />
-
-      <div className="relative max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 pt-0 pb-12">
-        <motion.div className="col-span-12 md:col-span-9 lg:col-span-8 relative z-10">
-          <ChaoticHeadline
-            lines={[
-              { text: 'Paintings that' },
-              { text: 'hold their', italic: true, accent: 'var(--lime)' },
-              { text: 'breath.' },
-            ]}
+    <PageHero
+      title={
+        <>
+          Paintings that{' '}
+          <span className="in-serif" style={{ color: 'var(--lime)' }}>
+            hold their
+          </span>{' '}
+          breath.
+        </>
+      }
+      ariaTitle="Paintings that hold their breath."
+      subtext={
+        <>
+          A colourblind painter working between India, Singapore, and Germany.
+          Crackle networks and gradient-splatter inversions — a practice built
+          on the tension between chaos and control.
+        </>
+      }
+      cta={
+        <>
+          <Link
+            href="/collection"
+            className="btn-lime justify-center sm:justify-start whitespace-nowrap"
+          >
+            Enter the Collection
+            <span aria-hidden="true">→</span>
+          </Link>
+          <Link
+            href="/contact"
+            className="btn-ghost justify-center sm:justify-start whitespace-nowrap"
+          >
+            Collector Enquiries
+            <span aria-hidden="true">→</span>
+          </Link>
+        </>
+      }
+      backdrop={
+        <>
+          <VideoBackdrop />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(80% 60% at 55% 30%, rgba(199,255,58,0.06) 0%, rgba(11,11,16,0) 60%), radial-gradient(50% 40% at 70% 80%, rgba(255,78,56,0.05) 0%, rgba(11,11,16,0) 70%)',
+            }}
           />
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="font-marker mt-8 text-lg md:text-xl max-w-xl"
-            style={{ color: 'var(--bone)' }}
-          >
-            A colourblind painter working between India, Singapore, and
-            Germany. Crackle networks and gradient-splatter inversions — a
-            practice built on the tension between chaos and control.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.8 }}
-            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 mt-10"
-          >
-            <Link
-              href="/collection"
-              className="btn-lime justify-center sm:justify-start whitespace-nowrap"
-            >
-              Enter the Collection
-              <span aria-hidden="true">→</span>
-            </Link>
-            <Link
-              href="/contact"
-              className="btn-ghost justify-center sm:justify-start whitespace-nowrap"
-            >
-              Collector Enquiries
-              <span aria-hidden="true">→</span>
-            </Link>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+          <div className="static-noise" />
+        </>
+      }
+    />
   );
 }

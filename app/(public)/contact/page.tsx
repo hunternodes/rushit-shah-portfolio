@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ContactFormData } from '@/lib/types';
 import Footer from '@/components/Footer';
+import AmbientBackdrop from '@/components/AmbientBackdrop';
 
 const contactTheme = {
   '--night': '#0B1A2E',
@@ -40,7 +41,12 @@ export default function ContactPage() {
       };
 
       const payload = new FormData();
-      payload.append('access_key', '1e756e4d-a754-49d7-a5e4-dcfd18fe6855');
+      // Web3Forms access key — externalised so rotating it doesn't need a
+      // code change. Falls back to the current dev key for local testing.
+      const accessKey =
+        process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+        '1e756e4d-a754-49d7-a5e4-dcfd18fe6855';
+      payload.append('access_key', accessKey);
       payload.append('name', form.name);
       payload.append('email', form.email);
       payload.append('inquiryType', topicLabel[form.inquiryType] ?? form.inquiryType);
@@ -85,38 +91,45 @@ export default function ContactPage() {
 
   return (
     <div style={contactTheme}>
+      {/* Hero — matched to the homepage hero's vertical rhythm
+          (pt-28 md:pt-40 pb-16) and its 1400px max-width so /contact and /
+          feel like the same document opening. Subtext removed per the
+          latest brief; the H1 carries the page on its own. */}
       <section
-        className="relative pt-32 md:pt-40 pb-16 overflow-hidden"
+        className="relative pt-28 md:pt-40 pb-16 overflow-hidden"
         style={{ background: 'var(--night)' }}
       >
-        <div className="static-noise" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(60% 50% at 50% 40%, rgba(199,255,58,0.05) 0%, transparent 70%)',
-          }}
+        {/* Atmospheric layer — warm cream + a whisper of lime on navy.
+            Deliberately no cyan / blue-purple tones so the navy identity
+            stays rich rather than tipping into "generic neon hero". */}
+        <AmbientBackdrop
+          accent="#F0D8A8"
+          accentAlt="#C7FF3A"
+          blend="screen"
+          intensity={0.26}
+          grain
         />
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 relative">
+        <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-12 relative">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="display-xl max-w-4xl"
-            style={{ color: 'var(--bone)' }}
+            className="display-xl"
+            style={{
+              color: 'var(--bone)',
+              // Tighter clamp than display-xl's default so "Start a
+              // conversation." fits on one line from 360 px to ~1920 px.
+              // whiteSpace prevents browser wrap; display-xl's letter-
+              // spacing and line-height inherit from the class.
+              fontSize: 'clamp(1.75rem, 6.5vw, 6rem)',
+              whiteSpace: 'nowrap',
+            }}
           >
             Start a{' '}
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
               conversation.
             </span>
           </motion.h1>
-          <p
-            className="font-marker mt-8 text-lg md:text-xl max-w-xl"
-            style={{ color: 'var(--dim)' }}
-          >
-            Collector enquiries, gallery submissions, studio visits, or a hello
-            — I reply to everything within 48 hours.
-          </p>
         </div>
       </section>
 

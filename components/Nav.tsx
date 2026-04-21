@@ -62,7 +62,16 @@ export default function Nav() {
         }}
       >
         <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Nav shrinks ~8–12 px once scrolled so it feels lighter mid-read.
+              Driven by the same `scrolled` state that already toggles bg —
+              zero extra listeners. */}
+          <div
+            className={
+              scrolled
+                ? 'flex items-center justify-between h-14 md:h-16 transition-[height] duration-[350ms] ease-out'
+                : 'flex items-center justify-between h-16 md:h-20 transition-[height] duration-[350ms] ease-out'
+            }
+          >
             <Link href="/" className="group flex items-center gap-3">
               <BlinkBox />
               <AnimatedWordmark color={fg} />
@@ -119,7 +128,7 @@ export default function Nav() {
               onClick={() => setOpen(!open)}
               className="lg:hidden w-10 h-10 flex items-center justify-center"
               style={{ border: `1px solid ${isLight ? 'rgba(0,0,0,0.15)' : 'var(--rule)'}` }}
-              aria-label="Open menu"
+              aria-label="Menu"
               aria-expanded={open}
             >
               <div className="flex flex-col gap-1">

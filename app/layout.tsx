@@ -1,20 +1,15 @@
-import type { Metadata } from 'next';
-
 /**
  * Root layout = pure pass-through.
- * The `<html>` / `<body>` document structure is owned by each route group:
- *   - `app/(public)/layout.tsx`  — site chrome, Google Fonts, etc.
- *   - `app/(payload)/layout.tsx` — Payload's RootLayout (admin shell)
  *
- * This avoids double-<html> hydration errors when Payload mounts its own shell.
+ * The actual <html> / <body> document (and therefore all metadata,
+ * structured data, fonts, viewport) is owned by the route groups:
+ *   - app/(public)/layout.tsx  — site chrome + per-page metadata template
+ *   - app/(payload)/layout.tsx — Payload admin shell
+ *
+ * We intentionally don't export `metadata` here because Next.js merges
+ * parent metadata, and any values we set would compete with the richer
+ * site-wide block in `(public)/layout.tsx`. Let the public layout own it.
  */
-
-export const metadata: Metadata = {
-  title: 'Rushit Shah — Abstract Painter · Vadodara',
-  description:
-    'Abstract paintings by Rushit Shah — crackle networks, gradient-splatter inversions, and the Fragment series. A studio practice between India, Singapore, and Germany.',
-};
-
 export default function RootLayout({
   children,
 }: {

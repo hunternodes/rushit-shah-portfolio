@@ -131,8 +131,13 @@
 }
 
 html {
-  scroll-behavior: auto;
+  /* Smooth scroll so anchor links, "back to top", and keyboard PgUp/PgDn
+     glide instead of jumping. `auto` kept under reduced-motion below. */
+  scroll-behavior: smooth;
   overflow-x: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
@@ -165,11 +170,47 @@ a {
   color: var(--night);
 }
 
+/* ——— Focus-visible system ———
+   Only shows for keyboard / AT users (not mouse clicks) thanks to
+   :focus-visible. Lime outline with a matching soft halo; `outline`
+   not `box-shadow` so it follows the element's border-radius for free
+   and doesn't get clipped by `overflow: hidden` ancestors.
+   The `:focus:not(:focus-visible)` reset kills Safari's lingering
+   default focus ring on tap-clicks. */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+  border-radius: 2px;
+  transition: outline-offset 0.15s ease-out;
+}
+/* Buttons and form fields feel better with a halo than a line */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.btn-lime:focus-visible,
+.btn-ghost:focus-visible {
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(199, 255, 58, 0.25);
+}
+
 /* ——— Display scales — min values tuned so headlines don't force horizontal
    overflow at ≤390 px viewports. Keep max values same as before. ——— */
 .display-xl {
   font-size: clamp(2.25rem, 8vw, 7.5rem);
   letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-weight: 500;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+/* ——— Unified hero type — used by <PageHero> on every top-level page.
+   Pinned values so H1 bounding boxes match across /, /artist, /exhibitions,
+   /collection, /contact. Don't tweak per-page. ——— */
+.display-hero {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  letter-spacing: -0.02em;
   line-height: 0.95;
   font-weight: 500;
   overflow-wrap: break-word;

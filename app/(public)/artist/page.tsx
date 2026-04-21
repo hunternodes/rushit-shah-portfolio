@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
+import AmbientBackdrop from '@/components/AmbientBackdrop';
 
 /**
  * /artist runs in its own theme — deep aubergine with warm amber-gold
@@ -28,35 +29,15 @@ export default function ArtistPage() {
         className="relative min-h-[88vh] flex items-center overflow-hidden pt-28 md:pt-32 pb-20"
         style={{ background: 'var(--night)' }}
       >
-        <div className="static-noise" />
-        {/* Two warm radial washes anchoring the composition */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(65% 55% at 22% 30%, rgba(217, 169, 75, 0.14) 0%, transparent 65%), radial-gradient(55% 50% at 82% 72%, rgba(184, 95, 160, 0.10) 0%, transparent 65%)',
-          }}
-        />
-        {/* Drifting ambient glow */}
-        <motion.div
-          aria-hidden
-          className="absolute pointer-events-none"
-          style={{
-            width: '42vw',
-            height: '42vw',
-            borderRadius: '50%',
-            background:
-              'radial-gradient(circle, rgba(217,169,75,0.15) 0%, transparent 60%)',
-            filter: 'blur(40px)',
-            mixBlendMode: 'screen',
-            top: '5%',
-            right: '-8%',
-          }}
-          animate={{
-            x: ['0%', '-6%', '4%', '0%'],
-            y: ['0%', '8%', '-5%', '0%'],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+        {/* Atmospheric layer — amber + plum drifting volumes on aubergine.
+            Tuned so the aubergine identity (#1A0E20) never shifts; the blobs
+            just breathe light in and out of the corners. */}
+        <AmbientBackdrop
+          accent="#EFBE5D"
+          accentAlt="#B55FA0"
+          blend="screen"
+          intensity={0.38}
+          grain
         />
 
         <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 relative w-full">

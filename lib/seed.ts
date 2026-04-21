@@ -65,8 +65,8 @@ async function backfillSeries(payload: Payload) {
     depth: 0,
     draft: true,
   });
-  const needing = docs.filter(
-    (p: { series?: string | null }) => !p.series || p.series === null,
+  const needing = (docs as Array<{ id: number | string; series?: string | null }>).filter(
+    (p) => !p.series || p.series === null,
   );
   if (needing.length === 0) return;
   for (const p of needing) {

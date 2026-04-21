@@ -8,7 +8,14 @@ const staticDir = path.resolve(dirname, '..', 'public', 'uploads');
 
 export const Media: CollectionConfig = {
   slug: 'media',
-  // TODO: swap local-disk storage for @payloadcms/storage-cloudinary before production
+  /**
+   * Upload routing:
+   *   • In production, the @payloadcms/storage-s3 plugin (configured in
+   *     payload.config.ts) intercepts these uploads and sends the bytes to
+   *     Cloudflare R2. `staticDir` becomes a no-op.
+   *   • In local dev without S3_* env vars set, uploads fall back to
+   *     `staticDir` (public/uploads) so the dev workflow still works.
+   */
   upload: {
     staticDir,
     imageSizes: [

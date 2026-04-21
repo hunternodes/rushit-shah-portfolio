@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ArtworkArchiveEmbed from '@/components/ArtworkArchiveEmbed';
 import Footer from '@/components/Footer';
+import AmbientBackdrop from '@/components/AmbientBackdrop';
 
 const collectionFooterTheme = {
   '--night': '#FFFFFF',
@@ -19,9 +20,21 @@ const collectionFooterTheme = {
 export default function CollectionPage() {
   return (
     <>
-      {/* White hero — continuous with the embed below */}
-      <section className="section-light relative pt-32 md:pt-40 pb-10">
-        <div className="max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12">
+      {/* White hero — matched to the homepage hero's vertical rhythm
+          (pt-28 md:pt-40 pb-16) and 1400px max-width so /collection opens
+          with the same silhouette as /. The embed section below stays at
+          the wider 1600px container to give thumbnails more room. */}
+      <section className="section-light relative pt-28 md:pt-40 pb-16 overflow-hidden">
+        {/* Atmospheric layer — very low-intensity warm creams on multiply
+            so the white identity of the page is preserved; the motion reads
+            as a soft drifting warmth in the paper, not a colour wash. */}
+        <AmbientBackdrop
+          accent="#D9C3A3"
+          accentAlt="#D89E86"
+          blend="multiply"
+          intensity={0.42}
+        />
+        <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-12 relative">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

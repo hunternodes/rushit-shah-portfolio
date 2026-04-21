@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
+import AmbientBackdrop from '@/components/AmbientBackdrop';
 
 /**
  * /exhibitions — deep forest-green gallery-wall palette with a warm coral
@@ -87,13 +88,15 @@ export default function ExhibitionsPage() {
         className="relative pt-32 md:pt-40 pb-12 overflow-hidden"
         style={{ background: 'var(--night)' }}
       >
-        <div className="static-noise" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(60% 45% at 25% 30%, rgba(255,78,56,0.10) 0%, transparent 65%), radial-gradient(50% 40% at 78% 75%, rgba(255,181,71,0.08) 0%, transparent 65%)',
-          }}
+        {/* Atmospheric layer — muted coral + warm amber drifting through
+            the forest-green base. Screen blend + low intensity keeps the
+            page identity exactly where it is; just adds a faint breath. */}
+        <AmbientBackdrop
+          accent="#D9814B"
+          accentAlt="#E0B26A"
+          blend="screen"
+          intensity={0.32}
+          grain
         />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 relative">
           <motion.h1

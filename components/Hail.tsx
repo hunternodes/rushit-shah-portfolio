@@ -23,11 +23,14 @@ export default function Hail() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="display-xl"
           style={{ color: 'var(--night)' }}
+          aria-label="Let's put colour on your wall."
         >
-          Let's{' '}
-          <span className="in-serif">put colour</span>
-          <br />
-          on your wall.
+          <span aria-hidden="true">
+            Let's{' '}
+            <span className="in-serif">put colour</span>{' '}
+            <br />
+            on your wall.
+          </span>
         </motion.h2>
 
         <div className="grid grid-cols-12 gap-10 mt-16 items-end">
@@ -35,8 +38,8 @@ export default function Hail() {
             className="font-marker col-span-12 md:col-span-6 max-w-xl text-xl md:text-2xl"
             style={{ color: 'var(--night)', fontWeight: 400, lineHeight: 1.4 }}
           >
-            Collector enquiries, gallery submissions, studio visits — every
-            message answered personally within 48 hours.
+            Collector enquiries, gallery submissions, studio visits — I reply
+            to everything within 48 hours.
           </p>
 
           <div className="col-span-12 md:col-span-5 md:col-start-8 flex flex-col gap-5">
@@ -46,9 +49,9 @@ export default function Hail() {
               style={{ background: 'var(--night)', color: 'var(--lime)' }}
             >
               <span className="display-md" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)' }}>
-                Start a conversation
+                start a conversation
               </span>
-              <span className="text-4xl transition-transform group-hover:translate-x-2 ml-3">→</span>
+              <span aria-hidden="true" className="text-4xl transition-transform group-hover:translate-x-2 ml-3">→</span>
             </Link>
 
             <a

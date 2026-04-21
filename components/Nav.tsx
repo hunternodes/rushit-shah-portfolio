@@ -68,7 +68,7 @@ export default function Nav() {
               <AnimatedWordmark color={fg} />
             </Link>
 
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-8">
               {items.map((item) => {
                 const active =
                   item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
@@ -100,9 +100,11 @@ export default function Nav() {
               })}
             </div>
 
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <span
                 className="meta-sm"
+                title="Studio time · Vadodara (IST)"
+                aria-label="Studio time · Vadodara, India"
                 style={{ color: isLight ? '#6F6F7A' : 'var(--dim)' }}
               >
                 {currentTimeIST()}
@@ -114,9 +116,10 @@ export default function Nav() {
 
             <button
               onClick={() => setOpen(!open)}
-              className="md:hidden w-10 h-10 flex items-center justify-center"
+              className="lg:hidden w-10 h-10 flex items-center justify-center"
               style={{ border: `1px solid ${isLight ? 'rgba(0,0,0,0.15)' : 'var(--rule)'}` }}
-              aria-label="Menu"
+              aria-label="Open menu"
+              aria-expanded={open}
             >
               <div className="flex flex-col gap-1">
                 <motion.span
@@ -147,7 +150,7 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
             style={{ background: 'var(--night)' }}
           >
             <div className="flex flex-col h-full pt-20 px-6 pb-10">

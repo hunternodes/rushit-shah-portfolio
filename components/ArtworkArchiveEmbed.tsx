@@ -84,10 +84,9 @@ export default function ArtworkArchiveEmbed() {
         ref={ref}
         style={{ clear: 'both', minHeight: '500px' }}
       />
+      {/* Real noscript — only shown to non-JS clients; not picked up by SR otherwise */}
       <noscript>
-        <p className="text-center py-10" style={{ color: '#6F6F7A' }}>
-          Please enable JavaScript to view the artwork gallery.
-        </p>
+        {`<p style="text-align:center;padding:2.5rem 0;color:#6F6F7A;">Please enable JavaScript to view the artwork gallery.</p>`}
       </noscript>
     </motion.div>
   );

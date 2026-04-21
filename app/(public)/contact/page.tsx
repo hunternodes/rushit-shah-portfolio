@@ -156,19 +156,31 @@ export default function ContactPage() {
                     href="https://instagram.com/rushitshah08"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Instagram (opens in new tab)"
                     className="link-mono text-lg"
                     style={{ color: 'var(--bone)' }}
                   >
-                    Instagram ↗
+                    Instagram <span aria-hidden="true">↗</span>
                   </a>
                   <a
                     href="https://www.linkedin.com/in/rushitshah"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="LinkedIn (opens in new tab)"
                     className="link-mono text-lg"
                     style={{ color: 'var(--bone)' }}
                   >
-                    LinkedIn ↗
+                    LinkedIn <span aria-hidden="true">↗</span>
+                  </a>
+                  <a
+                    href="https://www.artworkarchive.com/profile/rushitshah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Artwork Archive (opens in new tab)"
+                    className="link-mono text-lg"
+                    style={{ color: 'var(--bone)' }}
+                  >
+                    Artwork Archive <span aria-hidden="true">↗</span>
                   </a>
                 </div>
               </div>

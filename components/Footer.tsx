@@ -13,7 +13,7 @@ const nav = [
 const socials = [
   { label: 'Instagram', href: 'https://instagram.com/rushitshah08', handle: '@rushitshah08' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rushitshah', handle: 'in/rushitshah' },
-  { label: 'ArtworkArchive', href: 'https://www.artworkarchive.com/profile/rushitshah', handle: 'profile/rushitshah' },
+  { label: 'Artwork Archive', href: 'https://www.artworkarchive.com/profile/rushitshah', handle: 'profile/rushitshah' },
 ];
 
 export default function Footer() {

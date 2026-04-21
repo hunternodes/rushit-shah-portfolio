@@ -88,12 +88,15 @@ export default function ArtistPage() {
                   lineHeight: 0.95,
                   letterSpacing: '-0.02em',
                 }}
+                aria-label="I paint in layers, then argue."
               >
-                I paint in layers,
-                <br />
-                then{' '}
-                <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                  argue.
+                <span aria-hidden="true">
+                  I paint in layers,{' '}
+                  <br />
+                  then{' '}
+                  <span className="in-serif" style={{ color: 'var(--lime)' }}>
+                    argue.
+                  </span>
                 </span>
               </motion.h1>
 

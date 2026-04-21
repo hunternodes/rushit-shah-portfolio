@@ -58,15 +58,21 @@ export default function Spotlight() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.8 }}
-            className="flex flex-wrap items-center gap-4 mt-10"
+            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 mt-10"
           >
-            <Link href="/collection" className="btn-lime">
-              Enter the collection
-              <span aria-hidden>→</span>
+            <Link
+              href="/collection"
+              className="btn-lime justify-center sm:justify-start whitespace-nowrap"
+            >
+              enter the collection
+              <span aria-hidden="true">→</span>
             </Link>
-            <Link href="/contact" className="btn-ghost">
-              Collector enquiries
-              <span aria-hidden>→</span>
+            <Link
+              href="/contact"
+              className="btn-ghost justify-center sm:justify-start whitespace-nowrap"
+            >
+              collector enquiries
+              <span aria-hidden="true">→</span>
             </Link>
           </motion.div>
         </motion.div>

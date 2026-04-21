@@ -46,6 +46,9 @@ export default function ChaoticHeadline({ lines }: { lines: Line[] }) {
     };
   }, [mx, my, hovered]);
 
+  // Plain readable label for screen readers & SEO — joins the lines with spaces
+  const accessibleLabel = lines.map((l) => l.text).join(' ');
+
   return (
     <motion.h1
       ref={containerRef}
@@ -56,9 +59,10 @@ export default function ChaoticHeadline({ lines }: { lines: Line[] }) {
         visible: { transition: { staggerChildren: 0.02, delayChildren: 0.1 } },
       }}
       className="display-xl overflow-visible"
+      aria-label={accessibleLabel}
     >
       {lines.map((line, lineIdx) => (
-        <span key={lineIdx} className="block">
+        <span key={lineIdx} className="block" aria-hidden="true">
           {line.italic ? (
             <span className="in-serif" style={{ color: line.accent ?? 'inherit' }}>
               {line.text.split('').map((ch, i) => (

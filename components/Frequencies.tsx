@@ -27,16 +27,13 @@ export default function Frequencies() {
           — crackle tests, splatter reels, work in progress.
         </motion.h2>
 
-        <motion.a
-          href="https://instagram.com/rushitshah08"
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
           whileHover={{ y: -4 }}
-          className="group relative block mt-12 p-10 md:p-14"
+          className="relative mt-12 p-10 md:p-14"
           style={{
             background: 'var(--shadow)',
             border: '1px solid var(--rule)',
@@ -44,6 +41,7 @@ export default function Frequencies() {
           }}
         >
           <span
+            aria-hidden="true"
             className="absolute -top-3 left-6 px-2 py-0.5 meta-sm"
             style={{ background: 'var(--night)', color: 'var(--ice)' }}
           >
@@ -66,20 +64,26 @@ export default function Frequencies() {
                 record of the practice between paintings.
               </p>
             </div>
-            <div
-              className="col-span-12 md:col-span-4 flex md:justify-end items-center gap-3"
-              style={{ color: 'var(--lime)' }}
-            >
-              <span className="meta">Follow on Instagram</span>
-              <span
-                className="text-2xl transition-transform group-hover:translate-x-1"
-                aria-hidden
+            <div className="col-span-12 md:col-span-4 flex md:justify-end items-center">
+              <a
+                href="https://instagram.com/rushitshah08"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow @rushitshah08 on Instagram (opens in new tab)"
+                className="group inline-flex items-center gap-3 link-mono"
+                style={{ color: 'var(--lime)' }}
               >
-                ↗
-              </span>
+                <span className="meta">Follow on Instagram</span>
+                <span
+                  className="text-2xl transition-transform group-hover:translate-x-1"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
+              </a>
             </div>
           </div>
-        </motion.a>
+        </motion.div>
       </div>
     </section>
   );

@@ -106,11 +106,14 @@ export default function ExhibitionsPage() {
               lineHeight: 0.95,
               letterSpacing: '-0.02em',
             }}
+            aria-label="Rooms the work has lived in."
           >
-            Rooms the work
-            <br />
-            <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              has lived in.
+            <span aria-hidden="true">
+              Rooms the work{' '}
+              <br />
+              <span className="in-serif" style={{ color: 'var(--lime)' }}>
+                has lived in.
+              </span>
             </span>
           </motion.h1>
         </div>

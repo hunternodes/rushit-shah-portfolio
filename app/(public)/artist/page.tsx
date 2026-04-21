@@ -35,6 +35,7 @@ const artistTheme = {
   '--dim': '#E4D5DC',     // brighter mauve so body copy clears the muted-grey problem
   '--rule': '#4A374E',    // plum rule lines, slightly lifted
   '--lime': '#EFBE5D',    // amber-gold accent, brighter for legibility
+  background: '#1A0E20',  // paint the wrapper too so no body near-black can bleed through
 } as React.CSSProperties;
 
 export default function ArtistPage() {

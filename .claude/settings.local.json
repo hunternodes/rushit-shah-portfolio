@@ -137,7 +137,9 @@
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(exhibitions\\): headline 'Four exhibitions, so far' \\\\u2192 'Rooms the work has lived in.' \\(drops the counting tic, keeps gallery/editorial voice\\)\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(exhibitions\\): swap bg from ochre-brown \\(#4A2B04\\) to deep forest green \\(#14261C\\) with warm coral \\(#FF6A4A\\) accent \\\\u2014 classic museum gallery-wall palette, distinct from every other page\")",
       "Bash(curl -s http://localhost:3000/exhibitions)",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"fix\\(exhibitions\\): paint wrapper div forest-green — stops the global body near-black from bleeding through any vertical gap between sections \\(the black horizontal bar the user saw between hero + shows list\\)\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"fix\\(exhibitions\\): paint wrapper div forest-green — stops the global body near-black from bleeding through any vertical gap between sections \\(the black horizontal bar the user saw between hero + shows list\\)\")",
+      "Bash(curl -s -o /dev/null -w \"artist=%{http_code} contact=%{http_code} exhibitions=%{http_code}\\\\n\" http://localhost:3000/artist http://localhost:3000/contact http://localhost:3000/exhibitions)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"ui\\(exhibitions\\): bring back acid-lime \\(yellow neon\\) accent \\\\u2014 drop coral --lime override so 'has lived in', year markers, SOLO badges render in lime on forest green; also preempt body-bleed on /artist + /contact by painting their theme wrappers\")"
     ]
   }
 }

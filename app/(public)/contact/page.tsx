@@ -9,6 +9,7 @@ const contactTheme = {
   '--night': '#0B1A2E',
   '--shadow': '#060F1E',
   '--dim': '#8EA0B5',
+  background: '#0B1A2E', // paint the wrapper too so no body near-black can bleed through
 } as React.CSSProperties;
 
 export default function ContactPage() {

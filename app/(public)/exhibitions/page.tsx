@@ -14,7 +14,7 @@ import Footer from '@/components/Footer';
 const exhibitionsTheme = {
   '--night': '#14261C',    // deep forest green
   '--shadow': '#0C1A14',   // darker green panel
-  '--lime': '#FF6A4A',     // warm coral accent (replaces acid lime on this page)
+  // --lime not overridden → site default acid lime #C7FF3A pops on the forest green
   background: '#14261C',
 } as React.CSSProperties;
 

@@ -98,7 +98,7 @@ export default function ExhibitionsPage() {
               letterSpacing: '-0.02em',
             }}
           >
-            Four shows,
+            Four exhibitions,
             <br />
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
               so far.
@@ -141,7 +141,7 @@ export default function ExhibitionsPage() {
                   style={{ color: 'var(--dim)', letterSpacing: '0.22em' }}
                 >
                   {byYear[year].length}{' '}
-                  {byYear[year].length === 1 ? 'SHOW' : 'SHOWS'}
+                  {byYear[year].length === 1 ? 'EXHIBITION' : 'EXHIBITIONS'}
                 </span>
               </div>
 

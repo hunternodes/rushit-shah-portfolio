@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const items = [
   { label: 'Home', href: '/' },
   { label: 'Artist', href: '/artist' },
-  { label: 'Shows', href: '/exhibitions' },
+  { label: 'Exhibitions', href: '/exhibitions' },
   { label: 'Collection', href: '/collection' },
   { label: 'Contact', href: '/contact' },
 ];

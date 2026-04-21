@@ -369,6 +369,110 @@ a {
   transform-origin: right;
 }
 
+/* ——— ArtworkArchive embed — restyle their injected markup to match site feel ——— */
+#aa_embed {
+  /* Force our typography + colour inside the embed */
+  font-family: 'Reynard', 'Fraunces', Georgia, serif !important;
+  color: #1A0E20;
+  /* Strip any inline bg AA applies at root */
+  background: transparent !important;
+}
+#aa_embed *,
+#aa_embed *::before,
+#aa_embed *::after {
+  font-family: inherit !important;
+  box-sizing: border-box;
+}
+
+/* Images — remove any default borders/rounding, soften with shadow, lift on hover */
+#aa_embed img {
+  border: 0 !important;
+  border-radius: 0 !important;
+  max-width: 100% !important;
+  height: auto !important;
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.28);
+  filter: saturate(0.95) contrast(1.03) brightness(0.98);
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms ease,
+    box-shadow 700ms ease;
+  will-change: transform;
+  display: block;
+}
+#aa_embed a:hover img,
+#aa_embed [role="link"]:hover img,
+#aa_embed .hover img {
+  transform: scale(1.025);
+  filter: saturate(1.08) contrast(1.07) brightness(1.02);
+  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.45);
+}
+
+/* Links */
+#aa_embed a,
+#aa_embed a:visited {
+  text-decoration: none !important;
+  color: #1A0E20 !important;
+  border: 0 !important;
+}
+#aa_embed a:hover {
+  color: #B23A1E !important;
+}
+
+/* Typography — titles in serif italic, captions in muted grey */
+#aa_embed h1,
+#aa_embed h2,
+#aa_embed h3,
+#aa_embed h4,
+#aa_embed h5 {
+  font-style: italic !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+  color: #1A0E20 !important;
+  margin: 1rem 0 0.5rem !important;
+}
+#aa_embed p,
+#aa_embed span,
+#aa_embed li,
+#aa_embed small {
+  color: #6F6F7A !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.5 !important;
+}
+
+/* Kill any default backgrounds/borders on tile wrappers */
+#aa_embed [style*="background"]:not(img) {
+  background: transparent !important;
+}
+#aa_embed [class*="card"],
+#aa_embed [class*="tile"],
+#aa_embed [class*="item"] {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Grid spacing — space items generously */
+#aa_embed > div,
+#aa_embed ul,
+#aa_embed ol {
+  gap: 2.5rem !important;
+}
+#aa_embed li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide AA's "powered by" link if it renders */
+#aa_embed a[href*="artworkarchive.com"]:not([href*="/profile/"]),
+#aa_embed .aa_powered_by,
+#aa_embed .aa-powered-by,
+#aa_embed [class*="powered"] {
+  display: none !important;
+}
+
 /* ——— Scrollbar ——— */
 ::-webkit-scrollbar {
   width: 8px;

@@ -125,7 +125,10 @@
       "Bash(curl -s -o /dev/null -w \"artist=%{http_code} reynard=%{http_code}\\\\n\" http://localhost:3000/artist http://localhost:3000/fonts/reynard/Reynard.otf)",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(artist-typography\\): apply Reynard font to second section \\(three notes + facts column\\) — editorial serif distinct from the hero above; fallback stack Fraunces → Georgia → serif\")",
       "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(artist\\): remove Evolution timeline section \\(2024 crackle / 2025 inversion / 2026 Fragment\\)\")",
-      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(home\\): remove Signals section \\(the 4 counter stats: works/techniques/paintings/countries\\) from the homepage composition\")"
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"content\\(home\\): remove Signals section \\(the 4 counter stats: works/techniques/paintings/countries\\) from the homepage composition\")",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} artist=%{http_code} admin=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/artist http://localhost:3000/admin)",
+      "Bash(curl -s -o /dev/null -w \"home=%{http_code} artist=%{http_code} exhibitions=%{http_code} contact=%{http_code} collection=%{http_code} admin=%{http_code}\\\\n\" http://localhost:3000 http://localhost:3000/artist http://localhost:3000/exhibitions http://localhost:3000/contact http://localhost:3000/collection http://localhost:3000/admin)",
+      "Bash(git -c user.email=rushit@local.dev -c user.name='Rushit Shah' commit -q -m \"feat\\(collection\\): restyle ArtworkArchive embed — CSS overrides in globals.css force Reynard typography, clean shadow-only image treatment, lift-on-hover + coral link colour, 2.5rem grid gap, hide 'powered by' branding; component adds a MutationObserver that fades in each image progressively as it loads \\(60ms cascade\\) so the grid doesn't pop in all at once\")"
     ]
   }
 }

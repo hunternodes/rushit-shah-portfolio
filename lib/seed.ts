@@ -430,7 +430,7 @@ async function seedVyakulataPaintings(payload: Payload) {
         longDescription: lex(s.shortDescription) as unknown as Record<string, unknown>,
         technique: 'crackle',
         series: 'vyakulata',
-        status: 'in-progress',
+        availability: 'in-progress',
         featured: true,
         featuredOrder: i + 1,
         published: false,

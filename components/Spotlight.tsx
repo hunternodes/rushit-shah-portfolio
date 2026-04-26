@@ -22,50 +22,75 @@ export default function Spotlight() {
   return (
     <PageHero
       title={
-        <>
+        <span
+          style={{
+            fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+            fontWeight: 700,
+          }}
+        >
           Paintings that{' '}
-          <span className="in-serif" style={{ color: 'var(--lime)' }}>
+          <span
+            style={{
+              color: 'var(--lime)',
+              fontFamily: '"Burnts Marker", "Fraunces", serif',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              letterSpacing: '0.06em',
+              fontSize: '1.7em',
+              lineHeight: 0.85,
+              display: 'inline-block',
+              verticalAlign: 'baseline',
+              marginInline: '0.2em',
+            }}
+          >
             hold their
           </span>{' '}
           breath.
-        </>
+        </span>
       }
       ariaTitle="Paintings that hold their breath."
       subtext={
-        <>
-          A colourblind painter working between India, Singapore, and Germany.
-          Crackle networks and gradient-splatter inversions — a practice built
-          on the tension between chaos and control.
-        </>
+        <span
+          style={{
+            fontFamily: '"Aburo", "Grift", "Space Grotesk", system-ui, sans-serif',
+            fontWeight: 600,
+            letterSpacing: '0.01em',
+          }}
+        >
+          Everyone's got a map to who I am, drawn by people who've never been
+          there. So I paint my own. Every stroke is a stranger's voice I stop
+          listening to. Every canvas, a little more of me showing up.
+          {' '}
+          <span
+            style={{
+              color: 'var(--lime)',
+              fontFamily: '"Burnts Marker", "Fraunces", serif',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              letterSpacing: '0.02em',
+              fontSize: '1.8em',
+              lineHeight: 0.9,
+              display: 'inline-block',
+              verticalAlign: 'baseline',
+              marginInline: '0.25em',
+            }}
+          >
+            -Rushit
+          </span>
+        </span>
       }
       cta={
-        <>
-          <Link
-            href="/collection"
-            className="btn-lime justify-center sm:justify-start whitespace-nowrap"
-          >
-            Enter the Collection
-            <span aria-hidden="true">→</span>
-          </Link>
-          <Link
-            href="/contact"
-            className="btn-ghost justify-center sm:justify-start whitespace-nowrap"
-          >
-            Collector Enquiries
-            <span aria-hidden="true">→</span>
-          </Link>
-        </>
+        <Link
+          href="/collection"
+          className="btn-lime justify-center sm:justify-start whitespace-nowrap"
+        >
+          Enter the Collection
+          <span aria-hidden="true">→</span>
+        </Link>
       }
       backdrop={
         <>
           <VideoBackdrop />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(80% 60% at 55% 30%, rgba(199,255,58,0.06) 0%, rgba(11,11,16,0) 60%), radial-gradient(50% 40% at 70% 80%, rgba(255,78,56,0.05) 0%, rgba(11,11,16,0) 70%)',
-            }}
-          />
           <div className="static-noise" />
         </>
       }

@@ -88,10 +88,91 @@
   font-display: swap;
 }
 
-/* ——— Burnts Marker (kept available as alternate) ——— */
+/* ——— Michigan Signature (handwritten — used on three-notes /artist) ——— */
+@font-face {
+  font-family: 'Michigan Signature';
+  src: url('/fonts/michigan-signature/MichiganSignature.woff') format('woff'),
+       url('/fonts/michigan-signature/MichiganSignature.otf') format('opentype'),
+       url('/fonts/michigan-signature/MichiganSignature.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ——— Guthen Jaqueline (handwritten — used on hero highlights) ——— */
+@font-face {
+  font-family: 'Guthen Jaqueline';
+  src: url('/fonts/guthen-jaqueline/GuthenJaqueline-Regular.woff2') format('woff2'),
+       url('/fonts/guthen-jaqueline/GuthenJaqueline-Regular.ttf') format('truetype'),
+       url('/fonts/guthen-jaqueline/GuthenJaqueline-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ——— Aburo (nav links + hero copy) ——— */
+@font-face {
+  font-family: 'Aburo';
+  src: url('/fonts/aburo/Aburo-Thin.woff') format('woff'),
+       url('/fonts/aburo/Aburo-Thin.ttf') format('truetype'),
+       url('/fonts/aburo/Aburo-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aburo';
+  src: url('/fonts/aburo/Aburo-Regular.woff') format('woff'),
+       url('/fonts/aburo/Aburo-Regular.ttf') format('truetype'),
+       url('/fonts/aburo/Aburo-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aburo';
+  src: url('/fonts/aburo/Aburo-Semibold.woff') format('woff'),
+       url('/fonts/aburo/Aburo-Semibold.ttf') format('truetype'),
+       url('/fonts/aburo/Aburo-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aburo';
+  src: url('/fonts/aburo/Aburo-Bold.woff') format('woff'),
+       url('/fonts/aburo/Aburo-Bold.ttf') format('truetype'),
+       url('/fonts/aburo/Aburo-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ——— Deligent Graffiti (used on series accent words: "the Fragment", etc) ——— */
+@font-face {
+  font-family: 'Deligent Graffiti';
+  src: url('/fonts/deligent-graffiti/DeligentGraffiti.ttf') format('truetype'),
+       url('/fonts/deligent-graffiti/DeligentGraffiti.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ——— Burnts Marker (used on hero H1 white-text words) ——— */
 @font-face {
   font-family: 'Burnts Marker';
-  src: url('/fonts/burnts/Burnts_reg.otf') format('opentype');
+  src: url('/fonts/burnts/Burnts_reg.woff2') format('woff2'),
+       url('/fonts/burnts/Burnts_reg.ttf') format('truetype'),
+       url('/fonts/burnts/Burnts_reg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ——— Burnts Maker (the chunkier tagging variant, separate face) ——— */
+@font-face {
+  font-family: 'Burnts Maker';
+  src: url('/fonts/burnts/Burnts_Maker.ttf') format('truetype'),
+       url('/fonts/burnts/Burnts_Maker.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -305,8 +386,8 @@ select:focus-visible,
   padding: 1rem 1.5rem 0.95rem;
   background: var(--lime);
   color: var(--night);
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 500;
+  font-family: 'Aburo', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -327,17 +408,20 @@ select:focus-visible,
   padding: 1rem 1.5rem 0.95rem;
   background: transparent;
   color: var(--bone);
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 500;
+  font-family: 'Aburo', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  border: 1px solid var(--rule);
+  /* Bone-tinted border so the CTA reads as clickable on every dark bg.
+     --rule (#2A2A36) was too close to --night to register. */
+  border: 1px solid rgba(236, 232, 219, 0.5);
   transition: all 0.35s;
 }
 .btn-ghost:hover {
   border-color: var(--lime);
   color: var(--lime);
+  background: rgba(199, 255, 58, 0.08);
 }
 
 /* ——— Blink indicator (nav logo square) ——— */

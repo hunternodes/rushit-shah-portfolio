@@ -40,28 +40,15 @@ export default function Footer() {
             <p
               style={{
                 color: 'var(--bone)',
-                fontFamily: '"NewYark", "Grift", "Space Grotesk", system-ui, sans-serif',
+                fontFamily: '"Burnts Marker", "NewYark", "Grift", "Space Grotesk", system-ui, sans-serif',
                 fontWeight: 400,
-                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
+                fontSize: 'clamp(4.5rem, 9vw, 8rem)',
                 lineHeight: 1,
                 letterSpacing: '0.005em',
               }}
             >
               Rushit Shah
             </p>
-            <p className="font-marker mt-2 text-lg" style={{ color: 'var(--dim)' }}>
-              Abstract paintings — crackle networks, gradient inversions,
-              studio work.
-              <br />
-              Based in Vadodara, Gujarat. Shipping worldwide.
-            </p>
-            <a
-              href="mailto:rs@rushitshah.com"
-              className="mt-5 inline-flex link-mono"
-              style={{ color: 'var(--lime)' }}
-            >
-              rs@rushitshah.com ↗
-            </a>
           </div>
 
           <div className="col-span-6 md:col-span-3 md:col-start-7">
@@ -82,7 +69,12 @@ export default function Footer() {
                       <span className="meta-sm" style={{ color: 'var(--lime)' }}>
                         {`0${i + 1}`.slice(-2)}
                       </span>
-                      <span style={{ fontWeight: active ? 600 : 400 }}>
+                      <span
+                        style={{
+                          fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                          fontWeight: active ? 600 : 400,
+                        }}
+                      >
                         {l.label}
                       </span>
                       {active && (
@@ -114,7 +106,13 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="flex items-baseline justify-between gap-3 link-mono"
                   >
-                    <span>{s.label}</span>
+                    <span
+                      style={{
+                        fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                      }}
+                    >
+                      {s.label}
+                    </span>
                     <span className="meta-sm" style={{ color: 'var(--dim)' }}>
                       ↗
                     </span>

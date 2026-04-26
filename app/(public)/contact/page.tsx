@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ContactFormData } from '@/lib/types';
 import Footer from '@/components/Footer';
-import AmbientBackdrop from '@/components/AmbientBackdrop';
+import HeroBackdrop from '@/components/HeroBackdrop';
 
 const contactTheme = {
   '--night': '#0B1A2E',
@@ -83,33 +83,63 @@ export default function ContactPage() {
     background: 'var(--night)',
     border: '1px solid var(--rule)',
     color: 'var(--bone)',
-    fontFamily: '"Space Grotesk", system-ui, sans-serif',
+    fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
     fontSize: '1rem',
     outline: 'none',
     transition: 'border 0.3s',
   };
 
+  const aburo = '"Aburo", "Space Grotesk", system-ui, sans-serif';
+
   return (
-    <div style={contactTheme}>
-      {/* Hero — matched to the homepage hero's vertical rhythm
-          (pt-28 md:pt-40 pb-16) and its 1400px max-width so /contact and /
-          feel like the same document opening. Subtext removed per the
-          latest brief; the H1 carries the page on its own. */}
-      <section
-        className="relative pt-28 md:pt-40 pb-16 overflow-hidden"
-        style={{ background: 'var(--night)' }}
+    <div style={contactTheme} className="relative">
+      {/* Painterly canvas animation fixed across the whole contact page
+          (same pattern as /artist + /exhibitions). Sections set transparent
+          bg + z-10 to layer above. */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
       >
-        {/* Atmospheric layer — warm cream + a whisper of lime on navy.
-            Deliberately no cyan / blue-purple tones so the navy identity
-            stays rich rather than tipping into "generic neon hero". */}
-        <AmbientBackdrop
-          accent="#F0D8A8"
-          accentAlt="#C7FF3A"
-          blend="screen"
-          intensity={0.26}
-          grain
+        <HeroBackdrop />
+      </div>
+
+      {/* Hero — studio video plays full-frame behind a full-bleed frosted-glass
+          overlay. Headline floats on the glass; mirrors /exhibitions + /artist. */}
+      <section
+        className="relative z-10 min-h-[100svh] flex flex-col justify-center pt-28 md:pt-40 pb-16 overflow-hidden"
+        style={{ background: 'transparent' }}
+      >
+        <video
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{
+            objectFit: 'cover',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+        >
+          <source src="/contact-bg.m4v" type="video/mp4" />
+        </video>
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'rgba(11, 26, 46, 0.32)',
+            backdropFilter: 'blur(18px) saturate(120%)',
+            WebkitBackdropFilter: 'blur(18px) saturate(120%)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
         />
-        <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-12 relative">
+        <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-12 relative -mt-20 md:-mt-28">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,51 +147,62 @@ export default function ContactPage() {
             className="display-xl"
             style={{
               color: 'var(--bone)',
-              // Tighter clamp than display-xl's default so "Start a
-              // conversation." fits on one line from 360 px to ~1920 px.
-              // whiteSpace prevents browser wrap; display-xl's letter-
-              // spacing and line-height inherit from the class.
               fontSize: 'clamp(1.75rem, 6.5vw, 6rem)',
               whiteSpace: 'nowrap',
+              fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+              fontWeight: 700,
             }}
           >
             Start a{' '}
-            <span className="in-serif" style={{ color: 'var(--lime)' }}>
+            <span
+              style={{
+                color: 'var(--lime)',
+                fontFamily: '"Burnts Marker", "Fraunces", serif',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                letterSpacing: '0.06em',
+                fontSize: '1.7em',
+                lineHeight: 0.85,
+                display: 'inline-block',
+                verticalAlign: 'baseline',
+                marginInline: '0.2em',
+              }}
+            >
               conversation.
             </span>
           </motion.h1>
         </div>
       </section>
 
-      <section className="pb-24" style={{ background: 'var(--night)' }}>
+      <section className="relative z-10 pb-24" style={{ background: 'transparent' }}>
         <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-12 gap-10">
             <aside className="col-span-12 md:col-span-4 space-y-10">
               <div>
-                <span className="meta-sm mb-2 block" style={{ color: 'var(--dim)' }}>
+                <span className="meta-sm mb-2 block" style={{ color: 'var(--dim)', fontFamily: aburo }}>
                   [01] EMAIL
                 </span>
                 <a
                   href="mailto:rs@rushitshah.com"
                   className="text-xl link-mono"
-                  style={{ color: 'var(--lime)' }}
+                  style={{ color: 'var(--lime)', fontFamily: aburo }}
                 >
                   rs@rushitshah.com
                 </a>
               </div>
               <div>
-                <span className="meta-sm mb-2 block" style={{ color: 'var(--dim)' }}>
+                <span className="meta-sm mb-2 block" style={{ color: 'var(--dim)', fontFamily: aburo }}>
                   [02] STUDIO
                 </span>
-                <p className="display-md" style={{ color: 'var(--bone)' }}>
+                <p className="display-md" style={{ color: 'var(--bone)', fontFamily: aburo, fontWeight: 700 }}>
                   Vadodara
                 </p>
-                <p className="mt-1 text-sm" style={{ color: 'var(--dim)' }}>
+                <p className="mt-1 text-sm" style={{ color: 'var(--dim)', fontFamily: aburo }}>
                   Gujarat, India · shipping worldwide
                 </p>
               </div>
               <div>
-                <span className="meta-sm mb-2 block" style={{ color: 'var(--dim)' }}>
+                <span className="meta-sm mb-2 block" style={{ color: 'var(--dim)', fontFamily: aburo }}>
                   [03] ELSEWHERE
                 </span>
                 <div className="flex flex-col gap-2">
@@ -171,7 +212,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     aria-label="Instagram (opens in new tab)"
                     className="link-mono text-lg"
-                    style={{ color: 'var(--bone)' }}
+                    style={{ color: 'var(--bone)', fontFamily: aburo }}
                   >
                     Instagram <span aria-hidden="true">↗</span>
                   </a>
@@ -181,7 +222,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     aria-label="LinkedIn (opens in new tab)"
                     className="link-mono text-lg"
-                    style={{ color: 'var(--bone)' }}
+                    style={{ color: 'var(--bone)', fontFamily: aburo }}
                   >
                     LinkedIn <span aria-hidden="true">↗</span>
                   </a>
@@ -191,7 +232,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     aria-label="Artwork Archive (opens in new tab)"
                     className="link-mono text-lg"
-                    style={{ color: 'var(--bone)' }}
+                    style={{ color: 'var(--bone)', fontFamily: aburo }}
                   >
                     Artwork Archive <span aria-hidden="true">↗</span>
                   </a>
@@ -212,7 +253,7 @@ export default function ContactPage() {
               >
                 <span
                   className="absolute -top-3 left-6 px-2 py-0.5 meta-sm"
-                  style={{ background: 'var(--lime)', color: 'var(--night)' }}
+                  style={{ background: 'var(--lime)', color: 'var(--night)', fontFamily: aburo }}
                 >
                   TRANSMIT
                 </span>
@@ -268,7 +309,7 @@ export default function ContactPage() {
                       <label
                         htmlFor="inquiryType"
                         className="meta-sm mb-2 block"
-                        style={{ color: 'var(--dim)' }}
+                        style={{ color: 'var(--dim)', fontFamily: aburo }}
                       >
                         TOPIC
                       </label>
@@ -290,7 +331,7 @@ export default function ContactPage() {
                       <label
                         htmlFor="message"
                         className="meta-sm mb-2 block"
-                        style={{ color: 'var(--dim)' }}
+                        style={{ color: 'var(--dim)', fontFamily: aburo }}
                       >
                         MESSAGE
                       </label>
@@ -323,13 +364,14 @@ export default function ContactPage() {
                       type="submit"
                       disabled={loading}
                       className="btn-lime w-full justify-center disabled:opacity-50"
+                      style={{ fontFamily: aburo }}
                     >
                       {loading ? 'sending…' : 'send message'}
                       <span aria-hidden>→</span>
                     </button>
                     <p
                       className="meta-sm text-center"
-                      style={{ color: 'var(--dim)' }}
+                      style={{ color: 'var(--dim)', fontFamily: aburo }}
                     >
                       typical reply within 48 hours
                     </p>
@@ -359,7 +401,7 @@ function Field({
       <label
         htmlFor={id}
         className="meta-sm mb-2 block"
-        style={{ color: 'var(--dim)' }}
+        style={{ color: 'var(--dim)', fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif' }}
       >
         {label.toUpperCase()}
       </label>

@@ -48,8 +48,7 @@ export default function VideoBackdrop() {
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           objectFit: 'cover',
-          opacity: 0.55,
-          mixBlendMode: 'screen',
+          opacity: 0.95,
         }}
         autoPlay
         loop
@@ -62,13 +61,14 @@ export default function VideoBackdrop() {
         <source src="/hero-bg.mp4" type="video/mp4" />
         {/* Optional WebM — drop /public/hero-bg.webm here later for even lighter delivery */}
       </video>
-      {/* Dark tint so content on top stays legible */}
+      {/* Soft vignette — only enough to keep H1 readable.
+          Was radial 35→70% (too heavy, hiding video); now 10→35%. */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(70% 60% at 50% 40%, rgba(12,11,10,0.35) 0%, rgba(12,11,10,0.7) 100%)',
+            'radial-gradient(80% 70% at 50% 45%, rgba(12,11,10,0.10) 0%, rgba(12,11,10,0.35) 100%)',
         }}
       />
     </>

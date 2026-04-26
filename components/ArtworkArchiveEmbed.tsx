@@ -84,9 +84,14 @@ export default function ArtworkArchiveEmbed() {
         ref={ref}
         style={{ clear: 'both', minHeight: '500px' }}
       />
-      {/* Real noscript — only shown to non-JS clients; not picked up by SR otherwise */}
+      {/* Real noscript — only shown to non-JS clients; not picked up by SR otherwise.
+          Children must be JSX (not a template-string of HTML), otherwise the
+          server escapes the angle brackets and the client doesn't, causing
+          a hydration mismatch. */}
       <noscript>
-        {`<p style="text-align:center;padding:2.5rem 0;color:#6F6F7A;">Please enable JavaScript to view the artwork gallery.</p>`}
+        <p style={{ textAlign: 'center', padding: '2.5rem 0', color: '#6F6F7A' }}>
+          Please enable JavaScript to view the artwork gallery.
+        </p>
       </noscript>
     </motion.div>
   );

@@ -80,7 +80,7 @@ export const SiteCopy: GlobalConfig = {
               name: 'home_footerText',
               label: 'Final Call footer line',
               type: 'text',
-              admin: { description: 'e.g. "Studio · Vadodara / Singapore / Berlin · 2026"' },
+              admin: { description: 'e.g. "Studio · Vadodara / Singapore / Düsseldorf · 2026"' },
             },
           ],
         },

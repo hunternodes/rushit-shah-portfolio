@@ -80,24 +80,32 @@ export default function Gallery({
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="col-span-12 md:col-span-8 display-lg"
-            style={{ color: 'var(--bone)', fontSize: 'clamp(2.25rem, 5vw, 4rem)' }}
+            style={{
+              color: 'var(--bone)',
+              fontSize: 'clamp(2.25rem, 5vw, 4rem)',
+              fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+              fontWeight: 700,
+            }}
           >
             {paintings.length === 5 ? 'Five pieces' : `${paintings.length} pieces`} from{' '}
-            <span className="in-serif" style={{ color: seriesAccent }}>
+            <span
+              style={{
+                color: seriesAccent,
+                fontFamily: '"Guthen Jaqueline", "Fraunces", serif',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                letterSpacing: '0.02em',
+                fontSize: '1.7em',
+                lineHeight: 0.9,
+                display: 'inline-block',
+                verticalAlign: 'baseline',
+                marginInline: '0.25em',
+              }}
+            >
               {italicPhrase}
             </span>
             {italicBeforeSeries}
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="font-marker col-span-12 md:col-span-4 text-base md:text-lg md:self-end"
-            style={{ color: 'var(--dim)' }}
-          >
-            Click any piece to view the whole painting full-size.
-          </motion.p>
         </div>
 
         {paintings.length === 0 ? (
@@ -385,7 +393,7 @@ function Lightbox({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.98 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-[15] max-w-[92vw] max-h-[88vh] flex flex-col items-center"
+        className="relative z-[15] max-w-[95vw] max-h-[96vh] flex flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <img
@@ -393,8 +401,8 @@ function Lightbox({
           alt={art.imageAlt}
           style={{
             display: 'block',
-            maxWidth: '92vw',
-            maxHeight: '75vh',
+            maxWidth: '95vw',
+            maxHeight: '88vh',
             objectFit: 'contain',
             boxShadow: '0 40px 120px -20px rgba(0,0,0,0.9)',
           }}
@@ -431,13 +439,6 @@ function Lightbox({
         </div>
       </motion.div>
 
-      {/* Bottom nav hint */}
-      <div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 meta-sm opacity-50"
-        style={{ color: 'var(--bone)', letterSpacing: '0.22em' }}
-      >
-        ← → navigate · ESC close
-      </div>
     </motion.div>
   );
 }

@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
-import AmbientBackdrop from '@/components/AmbientBackdrop';
+import HeroBackdrop from '@/components/HeroBackdrop';
 
 /**
  * /exhibitions — deep forest-green gallery-wall palette with a warm coral
@@ -72,33 +71,75 @@ const shows: Show[] = [
   },
 ];
 
-// Group by year, preserving insertion order
-const byYear = shows.reduce<Record<string, Show[]>>((acc, s) => {
+// Defensive sort: latest exhibition first regardless of source order.
+const sortedShows = [...shows].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+);
+
+// Group by year, preserving the descending date order
+const byYear = sortedShows.reduce<Record<string, Show[]>>((acc, s) => {
   (acc[s.year] ||= []).push(s);
   return acc;
 }, {});
 
 export default function ExhibitionsPage() {
-  const years = Object.keys(byYear); // already most-recent-first given input order
+  // Numeric-string object keys auto-sort ascending in Object.keys, regardless
+  // of insertion order, so we re-sort descending to keep newest year first.
+  const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
 
   return (
-    <div style={exhibitionsTheme}>
-      {/* Hero */}
-      <section
-        className="relative pt-32 md:pt-40 pb-12 overflow-hidden"
-        style={{ background: 'var(--night)' }}
+    <div style={exhibitionsTheme} className="relative">
+      {/* Painterly canvas animation fixed across the whole page so motion
+          continues through hero + shows list. Sections below set transparent
+          bg + z-10 so they layer above the canvas. */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
       >
-        {/* Atmospheric layer — muted coral + warm amber drifting through
-            the forest-green base. Screen blend + low intensity keeps the
-            page identity exactly where it is; just adds a faint breath. */}
-        <AmbientBackdrop
-          accent="#D9814B"
-          accentAlt="#E0B26A"
-          blend="screen"
-          intensity={0.32}
-          grain
+        <HeroBackdrop />
+      </div>
+
+      {/* Hero — studio video plays full-frame behind a full-bleed frosted-glass
+          overlay. The headline floats on the glass; everything in the hero
+          reads through a single backdrop-blur layer. */}
+      <section
+        className="relative z-10 min-h-[100svh] flex items-center overflow-hidden pt-32 md:pt-40 pb-12"
+        style={{ background: 'transparent' }}
+      >
+        <video
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{
+            objectFit: 'cover',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+        >
+          <source src="/exhibitions-bg.m4v" type="video/mp4" />
+        </video>
+        {/* Full-bleed glass — single backdrop-blur across the whole hero,
+            faded at the bottom so the section dissolves into the page below
+            instead of meeting it at a hard edge. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'rgba(20, 38, 28, 0.28)',
+            backdropFilter: 'blur(18px) saturate(120%)',
+            WebkitBackdropFilter: 'blur(18px) saturate(120%)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
         />
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 relative">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 relative w-full -mt-20 md:-mt-28">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,13 +149,28 @@ export default function ExhibitionsPage() {
               color: 'var(--bone)',
               lineHeight: 0.95,
               letterSpacing: '-0.02em',
+              fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+              fontWeight: 700,
             }}
             aria-label="Rooms the work has lived in."
           >
             <span aria-hidden="true">
               Rooms the work{' '}
               <br />
-              <span className="in-serif" style={{ color: 'var(--lime)' }}>
+              <span
+                style={{
+                  color: 'var(--lime)',
+                  fontFamily: '"Burnts Marker", "Fraunces", serif',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  letterSpacing: '0.06em',
+                  fontSize: '1.7em',
+                  lineHeight: 0.85,
+                  display: 'inline-block',
+                  verticalAlign: 'baseline',
+                  marginInline: '0.2em',
+                }}
+              >
                 has lived in.
               </span>
             </span>
@@ -123,7 +179,7 @@ export default function ExhibitionsPage() {
       </section>
 
       {/* Shows list — grouped by year, most recent first */}
-      <section className="pb-24" style={{ background: 'var(--night)' }}>
+      <section className="relative z-10 pb-24" style={{ background: 'transparent' }}>
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
           {years.map((year) => (
             <motion.div
@@ -137,23 +193,24 @@ export default function ExhibitionsPage() {
               {/* Year header */}
               <div className="flex items-baseline gap-6 mb-6 md:mb-8">
                 <span
-                  className="in-serif"
                   style={{
                     color: 'var(--lime)',
                     fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
                     lineHeight: 0.95,
                     letterSpacing: '-0.02em',
+                    fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                    fontWeight: 700,
                   }}
                 >
                   {year}
                 </span>
                 <span
-                  className="flex-1 h-px"
-                  style={{ background: 'var(--rule)' }}
-                />
-                <span
                   className="meta-sm"
-                  style={{ color: 'var(--dim)', letterSpacing: '0.22em' }}
+                  style={{
+                    color: 'var(--dim)',
+                    letterSpacing: '0.22em',
+                    fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                  }}
                 >
                   {byYear[year].length}{' '}
                   {byYear[year].length === 1 ? 'EXHIBITION' : 'EXHIBITIONS'}
@@ -171,28 +228,6 @@ export default function ExhibitionsPage() {
         </div>
       </section>
 
-      {/* CTA — press / gallery enquiries */}
-      <section className="py-20" style={{ background: 'var(--shadow)' }}>
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 text-center">
-          <h2 className="display-lg" style={{ color: 'var(--bone)' }}>
-            Want to{' '}
-            <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              show this work?
-            </span>
-          </h2>
-          <p
-            className="font-marker mt-6 text-lg max-w-xl mx-auto"
-            style={{ color: 'var(--dim)' }}
-          >
-            Curators, galleries, and fair organisers — reach out for press
-            material, availability, and shipping.
-          </p>
-          <Link href="/contact" className="btn-lime mt-8">
-            Get in Touch →
-          </Link>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
@@ -206,12 +241,15 @@ function ShowRow({ show, index }: { show: Show; index: number }) {
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="group grid grid-cols-12 gap-4 md:gap-6 items-baseline py-5 md:py-7"
-      style={{ borderBottom: '1px solid var(--rule)' }}
     >
       {/* Date */}
       <div
         className="col-span-12 md:col-span-2 meta-sm"
-        style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
+        style={{
+          color: 'var(--lime)',
+          letterSpacing: '0.22em',
+          fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+        }}
       >
         {show.date}
       </div>
@@ -232,11 +270,15 @@ function ShowRow({ show, index }: { show: Show; index: number }) {
 
       {/* Venue / city */}
       <div
-        className="col-span-8 md:col-span-3 font-marker text-base md:text-lg"
-        style={{ color: 'var(--bone)', opacity: 0.9 }}
+        className="col-span-8 md:col-span-3 text-base md:text-lg"
+        style={{
+          color: 'var(--bone)',
+          opacity: 0.9,
+          fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+        }}
       >
         {show.venue}
-        <span style={{ color: 'var(--dim)' }}>
+        <span style={{ color: 'var(--bone)' }}>
           {' · '}
           {show.city}, {show.country}
         </span>
@@ -246,8 +288,9 @@ function ShowRow({ show, index }: { show: Show; index: number }) {
       <div
         className="col-span-4 md:col-span-2 text-right meta-sm"
         style={{
-          color: show.type === 'Solo' ? 'var(--lime)' : 'var(--dim)',
+          color: show.type === 'Solo' ? 'var(--lime)' : 'var(--bone)',
           letterSpacing: '0.22em',
+          fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
         }}
       >
         {show.type.toUpperCase()}

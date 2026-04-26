@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 type BlendMode =
@@ -64,6 +65,9 @@ export default function AmbientBackdrop({
   grain = false,
 }: AmbientBackdropProps) {
   const reduce = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
   // Blob A — top-left anchor. Large amplitude sweep so it's clearly moving.
   const blobA = reduce

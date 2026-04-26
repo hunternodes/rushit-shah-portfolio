@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ArtworkArchiveEmbed from '@/components/ArtworkArchiveEmbed';
 import Footer from '@/components/Footer';
@@ -24,15 +23,35 @@ export default function CollectionPage() {
           (pt-28 md:pt-40 pb-16) and 1400px max-width so /collection opens
           with the same silhouette as /. The embed section below stays at
           the wider 1600px container to give thumbnails more room. */}
-      <section className="section-light relative pt-28 md:pt-40 pb-16 overflow-hidden">
-        {/* Atmospheric layer — very low-intensity warm creams on multiply
-            so the white identity of the page is preserved; the motion reads
-            as a soft drifting warmth in the paper, not a colour wash. */}
+      <section className="section-light relative min-h-[100svh] flex flex-col justify-center pt-28 md:pt-40 pb-16 overflow-hidden">
+        {/* Crackle video — same hero-bg.mp4 the homepage uses, dialled down
+            and multiply-blended so it tints the white as a warm marble
+            instead of darkening the page. */}
+        <video
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{
+            objectFit: 'cover',
+            opacity: 0.55,
+            mixBlendMode: 'multiply',
+          }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Warm ambient blobs over the video so it doesn't read as a flat
+            texture — bumped to a higher intensity than before so it actually
+            registers, with a richer terracotta + cream palette. */}
         <AmbientBackdrop
-          accent="#D9C3A3"
-          accentAlt="#D89E86"
+          accent="#E8B894"
+          accentAlt="#C76A4A"
           blend="multiply"
-          intensity={0.42}
+          intensity={0.55}
+          grain
         />
         <div className="max-w-[1400px] mx-auto w-full px-5 sm:px-8 lg:px-12 relative">
           <motion.h1
@@ -40,10 +59,27 @@ export default function CollectionPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="display-xl"
-            style={{ color: '#0B0B10' }}
+            style={{
+              color: '#0B0B10',
+              fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+              fontWeight: 700,
+            }}
           >
             The{' '}
-            <span className="in-serif" style={{ color: '#B23A1E' }}>
+            <span
+              style={{
+                color: '#B23A1E',
+                fontFamily: '"Burnts Marker", "Fraunces", serif',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                letterSpacing: '0.06em',
+                fontSize: '1.7em',
+                lineHeight: 0.85,
+                display: 'inline-block',
+                verticalAlign: 'baseline',
+                marginInline: '0.2em',
+              }}
+            >
               full folio.
             </span>
           </motion.h1>
@@ -62,28 +98,6 @@ export default function CollectionPage() {
           >
             Collection syncs automatically · Updated in real time
           </p>
-        </div>
-      </section>
-
-      {/* Dark CTA — collector enquiries */}
-      <section className="py-20" style={{ background: 'var(--night)' }}>
-        <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12 text-center">
-          <h2 className="display-lg" style={{ color: 'var(--bone)' }}>
-            Something{' '}
-            <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              caught
-            </span>{' '}
-            your eye?
-          </h2>
-          <p
-            className="mt-6 text-lg max-w-lg mx-auto"
-            style={{ color: 'var(--dim)' }}
-          >
-            Reach out for pricing, shipping, and availability on any piece.
-          </p>
-          <Link href="/contact" className="btn-lime mt-8">
-            Enquire About a Piece →
-          </Link>
         </div>
       </section>
 

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
-import AmbientBackdrop from '@/components/AmbientBackdrop';
+import HeroBackdrop from '@/components/HeroBackdrop';
 
 /**
  * /artist runs in its own theme — deep aubergine with warm amber-gold
@@ -24,179 +24,174 @@ const artistTheme = {
 
 export default function ArtistPage() {
   return (
-    <div style={artistTheme}>
-      <section
-        className="relative min-h-[88vh] flex items-center overflow-hidden pt-28 md:pt-32 pb-20"
-        style={{ background: 'var(--night)' }}
+    <div style={artistTheme} className="relative">
+      {/* Painterly canvas animation — runs across the whole page, fixed to
+          the viewport so it's still visible as the visitor scrolls through
+          biography + facts. Sits behind all content via DOM order. */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: 0 }}
       >
-        {/* Atmospheric layer — amber + plum drifting volumes on aubergine.
-            Tuned so the aubergine identity (#1A0E20) never shifts; the blobs
-            just breathe light in and out of the corners. */}
-        <AmbientBackdrop
-          accent="#EFBE5D"
-          accentAlt="#B55FA0"
-          blend="screen"
-          intensity={0.38}
-          grain
+        <HeroBackdrop />
+      </div>
+
+      {/* Hero — studio video plays full-frame behind a full-bleed frosted-glass
+          overlay. Headline + bio meta float on the glass; mirrors the
+          /exhibitions hero treatment. */}
+      <section
+        className="relative z-10 min-h-[100svh] flex items-center overflow-hidden pt-28 md:pt-32 pb-20"
+        style={{ background: 'transparent' }}
+      >
+        <video
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{
+            objectFit: 'cover',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+        >
+          <source src="/artist-bg.m4v" type="video/mp4" />
+        </video>
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'rgba(26, 14, 32, 0.32)',
+            backdropFilter: 'blur(18px) saturate(120%)',
+            WebkitBackdropFilter: 'blur(18px) saturate(120%)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
         />
-
-        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 relative w-full">
-          <div className="grid grid-cols-12 gap-10 md:gap-14 items-center">
-            {/* Text column — centered vertically against the portrait */}
-            <div className="col-span-12 md:col-span-7 lg:col-span-7 order-2 md:order-1">
-              {/* Small editorial caption above the headline */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                className="meta-sm mb-6 flex items-center gap-3"
-                style={{ color: 'var(--lime)', letterSpacing: '0.28em' }}
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12 relative w-full -mt-20 md:-mt-28">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="display-xl"
+            style={{
+              color: 'var(--bone)',
+              lineHeight: 0.95,
+              letterSpacing: '-0.02em',
+              fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+              fontWeight: 700,
+            }}
+            aria-label="I paint in layers, then argue."
+          >
+            <span aria-hidden="true">
+              I paint in layers,{' '}
+              <br />
+              then{' '}
+              <span
+                style={{
+                  color: 'var(--lime)',
+                  fontFamily: '"Burnts Marker", "Fraunces", serif',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  letterSpacing: '0.06em',
+                  fontSize: '1.7em',
+                  lineHeight: 0.85,
+                  display: 'inline-block',
+                  verticalAlign: 'baseline',
+                  marginInline: '0.2em',
+                }}
               >
-                <span
-                  className="inline-block w-6 h-px"
-                  style={{ background: 'var(--lime)' }}
-                />
-                RUSHIT SHAH
-              </motion.div>
+                argue.
+              </span>
+            </span>
+          </motion.h1>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="display-xl"
+          {/* Bio meta row */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5 }}
+            className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5"
+          >
+            <div>
+              <div
+                className="meta-sm"
+                style={{
+                  color: 'var(--lime)',
+                  letterSpacing: '0.22em',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                }}
+              >
+                BORN
+              </div>
+              <div
+                className="mt-2"
                 style={{
                   color: 'var(--bone)',
-                  lineHeight: 0.95,
-                  letterSpacing: '-0.02em',
-                }}
-                aria-label="I paint in layers, then argue."
-              >
-                <span aria-hidden="true">
-                  I paint in layers,{' '}
-                  <br />
-                  then{' '}
-                  <span className="in-serif" style={{ color: 'var(--lime)' }}>
-                    argue.
-                  </span>
-                </span>
-              </motion.h1>
-
-              {/* Meta row — balances the column against the portrait */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.5 }}
-                className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-5"
-              >
-                <div>
-                  <div
-                    className="meta-sm"
-                    style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
-                  >
-                    BORN
-                  </div>
-                  <div
-                    className="mt-2"
-                    style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
-                  >
-                    1986 · Vadodara
-                  </div>
-                </div>
-                <div
-                  className="w-px h-10 hidden sm:block"
-                  style={{ background: 'var(--rule)' }}
-                />
-                <div>
-                  <div
-                    className="meta-sm"
-                    style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
-                  >
-                    STUDIO
-                  </div>
-                  <div
-                    className="mt-2"
-                    style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
-                  >
-                    IN / SG / DE
-                  </div>
-                </div>
-                <div
-                  className="w-px h-10 hidden sm:block"
-                  style={{ background: 'var(--rule)' }}
-                />
-                <div>
-                  <div
-                    className="meta-sm"
-                    style={{ color: 'var(--lime)', letterSpacing: '0.22em' }}
-                  >
-                    PRACTICE
-                  </div>
-                  <div
-                    className="mt-2"
-                    style={{ color: 'var(--bone)', fontSize: '0.95rem' }}
-                  >
-                    Abstract painter
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Portrait column — simpler treatment, no heavy UI frame */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="col-span-12 md:col-span-5 lg:col-span-5 order-1 md:order-2 relative"
-            >
-              {/* Gold glow halo behind the image so it integrates with the bg */}
-              <div
-                aria-hidden
-                className="absolute inset-0 -m-8 pointer-events-none"
-                style={{
-                  background:
-                    'radial-gradient(60% 60% at 50% 45%, rgba(217,169,75,0.25) 0%, transparent 70%)',
-                  filter: 'blur(40px)',
-                }}
-              />
-              <div
-                className="relative overflow-hidden"
-                style={{
-                  aspectRatio: '4 / 5',
-                  boxShadow:
-                    '0 40px 100px -20px rgba(0,0,0,0.65), 0 0 0 1px rgba(217,169,75,0.18) inset',
+                  fontSize: '0.95rem',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
                 }}
               >
-                <motion.img
-                  src="/images/rushit-hands.png"
-                  alt="Rushit Shah — paint-covered hands in the studio, a yellow canvas behind"
-                  className="block w-full h-full object-cover"
-                  style={{ filter: 'saturate(0.9) contrast(1.04) brightness(0.95)' }}
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-                />
-                {/* Soft vignette that deepens toward the aubergine base */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      'linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(26,14,32,0.55) 100%)',
-                  }}
-                />
-                <div
-                  className="absolute bottom-4 left-4 px-2 py-1 meta-sm"
-                  style={{
-                    background: 'rgba(26,14,32,0.85)',
-                    color: 'var(--lime)',
-                    backdropFilter: 'blur(6px)',
-                    letterSpacing: '0.18em',
-                  }}
-                >
-                  PORTRAIT · STUDIO
-                </div>
+                1986 · Vadodara
               </div>
-            </motion.div>
-          </div>
+            </div>
+            <div
+              className="w-px h-10 hidden sm:block"
+              style={{ background: 'var(--rule)' }}
+            />
+            <div>
+              <div
+                className="meta-sm"
+                style={{
+                  color: 'var(--lime)',
+                  letterSpacing: '0.22em',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                }}
+              >
+                STUDIO
+              </div>
+              <div
+                className="mt-2"
+                style={{
+                  color: 'var(--bone)',
+                  fontSize: '0.95rem',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                }}
+              >
+                IN / SG / DE
+              </div>
+            </div>
+            <div
+              className="w-px h-10 hidden sm:block"
+              style={{ background: 'var(--rule)' }}
+            />
+            <div>
+              <div
+                className="meta-sm"
+                style={{
+                  color: 'var(--lime)',
+                  letterSpacing: '0.22em',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                }}
+              >
+                PRACTICE
+              </div>
+              <div
+                className="mt-2"
+                style={{
+                  color: 'var(--bone)',
+                  fontSize: '0.95rem',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                }}
+              >
+                Abstract painter
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -204,8 +199,8 @@ export default function ArtistPage() {
           (third person) woven around a sticky portrait. An amber halo bleeds from the
           image into the text column so they read as one composition. */}
       <section
-        className="relative overflow-hidden py-24 md:py-32"
-        style={{ background: 'var(--shadow)' }}
+        className="relative z-10 overflow-hidden py-24 md:py-32"
+        style={{ background: 'transparent' }}
       >
         {/* Amber halo behind the portrait that blurs into the text column */}
         <div
@@ -293,25 +288,13 @@ export default function ArtistPage() {
                   />
                   IN THE ARTIST'S WORDS
                 </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.15 }}
-                  className="in-serif mb-12"
-                  style={{
-                    color: 'var(--bone)',
-                    fontSize: 'clamp(2.25rem, 3.4vw, 3.2rem)',
-                    lineHeight: 1.02,
-                    fontWeight: 500,
-                  }}
-                >
-                  three notes
-                </motion.div>
 
                 <div
-                  className="space-y-12 text-xl md:text-2xl leading-snug"
-                  style={{ color: 'var(--bone)' }}
+                  className="space-y-10 text-base md:text-lg leading-relaxed"
+                  style={{
+                    color: 'var(--bone)',
+                    fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                  }}
                 >
                   <Reveal>
                     <div className="relative pl-8 md:pl-12">
@@ -347,13 +330,12 @@ export default function ArtistPage() {
                         II.
                       </span>
                       <p style={{ color: 'var(--bone)' }}>
-                        The work is made in layers. Cobalt laid flat. Gold
-                        pulled through craze. Splatter inverted against
-                        gradient. Each technique is a way of arguing with my
-                        own hand — laying something down and then asking
-                        whether it was true. I travelled to eighty countries
-                        before I understood that I had been looking for a way
-                        to stay still. The paintings are where I stay still.
+                        I spent years moving, believing that what I was
+                        looking for existed somewhere else — in another
+                        country, another landscape, another sky. The
+                        paintings came out of that exhaustion. Not as
+                        escape, but as arrival. For the first time, I was
+                        somewhere.
                       </p>
                     </div>
                   </Reveal>
@@ -397,7 +379,11 @@ export default function ArtistPage() {
                 />
                 <span
                   className="meta-sm"
-                  style={{ color: 'var(--dim)', letterSpacing: '0.28em' }}
+                  style={{
+                    color: 'var(--dim)',
+                    letterSpacing: '0.28em',
+                    fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                  }}
                 >
                   THE FACTS
                 </span>
@@ -410,7 +396,10 @@ export default function ArtistPage() {
               {/* Third-person facts — quieter register, smaller type */}
               <div
                 className="space-y-6 text-base md:text-lg leading-relaxed"
-                style={{ color: 'var(--dim)' }}
+                style={{
+                  color: 'var(--dim)',
+                  fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+                }}
               >
                 <Reveal>
                   <p style={{ color: 'var(--bone)' }}>

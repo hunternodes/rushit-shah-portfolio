@@ -49,11 +49,17 @@ export default function PageHero({
   backdrop,
 }: PageHeroProps) {
   return (
-    <section className="relative pt-28 md:pt-40 pb-16 overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col justify-center pt-28 md:pt-40 pb-16 overflow-hidden">
       {backdrop && (
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
+          style={{
+            maskImage:
+              'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage:
+              'linear-gradient(to bottom, black 70%, transparent 100%)',
+          }}
         >
           {backdrop}
         </div>
@@ -77,7 +83,7 @@ export default function PageHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.25 }}
             className="font-marker mt-8 max-w-[60ch] text-lg md:text-xl"
-            style={{ color: 'var(--dim)' }}
+            style={{ color: 'var(--bone)' }}
           >
             {subtext}
           </motion.p>

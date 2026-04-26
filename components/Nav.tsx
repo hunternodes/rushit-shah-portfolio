@@ -89,8 +89,8 @@ export default function Nav() {
                     style={{
                       color: fg,
                       opacity: active ? 1 : 0.65,
-                      fontFamily: '"NewYark", "Grift", "Space Grotesk", system-ui, sans-serif',
-                      fontWeight: 400,
+                      fontFamily: '"Aburo", "NewYark", "Space Grotesk", system-ui, sans-serif',
+                      fontWeight: 700,
                       fontSize: 'clamp(1rem, 1.2vw, 1.15rem)',
                       letterSpacing: '0.005em',
                     }}
@@ -109,20 +109,6 @@ export default function Nav() {
               })}
             </div>
 
-            <div className="hidden lg:flex items-center gap-4">
-              <span
-                className="meta-sm"
-                title="Studio time, Vadodara (IST)"
-                style={{ color: isLight ? '#6F6F7A' : 'var(--dim)' }}
-              >
-                <span aria-hidden="true">STUDIO · </span>
-                <span className="sr-only">Studio time, Vadodara, </span>
-                {currentTimeIST()}
-              </span>
-              <Link href="/contact" className="btn-lime !py-2 !px-4 text-[0.7rem]">
-                Enquire
-              </Link>
-            </div>
 
             <button
               onClick={() => setOpen(!open)}
@@ -183,9 +169,9 @@ export default function Nav() {
                       <span
                         style={{
                           fontFamily:
-                            '"NewYark", "Grift", "Space Grotesk", system-ui, sans-serif',
+                            '"Aburo", "NewYark", "Space Grotesk", system-ui, sans-serif',
                           fontSize: 'clamp(1.75rem, 6vw, 2.5rem)',
-                          fontWeight: 400,
+                          fontWeight: 700,
                           lineHeight: 1,
                         }}
                       >
@@ -221,8 +207,8 @@ function AnimatedWordmark({ color }: { color: string }) {
       className="inline-flex leading-none"
       style={{
         color,
-        fontFamily: '"NewYark", "Grift", "Space Grotesk", system-ui, sans-serif',
-        fontSize: 'clamp(1.4rem, 2vw, 1.9rem)',
+        fontFamily: '"Burnts Marker", "NewYark", "Grift", "Space Grotesk", system-ui, sans-serif',
+        fontSize: 'clamp(2.2rem, 3.4vw, 3.2rem)',
         fontWeight: 400,
         letterSpacing: '0.005em',
       }}

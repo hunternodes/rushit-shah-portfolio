@@ -116,7 +116,7 @@ async function seedSiteCopy(payload: Payload) {
       ]) as unknown as Record<string, unknown>,
       home_finalCallSubtext:
         'Collector enquiries, gallery submissions, studio visits — every message answered personally within 48 hours. Represented through Maio Studio, Singapore.',
-      home_footerText: 'Studio · Vadodara / Singapore / Berlin · 2026',
+      home_footerText: 'Studio · Vadodara / Singapore / Düsseldorf · 2026',
 
       // ─── Artist ───────────────────────────────────
       artist_heroHeadline: lexMixed([

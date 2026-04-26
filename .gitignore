@@ -55,3 +55,11 @@ payload.db-journal
 /public/hero-bg.mov
 /public/hero-bg.webm
 tsconfig.tsbuildinfo
+
+# Local design-system playground HTML — not for production
+public/design-system*.html
+
+# Claude Code local config + worktrees — not for production
+.claude/launch.json
+.claude/settings.local.json
+.claude/worktrees/

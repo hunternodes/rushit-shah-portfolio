@@ -290,7 +290,7 @@ export function faqJsonLd(): Record<string, unknown> {
         name: 'Where is Rushit Shah based?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'His studio is in Vadodara, Gujarat, India. He also spends time working in Singapore and Berlin, Germany.',
+          text: 'His studio is in Vadodara, Gujarat, India. He also spends time working in Singapore and Düsseldorf, Germany.',
         },
       },
       {

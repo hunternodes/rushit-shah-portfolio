@@ -1,5 +1,6 @@
 import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { sqliteAdapter } from '@payloadcms/db-sqlite';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { s3Storage } from '@payloadcms/storage-s3';
 import path from 'path';
@@ -64,14 +65,20 @@ export default buildConfig({
   globals: [SiteCopy],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-    },
-    // Neon (and most managed Postgres) require SSL; `ssl: 'require'` via the
-    // connection string's `?sslmode=require` param handles this. Keep this
-    // setting simple so local dev against a plain Postgres still works.
-  }),
+  /* Dual-mode DB:
+       - DATABASE_URI starts with "postgres://" → Neon/managed Postgres (prod).
+       - Otherwise → local SQLite file (./payload.db) for fast dev without
+         needing a DB server running on localhost.
+     Flip via env var — no code change between local and deploy. */
+  db: (process.env.DATABASE_URI || '').startsWith('postgres')
+    ? postgresAdapter({
+        pool: { connectionString: process.env.DATABASE_URI! },
+      })
+    : sqliteAdapter({
+        client: {
+          url: process.env.DATABASE_URI || 'file:./payload.db',
+        },
+      }),
   sharp,
   plugins: hasS3Creds
     ? [

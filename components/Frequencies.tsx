@@ -17,14 +17,32 @@ export default function Frequencies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="display-lg max-w-3xl"
-          style={{ color: 'var(--bone)' }}
+          className="display-lg max-w-5xl"
+          style={{
+            color: 'var(--bone)',
+            fontFamily: '"Aburo", "Space Grotesk", system-ui, sans-serif',
+            fontWeight: 700,
+          }}
         >
-          Process from{' '}
-          <span className="in-serif" style={{ color: 'var(--ice)' }}>
-            the studio
-          </span>{' '}
-          — crackle tests, splatter reels, work in progress.
+          Mostly finished work,
+          <br />
+          <span
+            style={{
+              color: 'var(--lime)',
+              fontFamily: '"Guthen Jaqueline", "Fraunces", serif',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              letterSpacing: '0.02em',
+              fontSize: '1.7em',
+              lineHeight: 0.9,
+              display: 'inline-block',
+              verticalAlign: 'baseline',
+              marginRight: '0.25em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            sometimes the mess in between.
+          </span>
         </motion.h2>
 
         <motion.div
@@ -43,7 +61,7 @@ export default function Frequencies() {
           <span
             aria-hidden="true"
             className="absolute -top-3 left-6 px-2 py-0.5 meta-sm"
-            style={{ background: 'var(--night)', color: 'var(--ice)' }}
+            style={{ background: 'var(--night)', color: 'var(--lime)' }}
           >
             INSTAGRAM
           </span>
@@ -58,10 +76,14 @@ export default function Frequencies() {
               </div>
               <p
                 className="mt-4 text-lg md:text-xl max-w-xl"
-                style={{ color: 'var(--dim)' }}
+                style={{
+                  color: 'var(--bone)',
+                  fontFamily: '"Aburo", "Grift", "Space Grotesk", system-ui, sans-serif',
+                  fontWeight: 100,
+                  letterSpacing: '0.01em',
+                }}
               >
-                Studio process, work in progress, splatter reels — the live
-                record of the practice between paintings.
+                Travels, paintings, and the stories that connect them.
               </p>
             </div>
             <div className="col-span-12 md:col-span-4 flex md:justify-end items-center">

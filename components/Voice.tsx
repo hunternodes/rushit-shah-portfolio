@@ -64,7 +64,7 @@ export default function Voice() {
           <div className="text-lg" style={{ color: 'var(--bone)' }}>
             Rushit Shah ·{' '}
             <span className="in-serif" style={{ color: 'var(--lime)' }}>
-              Vadodara / Singapore / Berlin
+              Vadodara / Singapore / Düsseldorf
             </span>
           </div>
         </motion.div>

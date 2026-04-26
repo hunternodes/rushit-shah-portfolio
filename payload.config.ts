@@ -73,6 +73,10 @@ export default buildConfig({
   db: (process.env.DATABASE_URI || '').startsWith('postgres')
     ? postgresAdapter({
         pool: { connectionString: process.env.DATABASE_URI! },
+        // Single-developer site with no manual SQL — let Drizzle auto-sync the
+        // schema on every connect instead of maintaining a migrations folder.
+        // If we ever switch to a release-tracked migration flow, drop this.
+        push: true,
       })
     : sqliteAdapter({
         client: {

@@ -355,7 +355,7 @@ async function seedPaintings(payload: Payload) {
         longDescription: lex(p.shortDescription) as unknown as Record<string, unknown>,
         technique: p.technique,
         series: 'fragment',
-        status: p.status,
+        availability: p.status,
         featured: p.featured,
         ...(p.featuredOrder ? { featuredOrder: p.featuredOrder } : {}),
         published: p.published,

@@ -39,7 +39,7 @@ function toGalleryPainting(p: {
   year?: number | string | null;
   medium?: string | null;
   dimensions?: { displayString?: string | null } | null;
-  status?: string | null;
+  availability?: string | null;
   slug?: string | null;
   mainImage?: unknown;
 }): GalleryPainting {
@@ -52,7 +52,7 @@ function toGalleryPainting(p: {
     year: p.year ?? '',
     medium: p.medium ?? '',
     dimensions: p.dimensions?.displayString ?? '—',
-    status: p.status ?? 'available',
+    status: p.availability ?? 'available',
     imageUrl: img.url,
     imageAlt: img.alt,
   };

@@ -10,7 +10,7 @@ export const Paintings: CollectionConfig = {
   slug: 'paintings',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'year', 'status', 'featured', 'published'],
+    defaultColumns: ['title', 'year', 'availability', 'featured', 'published'],
     listSearchableFields: ['title', 'medium', 'shortDescription'],
     description:
       'Every artwork lives here. Published + featured paintings appear in homepage Five Rooms; all paintings are surfaced via /collection (ArtworkArchive embed).',
@@ -169,7 +169,13 @@ export const Paintings: CollectionConfig = {
       ],
     },
     {
-      name: 'status',
+      // Renamed from `status` because Payload's drafts feature reserves
+      // `_status` and the auto-generated enum collided with this field's
+      // enum (Drizzle was creating both columns against the same enum name
+      // "enum_paintings_status", and the enum's value set could only hold
+      // one of {draft,published} or {available,sold,…}). `availability`
+      // is more descriptive anyway.
+      name: 'availability',
       type: 'select',
       required: true,
       defaultValue: 'available',

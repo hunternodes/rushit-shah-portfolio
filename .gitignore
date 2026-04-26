@@ -50,8 +50,9 @@ payload.db-journal
 # Local logs
 /contact-submissions.log.json
 
-# Hero video (large binaries — deploy via CDN or upload manually)
-/public/hero-bg.mp4
+# Hero video alt formats — keep .mp4 in repo so Vercel serves it as a
+# static asset. Ignore the optional .mov / .webm variants that we'd only
+# add later for codec coverage / smaller payload.
 /public/hero-bg.mov
 /public/hero-bg.webm
 tsconfig.tsbuildinfo

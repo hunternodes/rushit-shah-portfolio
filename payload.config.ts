@@ -95,6 +95,12 @@ export default buildConfig({
               prefix: 'media',
             },
           },
+          // Direct browser → R2 uploads via pre-signed URLs. Bypasses
+          // Vercel's 4.5MB serverless request body limit, which silently
+          // killed every paint-photo upload (typical canvas scans are
+          // 8–25MB). Requires the R2 bucket to allow CORS PUT from the
+          // production domain — see SETUP.md for the bucket CORS JSON.
+          clientUploads: true,
           bucket: process.env.S3_BUCKET!,
           config: {
             credentials: {

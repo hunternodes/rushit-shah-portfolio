@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getPayload } from 'payload';
 import { pushDevSchema } from '@payloadcms/drizzle';
 import config from '@/payload.config';
+// Force Turbopack to trace drizzle-kit/api into the lambda bundle.
+// pushDevSchema lazy-requires it at runtime; without an explicit static
+// import the file-tracing skips it and the lambda 404s on the require.
+import 'drizzle-kit/api';
 
 /**
  * One-off migration trigger.

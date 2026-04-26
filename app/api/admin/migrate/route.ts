@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPayload } from 'payload';
+import { pushDevSchema } from '@payloadcms/drizzle';
 import config from '@/payload.config';
 
 /**
@@ -30,24 +31,12 @@ export async function GET(req: NextRequest) {
 
   try {
     const payload = await getPayload({ config });
-    // Drizzle's schema-push lives behind payload.db.push. It's the same
-    // path the dev server uses on first connect.
-    const db = payload.db as unknown as {
-      push?: () => Promise<void>;
-      migrate?: () => Promise<void>;
-    };
-    if (typeof db.push === 'function') {
-      await db.push();
-      return NextResponse.json({ ok: true, ran: 'push' });
-    }
-    if (typeof db.migrate === 'function') {
-      await db.migrate();
-      return NextResponse.json({ ok: true, ran: 'migrate' });
-    }
-    return NextResponse.json(
-      { error: 'no push or migrate method on adapter' },
-      { status: 500 },
-    );
+    // pushDevSchema is the same routine Payload runs on dev startup when
+    // adapter.push !== false. It compares the in-memory schema to the live
+    // database and applies the diff. Production mode normally short-circuits
+    // it; calling it directly bypasses that check.
+    await pushDevSchema(payload.db as unknown as Parameters<typeof pushDevSchema>[0]);
+    return NextResponse.json({ ok: true, ran: 'pushDevSchema' });
   } catch (err) {
     return NextResponse.json(
       { error: String(err), stack: err instanceof Error ? err.stack : undefined },

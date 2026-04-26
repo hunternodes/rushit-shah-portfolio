@@ -57,8 +57,10 @@ export default function VideoBackdrop() {
         preload="auto"
         aria-hidden
       >
-        {/* Browser picks the first source it can decode */}
-        <source src="/hero-bg.mp4" type="video/mp4" />
+        {/* Browser picks the first source it can decode. The file is an
+            H.264 .m4v converted from the studio's original HEVC capture —
+            keeps universal codec support across Safari, Chrome, Firefox. */}
+        <source src="/hero-bg.m4v" type="video/mp4" />
         {/* Optional WebM — drop /public/hero-bg.webm here later for even lighter delivery */}
       </video>
       {/* Soft vignette — only enough to keep H1 readable.

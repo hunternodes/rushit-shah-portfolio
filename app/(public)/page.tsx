@@ -10,12 +10,21 @@ import { getPayloadClient } from '@/lib/payload';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-/** Best-effort image URL from a mainImage upload relation; fallback to picsum. */
+/**
+ * Image URL from the mainImage upload relation, or null if the painting has
+ * no attached media.
+ *
+ * Previously this fell back to picsum.photos seeded by slug — that worked as
+ * scaffolding while there were no real photos, but it makes the live site
+ * read as "stock-photo placeholder" instead of "painting not yet
+ * photographed". Returning null lets <Gallery> render a deliberate empty
+ * state (system-number + title on a dark card) instead of a misleading
+ * stock image.
+ */
 function imageFor(painting: {
-  slug?: string | null;
   title?: string | null;
   mainImage?: unknown;
-}): { url: string; alt: string } {
+}): { url: string | null; alt: string } {
   const title = painting.title ?? 'Untitled';
   const media = painting.mainImage;
   if (media && typeof media === 'object' && 'url' in media && media.url) {
@@ -24,11 +33,7 @@ function imageFor(painting: {
       alt: 'alt' in media && media.alt ? String(media.alt) : title,
     };
   }
-  const seed = painting.slug || title.toLowerCase().replace(/\s+/g, '-');
-  return {
-    url: `https://picsum.photos/seed/shah-${seed}/1400/1750`,
-    alt: title,
-  };
+  return { url: null, alt: title };
 }
 
 function toGalleryPainting(p: {
@@ -70,7 +75,10 @@ export default async function Home() {
         { series: { equals: 'fragment' } },
       ],
     },
-    sort: 'featuredOrder',
+    // Newest first on featuredOrder ties — when a real painting and a
+    // seeded placeholder both claim slot 2, the recently-edited real one
+    // wins. Lets users overwrite seed slots without deleting them first.
+    sort: 'featuredOrder,-updatedAt',
     limit: 5,
     depth: 1,
     draft: true,
@@ -85,7 +93,10 @@ export default async function Home() {
         { series: { equals: 'vyakulata' } },
       ],
     },
-    sort: 'featuredOrder',
+    // Newest first on featuredOrder ties — when a real painting and a
+    // seeded placeholder both claim slot 2, the recently-edited real one
+    // wins. Lets users overwrite seed slots without deleting them first.
+    sort: 'featuredOrder,-updatedAt',
     limit: 5,
     depth: 1,
     draft: true,

@@ -13,7 +13,8 @@ export type GalleryPainting = {
   medium: string;
   dimensions: string;
   status: string;
-  imageUrl: string;
+  /** Null when the painting has no mainImage attached — Tile shows a typographic placeholder instead of a broken/picsum image. */
+  imageUrl: string | null;
   imageAlt: string;
 };
 
@@ -238,16 +239,52 @@ function Tile({
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       aria-label={`Open ${art.title} full size`}
     >
-      <img
-        src={art.imageUrl}
-        alt={art.imageAlt}
-        className="block w-full h-full transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:brightness-110 group-hover:saturate-110"
-        style={{
-          objectFit: 'cover',
-          opacity: inProgress ? 0.55 : 1,
-          filter: 'brightness(0.9) saturate(0.95)',
-        }}
-      />
+      {art.imageUrl ? (
+        <img
+          src={art.imageUrl}
+          alt={art.imageAlt}
+          className="block w-full h-full transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:brightness-110 group-hover:saturate-110"
+          style={{
+            objectFit: 'cover',
+            opacity: inProgress ? 0.55 : 1,
+            filter: 'brightness(0.9) saturate(0.95)',
+          }}
+        />
+      ) : (
+        // No mainImage attached — typographic placeholder instead of a
+        // misleading stock photo. Reads as "image coming, painting exists",
+        // not "we used picsum because we got lazy".
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+          style={{
+            background: `linear-gradient(135deg, ${accent}18 0%, transparent 60%), var(--night)`,
+          }}
+        >
+          <div
+            className="meta-sm mb-3"
+            style={{ color: accent, letterSpacing: '0.22em' }}
+          >
+            {art.systemNumber || `NO. ${String(index + 1).padStart(2, '0')}`}
+          </div>
+          <div
+            className="in-serif"
+            style={{
+              color: 'var(--bone)',
+              opacity: 0.85,
+              fontSize: 'clamp(1.05rem, 1.6vw, 1.5rem)',
+              lineHeight: 1.1,
+            }}
+          >
+            {art.title}
+          </div>
+          <div
+            className="meta-sm mt-4"
+            style={{ color: 'var(--dim)', letterSpacing: '0.18em' }}
+          >
+            PHOTOGRAPHY · IN STUDIO
+          </div>
+        </div>
+      )}
 
       {/* Hover overlay — gradient + "expand" hint */}
       <div
@@ -396,17 +433,49 @@ function Lightbox({
         className="relative z-[15] max-w-[95vw] max-h-[96vh] flex flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
-          src={art.imageUrl}
-          alt={art.imageAlt}
-          style={{
-            display: 'block',
-            maxWidth: '95vw',
-            maxHeight: '88vh',
-            objectFit: 'contain',
-            boxShadow: '0 40px 120px -20px rgba(0,0,0,0.9)',
-          }}
-        />
+        {art.imageUrl ? (
+          <img
+            src={art.imageUrl}
+            alt={art.imageAlt}
+            style={{
+              display: 'block',
+              maxWidth: '95vw',
+              maxHeight: '88vh',
+              objectFit: 'contain',
+              boxShadow: '0 40px 120px -20px rgba(0,0,0,0.9)',
+            }}
+          />
+        ) : (
+          // Lightbox opened on a painting without a mainImage attached.
+          // Show a deliberate "image coming" panel rather than a broken
+          // <img> with no src or a misleading stock placeholder.
+          <div
+            className="flex flex-col items-center justify-center px-12 py-20"
+            style={{
+              minWidth: 'min(90vw, 720px)',
+              minHeight: 'min(70vh, 540px)',
+              background: `linear-gradient(135deg, ${accent}22 0%, transparent 60%), var(--night)`,
+              boxShadow: '0 40px 120px -20px rgba(0,0,0,0.9)',
+              color: 'var(--bone)',
+            }}
+          >
+            <div className="meta-sm mb-4" style={{ color: accent, letterSpacing: '0.22em' }}>
+              {art.systemNumber}
+            </div>
+            <h3
+              className="in-serif text-center"
+              style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', lineHeight: 1.05 }}
+            >
+              {art.title}
+            </h3>
+            <p
+              className="meta-sm mt-6"
+              style={{ color: 'var(--dim)', letterSpacing: '0.18em' }}
+            >
+              PHOTOGRAPHY · IN STUDIO
+            </p>
+          </div>
+        )}
         <div
           className="mt-4 md:mt-6 flex flex-wrap items-baseline justify-between gap-4 w-full max-w-[92vw]"
           style={{ color: 'var(--bone)' }}

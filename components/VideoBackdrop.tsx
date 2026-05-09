@@ -2,44 +2,48 @@
 
 import { useEffect, useRef, useState } from 'react';
 import HeroBackdrop from './HeroBackdrop';
+import { useShowMotion } from '@/lib/useShowMotion';
 
 /**
  * Plays a user-supplied video behind the hero. Falls back to the canvas
- * paint-cloud animation if the browser can't decode it (typically HEVC .mov
- * on Firefox / Chrome-on-Linux).
+ * paint-cloud animation if (a) the browser can't decode the file, or
+ * (b) the visitor is on a slow / Save-Data connection.
  *
  * Drop an MP4 at /public/hero-bg.mp4 for maximum compatibility — the browser
  * will prefer it over the .mov automatically.
+ *
+ * preload="none" + an explicit play() call: the browser doesn't fetch the
+ * 21MB hero video bytes until React mounts the element AND we ask it to
+ * start. This shaves seconds off the initial page paint on cold visits.
  */
 export default function VideoBackdrop() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
+  const showMotion = useShowMotion();
 
   useEffect(() => {
+    if (!showMotion) return; // Slow connection — never attempt to play.
     const v = videoRef.current;
     if (!v) return;
 
-    // Some browsers won't autoplay until we explicitly try
-    const tryPlay = () => {
-      v.play().catch(() => {
-        // Autoplay refused (rare when muted+playsinline, but possible).
-        // Not treated as a hard failure — fallback only kicks in on decode error.
-      });
-    };
-    tryPlay();
+    // preload="none" means the bytes aren't fetched yet — calling play() is
+    // what kicks off the network request. Wrapped in catch because some
+    // browsers reject autoplay even with muted+playsinline (rare, but real).
+    v.play().catch(() => {});
 
     const onError = () => setFailed(true);
     const onCanPlay = () => setFailed(false);
-
     v.addEventListener('error', onError);
     v.addEventListener('canplay', onCanPlay);
     return () => {
       v.removeEventListener('error', onError);
       v.removeEventListener('canplay', onCanPlay);
     };
-  }, []);
+  }, [showMotion]);
 
-  if (failed) return <HeroBackdrop />;
+  // Slow connection or decode error → fall back to the lightweight canvas
+  // animation. No 21MB download for users who can't afford it.
+  if (!showMotion || failed) return <HeroBackdrop />;
 
   return (
     <>
@@ -54,7 +58,7 @@ export default function VideoBackdrop() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="none"
         aria-hidden
       >
         {/* Browser picks the first source it can decode. The file is an

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ContactFormData } from '@/lib/types';
 import Footer from '@/components/Footer';
 import HeroBackdrop from '@/components/HeroBackdrop';
+import { useShowMotion } from '@/lib/useShowMotion';
 
 const contactTheme = {
   '--night': '#0B1A2E',
@@ -23,6 +24,8 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Skip the 7MB studio video on slow / Save-Data connections.
+  const showMotion = useShowMotion();
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -110,22 +113,24 @@ export default function ContactPage() {
         className="relative z-10 min-h-[100svh] flex flex-col justify-center pt-28 md:pt-40 pb-16 overflow-hidden"
         style={{ background: 'transparent' }}
       >
-        <video
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            objectFit: 'cover',
-            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-          }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-        >
-          <source src="/contact-bg.m4v" type="video/mp4" />
-        </video>
+        {showMotion && (
+          <video
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+              objectFit: 'cover',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-hidden
+          >
+            <source src="/contact-bg.m4v" type="video/mp4" />
+          </video>
+        )}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"

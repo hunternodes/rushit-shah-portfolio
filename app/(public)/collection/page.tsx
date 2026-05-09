@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import ArtworkArchiveEmbed from '@/components/ArtworkArchiveEmbed';
 import Footer from '@/components/Footer';
 import AmbientBackdrop from '@/components/AmbientBackdrop';
+import { useShowMotion } from '@/lib/useShowMotion';
 
 const collectionFooterTheme = {
   '--night': '#FFFFFF',
@@ -17,6 +18,8 @@ const collectionFooterTheme = {
 } as React.CSSProperties;
 
 export default function CollectionPage() {
+  // Skip the 21MB hero video on slow / Save-Data connections.
+  const showMotion = useShowMotion();
   return (
     <>
       {/* White hero — matched to the homepage hero's vertical rhythm
@@ -24,25 +27,28 @@ export default function CollectionPage() {
           with the same silhouette as /. The embed section below stays at
           the wider 1600px container to give thumbnails more room. */}
       <section className="section-light relative min-h-[100svh] flex flex-col justify-center pt-28 md:pt-40 pb-16 overflow-hidden">
-        {/* Crackle video — same hero-bg.mp4 the homepage uses, dialled down
+        {/* Crackle video — same hero-bg.m4v the homepage uses, dialled down
             and multiply-blended so it tints the white as a warm marble
-            instead of darkening the page. */}
-        <video
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            objectFit: 'cover',
-            opacity: 0.55,
-            mixBlendMode: 'multiply',
-          }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-        >
-          <source src="/hero-bg.mp4" type="video/mp4" />
-        </video>
+            instead of darkening the page. Skipped on slow connections —
+            the warm AmbientBackdrop blobs alone read as marble too. */}
+        {showMotion && (
+          <video
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+              objectFit: 'cover',
+              opacity: 0.55,
+              mixBlendMode: 'multiply',
+            }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-hidden
+          >
+            <source src="/hero-bg.m4v" type="video/mp4" />
+          </video>
+        )}
         {/* Warm ambient blobs over the video so it doesn't read as a flat
             texture — bumped to a higher intensity than before so it actually
             registers, with a richer terracotta + cream palette. */}

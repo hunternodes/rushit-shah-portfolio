@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 import HeroBackdrop from '@/components/HeroBackdrop';
+import { useShowMotion } from '@/lib/useShowMotion';
 
 /**
  * /artist runs in its own theme — deep aubergine with warm amber-gold
@@ -23,6 +24,8 @@ const artistTheme = {
 } as React.CSSProperties;
 
 export default function ArtistPage() {
+  // Skip the 24MB studio video on slow / Save-Data connections.
+  const showMotion = useShowMotion();
   return (
     <div style={artistTheme} className="relative">
       {/* Painterly canvas animation — runs across the whole page, fixed to
@@ -43,22 +46,24 @@ export default function ArtistPage() {
         className="relative z-10 min-h-[100svh] flex items-center overflow-hidden pt-28 md:pt-32 pb-20"
         style={{ background: 'transparent' }}
       >
-        <video
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            objectFit: 'cover',
-            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-          }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-        >
-          <source src="/artist-bg.m4v" type="video/mp4" />
-        </video>
+        {showMotion && (
+          <video
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+              objectFit: 'cover',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-hidden
+          >
+            <source src="/artist-bg.m4v" type="video/mp4" />
+          </video>
+        )}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"

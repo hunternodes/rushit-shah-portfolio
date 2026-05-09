@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Google Fonts @import removed — was render-blocking external CSS that
+   loaded ~1MB of Space Grotesk + Fraunces + JetBrains Mono. Components
+   that reference these names (e.g. font-family: '"Aburo", "Space Grotesk"
+   …) now fall through to system-ui / serif, which render instantly and
+   read clean. We can re-add via next/font (parallel-loaded, self-hosted)
+   once the typography pass picks the final two faces. */
 
 /* ——— Grift (local self-hosted) ——— */
 @font-face {

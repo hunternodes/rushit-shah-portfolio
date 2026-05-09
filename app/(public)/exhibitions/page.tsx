@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 import HeroBackdrop from '@/components/HeroBackdrop';
+import { useShowMotion } from '@/lib/useShowMotion';
 
 /**
  * /exhibitions — deep forest-green gallery-wall palette with a warm coral
@@ -86,6 +87,9 @@ export default function ExhibitionsPage() {
   // Numeric-string object keys auto-sort ascending in Object.keys, regardless
   // of insertion order, so we re-sort descending to keep newest year first.
   const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+  // Skip the 18MB studio video on slow / Save-Data connections — the canvas
+  // backdrop already runs underneath, so the page still has motion.
+  const showMotion = useShowMotion();
 
   return (
     <div style={exhibitionsTheme} className="relative">
@@ -107,22 +111,24 @@ export default function ExhibitionsPage() {
         className="relative z-10 min-h-[100svh] flex items-center overflow-hidden pt-32 md:pt-40 pb-12"
         style={{ background: 'transparent' }}
       >
-        <video
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            objectFit: 'cover',
-            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-          }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-        >
-          <source src="/exhibitions-bg.m4v" type="video/mp4" />
-        </video>
+        {showMotion && (
+          <video
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+              objectFit: 'cover',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-hidden
+          >
+            <source src="/exhibitions-bg.m4v" type="video/mp4" />
+          </video>
+        )}
         {/* Full-bleed glass — single backdrop-blur across the whole hero,
             faded at the bottom so the section dissolves into the page below
             instead of meeting it at a hard edge. */}

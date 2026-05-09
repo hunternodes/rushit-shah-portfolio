@@ -42,6 +42,8 @@ Thumbs.db
 # Payload CMS
 payload.db
 payload.db-journal
+payload-dev.db
+payload-dev.db-journal
 /payload-types.ts
 
 # Local upload stub (dev image storage before Cloudinary)

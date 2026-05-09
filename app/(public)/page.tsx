@@ -78,7 +78,13 @@ export default async function Home() {
     // Newest first on featuredOrder ties — when a real painting and a
     // seeded placeholder both claim slot 2, the recently-edited real one
     // wins. Lets users overwrite seed slots without deleting them first.
-    sort: 'featuredOrder,-updatedAt',
+    //
+    // Array form (NOT comma-separated string): Payload's local-api parses
+    // 'featuredOrder,-updatedAt' as a single bogus field name and silently
+    // falls back to default order (newest first by id) — which renders the
+    // gallery in REVERSE featured order. The REST handler parses comma
+    // strings correctly, but local-api needs the array.
+    sort: ['featuredOrder', '-updatedAt'],
     limit: 5,
     depth: 1,
     draft: true,
@@ -96,7 +102,13 @@ export default async function Home() {
     // Newest first on featuredOrder ties — when a real painting and a
     // seeded placeholder both claim slot 2, the recently-edited real one
     // wins. Lets users overwrite seed slots without deleting them first.
-    sort: 'featuredOrder,-updatedAt',
+    //
+    // Array form (NOT comma-separated string): Payload's local-api parses
+    // 'featuredOrder,-updatedAt' as a single bogus field name and silently
+    // falls back to default order (newest first by id) — which renders the
+    // gallery in REVERSE featured order. The REST handler parses comma
+    // strings correctly, but local-api needs the array.
+    sort: ['featuredOrder', '-updatedAt'],
     limit: 5,
     depth: 1,
     draft: true,

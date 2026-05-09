@@ -10,7 +10,6 @@ import sharp from 'sharp';
 import { Paintings } from './collections/Paintings';
 import { Media } from './collections/Media';
 import { Enquiries } from './collections/Enquiries';
-import { Exhibitions } from './collections/Exhibitions';
 import { SiteCopy } from './globals/SiteCopy';
 import { seed } from './lib/seed';
 
@@ -62,7 +61,6 @@ export default buildConfig({
     Paintings,
     Media,
     Enquiries,
-    Exhibitions,
   ],
   globals: [SiteCopy],
   editor: lexicalEditor(),

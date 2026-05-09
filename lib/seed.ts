@@ -54,16 +54,6 @@ export async function seed(payload: Payload): Promise<void> {
     await seedVyakulataPaintings(payload);
     payload.logger.info('Seed: Vyākulatā drafts created.');
   }
-
-  // 6. Seed exhibitions if collection is empty. The 4 real shows used to
-  // be a hardcoded array in app/(public)/exhibitions/page.tsx — they're
-  // now seed data so Rushit can edit/add from admin without a deploy.
-  const exhibitionCount = await payload.count({ collection: 'exhibitions' });
-  if (exhibitionCount.totalDocs === 0) {
-    payload.logger.info('Seed: populating exhibitions collection...');
-    await seedExhibitions(payload);
-    payload.logger.info('Seed: exhibitions done.');
-  }
 }
 
 async function backfillSeries(payload: Payload) {
@@ -424,70 +414,6 @@ const vyakulataSeeds: VyakulataSeed[] = [
       'The last panel. Everything the series was circling around — agitation as a form of prayer.',
   },
 ];
-
-// ──────────────────────────────────────────────────────────────
-// Exhibitions seed — the 4 real shows that were previously
-// hardcoded in app/(public)/exhibitions/page.tsx
-// ──────────────────────────────────────────────────────────────
-
-async function seedExhibitions(payload: Payload) {
-  const seeds: Array<{
-    title: string;
-    date: string; // ISO
-    venue: string;
-    city: string;
-    country: string;
-    type: 'solo' | 'group';
-  }> = [
-    {
-      title: 'A Measure of Many',
-      date: '2026-04-13T00:00:00.000Z',
-      venue: 'CKP',
-      city: 'Bengaluru',
-      country: 'India',
-      type: 'group',
-    },
-    {
-      title: 'A Measure of Many',
-      date: '2026-03-27T00:00:00.000Z',
-      venue: 'IIWC',
-      city: 'Bengaluru',
-      country: 'India',
-      type: 'group',
-    },
-    {
-      title: 'KOSEI Art Exhibition',
-      date: '2025-11-10T00:00:00.000Z',
-      venue: 'Shades Gallery',
-      city: 'Bengaluru',
-      country: 'India',
-      type: 'group',
-    },
-    {
-      title: 'Fragments of Passage',
-      date: '2025-05-07T00:00:00.000Z',
-      venue: 'Düsseldorf',
-      city: 'Düsseldorf',
-      country: 'Germany',
-      type: 'solo',
-    },
-  ];
-
-  for (const s of seeds) {
-    await payload.create({
-      collection: 'exhibitions',
-      data: {
-        title: s.title,
-        date: s.date,
-        venue: s.venue,
-        city: s.city,
-        country: s.country,
-        type: s.type,
-        published: true,
-      } as Record<string, unknown>,
-    });
-  }
-}
 
 async function seedVyakulataPaintings(payload: Payload) {
   for (let i = 0; i < vyakulataSeeds.length; i++) {

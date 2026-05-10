@@ -38,12 +38,13 @@ export default function Hail() {
                 Let's{' '}
                 <span
                   style={{
-                    fontFamily: '"Guthen Jaqueline", "Fraunces", serif',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    letterSpacing: '0.02em',
-                    fontSize: '1.5em',
-                    lineHeight: 0.9,
+                    fontFamily: 'var(--font-fraunces), "Fraunces", serif',
+                    fontStyle: 'italic',
+                    fontWeight: 500,
+                    fontVariationSettings: '"opsz" 144, "SOFT" 50, "WONK" 1',
+                    letterSpacing: '-0.02em',
+                    fontSize: '1.25em',
+                    lineHeight: 0.95,
                     display: 'inline-block',
                     verticalAlign: 'baseline',
                     marginInline: '0.18em',

@@ -11,56 +11,56 @@
   src: url('/fonts/grift/Grift-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-BoldItalic.woff2') format('woff2');
   font-weight: 700;
   font-style: italic;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-ExtraBold.woff2') format('woff2');
   font-weight: 800;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-Black.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Grift';
   src: url('/fonts/grift/Grift-BlackItalic.woff2') format('woff2');
   font-weight: 900;
   font-style: italic;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— New Yark (local self-hosted) ——— */
@@ -70,7 +70,7 @@
        url('/fonts/new-yark/NewYark.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Reynard (used on /artist section two — three notes + facts) ——— */
@@ -80,7 +80,7 @@
        url('/fonts/reynard/Reynard.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Overdose (used for body / small text) ——— */
@@ -90,7 +90,7 @@
        url('/fonts/overdose/Overdose.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Michigan Signature (handwritten — used on three-notes /artist) ——— */
@@ -101,7 +101,7 @@
        url('/fonts/michigan-signature/MichiganSignature.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Guthen Jaqueline (handwritten — used on hero highlights) ——— */
@@ -112,7 +112,7 @@
        url('/fonts/guthen-jaqueline/GuthenJaqueline-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Aburo (nav links + hero copy) ——— */
@@ -123,7 +123,7 @@
        url('/fonts/aburo/Aburo-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Aburo';
@@ -132,7 +132,7 @@
        url('/fonts/aburo/Aburo-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Aburo';
@@ -141,7 +141,7 @@
        url('/fonts/aburo/Aburo-Semibold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Aburo';
@@ -150,7 +150,7 @@
        url('/fonts/aburo/Aburo-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Deligent Graffiti (used on series accent words: "the Fragment", etc) ——— */
@@ -160,7 +160,7 @@
        url('/fonts/deligent-graffiti/DeligentGraffiti.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* ——— Burnts Marker (used on hero H1 white-text words) ——— */
@@ -171,7 +171,7 @@
        url('/fonts/burnts/Burnts_reg.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 /* ——— Burnts Maker (the chunkier tagging variant, separate face) ——— */
 @font-face {
@@ -180,7 +180,7 @@
        url('/fonts/burnts/Burnts_Maker.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 /* Utility: body/subcopy font. Swap the first family in this stack to try

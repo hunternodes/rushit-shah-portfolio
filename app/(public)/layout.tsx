@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Fraunces } from 'next/font/google';
 import '../globals.css';
 import Nav from '@/components/Nav';
 import CursorTrail from '@/components/CursorTrail';
@@ -6,6 +7,33 @@ import ScrollProgress from '@/components/ScrollProgress';
 import PageTransition from '@/components/PageTransition';
 import JsonLd from '@/components/JsonLd';
 import { personJsonLd, websiteJsonLd, organizationJsonLd } from '@/lib/jsonld';
+
+/**
+ * Editorial italic accent — replaces Burnts Marker (graffiti) and Guthen
+ * Jaqueline (handwritten script) for the highlight phrases like "hold their"
+ * and "the Fragment". Fraunces is a variable display serif designed for
+ * editorial use; the `opsz` and `wonk` axes give the italic cut character
+ * at large display sizes that the previous fonts couldn't.
+ *
+ * `display: 'block'` (instead of swap) hides the highlight text for up to
+ * 3 seconds waiting for the font, instead of flashing fallback text and
+ * then swapping. With preload + self-hosting via next/font, the wait is
+ * usually <500ms on a normal connection — no visible flicker.
+ *
+ * `variable: '--font-fraunces'` exposes a CSS variable so components can
+ * reference it without us threading className props through the tree.
+ */
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  style: 'italic',
+  // 'variable' is required when `axes` is set — without it next/font picks
+  // a static weight cut and rejects the axes option.
+  weight: 'variable',
+  axes: ['opsz', 'SOFT', 'WONK'],
+  display: 'block',
+  preload: true,
+  variable: '--font-fraunces',
+});
 
 /**
  * Site-wide metadata — everything per-page layouts inherit from.
@@ -151,7 +179,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fraunces.variable}>
       <head>
         <meta charSet="utf-8" />
         <link
@@ -159,6 +187,27 @@ export default function PublicLayout({
           type="application/rss+xml"
           title="Rushit Shah — updates"
           href="/feed.xml"
+        />
+        {/* Preload the two locally-hosted fonts that render above the fold
+            on the most-visited route (/). Aburo Bold is the headline body
+            ("Paintings that... breath."); Grift Regular is the lead paragraph
+            below it. Without these, browsers wait until the CSS parses the
+            @font-face block before fetching, costing ~200-400ms — visible
+            as the ghost-text flash Rushit reported. `crossorigin="anonymous"`
+            is required for fonts even on same-origin per the spec. */}
+        <link
+          rel="preload"
+          href="/fonts/aburo/Aburo-Bold.woff"
+          as="font"
+          type="font/woff"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/grift/Grift-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         {/* Site-wide structured data. Person + WebSite + Organization
             let Google build a Knowledge Panel and let LLMs extract facts

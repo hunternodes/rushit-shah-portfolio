@@ -32,15 +32,20 @@ export default function Spotlight() {
           <span
             style={{
               color: 'var(--lime)',
-              fontFamily: '"Burnts Marker", "Fraunces", serif',
-              fontStyle: 'normal',
-              fontWeight: 400,
-              letterSpacing: '0.06em',
-              fontSize: '1.7em',
-              lineHeight: 0.85,
+              // Editorial italic — Fraunces variable, opsz=144 (display cut)
+              // + WONK on for the more characterful italic forms. Replaces
+              // the previous Burnts Marker graffiti to fit the gallery-tier
+              // direction.
+              fontFamily: 'var(--font-fraunces), "Fraunces", serif',
+              fontStyle: 'italic',
+              fontWeight: 500,
+              fontVariationSettings: '"opsz" 144, "SOFT" 50, "WONK" 1',
+              letterSpacing: '-0.02em',
+              fontSize: '1.4em',
+              lineHeight: 0.95,
               display: 'inline-block',
               verticalAlign: 'baseline',
-              marginInline: '0.2em',
+              marginInline: '0.18em',
             }}
           >
             hold their
@@ -64,18 +69,19 @@ export default function Spotlight() {
           <span
             style={{
               color: 'var(--lime)',
-              fontFamily: '"Burnts Marker", "Fraunces", serif',
-              fontStyle: 'normal',
-              fontWeight: 400,
-              letterSpacing: '0.02em',
-              fontSize: '1.8em',
+              fontFamily: 'var(--font-fraunces), "Fraunces", serif',
+              fontStyle: 'italic',
+              fontWeight: 500,
+              fontVariationSettings: '"opsz" 144, "SOFT" 80, "WONK" 1',
+              letterSpacing: '-0.01em',
+              fontSize: '1.6em',
               lineHeight: 0.9,
               display: 'inline-block',
               verticalAlign: 'baseline',
               marginInline: '0.25em',
             }}
           >
-            -Rushit
+            — Rushit
           </span>
         </span>
       }

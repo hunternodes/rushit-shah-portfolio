@@ -25,6 +25,90 @@ export const Paintings: CollectionConfig = {
     update: ({ req }) => Boolean(req.user),
     delete: ({ req }) => Boolean(req.user),
   },
+  hooks: {
+    beforeChange: [
+      /**
+       * Auto-swap featuredOrder when there's a conflict.
+       *
+       * Without this hook, two paintings can share the same featuredOrder
+       * (e.g. both set to slot 2 in Fragment series) and the homepage
+       * sort tiebreaker silently picks one — leaving Rushit confused
+       * about why his "set this to 2" instruction didn't take.
+       *
+       * Behaviour: when a painting is saved with featuredOrder=N in a
+       * given series, any OTHER featured painting in the same series
+       * with the same N is updated to take this painting's PREVIOUS
+       * featuredOrder. Net effect: a swap.
+       *   • New painting moves into its requested slot.
+       *   • The painting it displaced moves to where the new one used
+       *     to be (or null if it had no previous slot).
+       *
+       * Recursion guard: the cascading update sets `req.context
+       * .skipFeaturedOrderSwap = true` so the hook short-circuits when
+       * called from itself.
+       */
+      async ({ data, originalDoc, req, operation }) => {
+        // Bail out of recursive calls (we trigger ourselves via update())
+        if ((req.context as { skipFeaturedOrderSwap?: boolean })?.skipFeaturedOrderSwap) {
+          return data;
+        }
+        // Only act on featured paintings with a numeric featuredOrder.
+        if (!data?.featured) return data;
+        const newOrder = data.featuredOrder;
+        if (typeof newOrder !== 'number' || newOrder < 1) return data;
+
+        const series = (data.series ?? originalDoc?.series) as string | undefined;
+        if (!series) return data;
+        const myId = (originalDoc as { id?: number | string } | undefined)?.id;
+
+        // Skip if the order didn't change on update.
+        if (
+          operation === 'update' &&
+          (originalDoc as { featuredOrder?: number } | undefined)?.featuredOrder === newOrder &&
+          (originalDoc as { series?: string } | undefined)?.series === series &&
+          (originalDoc as { featured?: boolean } | undefined)?.featured === true
+        ) {
+          return data;
+        }
+
+        // Find any OTHER featured painting in the same series at the same slot.
+        const conflictWhere: Record<string, unknown> = {
+          and: [
+            { featuredOrder: { equals: newOrder } },
+            { series: { equals: series } },
+            { featured: { equals: true } },
+            ...(myId != null ? [{ id: { not_equals: myId } }] : []),
+          ],
+        };
+        const { docs: conflicts } = await req.payload.find({
+          collection: 'paintings',
+          where: conflictWhere,
+          limit: 10,
+          depth: 0,
+          // Drafts can also occupy slots — include them.
+          draft: true,
+        });
+
+        if (conflicts.length === 0) return data;
+
+        // Swap: every conflicting painting gets the OLD featuredOrder of
+        // this painting (or null if there was no old order, e.g. on create).
+        const oldOrder = (originalDoc as { featuredOrder?: number | null } | undefined)
+          ?.featuredOrder ?? null;
+        for (const c of conflicts) {
+          await req.payload.update({
+            collection: 'paintings',
+            id: (c as { id: number | string }).id,
+            data: { featuredOrder: oldOrder } as Record<string, unknown>,
+            // Mark the cascade so we don't recurse forever.
+            context: { skipFeaturedOrderSwap: true },
+          });
+        }
+
+        return data;
+      },
+    ],
+  },
   fields: [
     {
       name: 'title',

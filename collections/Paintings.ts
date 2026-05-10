@@ -72,17 +72,20 @@ export const Paintings: CollectionConfig = {
         }
 
         // Find any OTHER featured painting in the same series at the same slot.
-        const conflictWhere: Record<string, unknown> = {
-          and: [
-            { featuredOrder: { equals: newOrder } },
-            { series: { equals: series } },
-            { featured: { equals: true } },
-            ...(myId != null ? [{ id: { not_equals: myId } }] : []),
-          ],
-        };
+        // Inline the `where` clause so Payload's `Where` type is inferred —
+        // hoisting it into a `const` typed as `Record<string, unknown>` is
+        // structurally incompatible because Payload's `Where` is a discriminated
+        // union and TS can't narrow through an index signature.
         const { docs: conflicts } = await req.payload.find({
           collection: 'paintings',
-          where: conflictWhere,
+          where: {
+            and: [
+              { featuredOrder: { equals: newOrder } },
+              { series: { equals: series } },
+              { featured: { equals: true } },
+              ...(myId != null ? [{ id: { not_equals: myId } }] : []),
+            ],
+          },
           limit: 10,
           depth: 0,
           // Drafts can also occupy slots — include them.

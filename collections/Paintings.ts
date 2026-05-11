@@ -10,7 +10,19 @@ export const Paintings: CollectionConfig = {
   slug: 'paintings',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'year', 'availability', 'featured', 'published'],
+    // `series` and `featuredOrder` added so the list view answers the two
+    // questions Rushit had to click into each painting to see: which series
+    // is this in, and what slot does it claim. With these visible, the
+    // admin list is the dashboard for "what's on the homepage and where".
+    defaultColumns: [
+      'title',
+      'series',
+      'featuredOrder',
+      'year',
+      'availability',
+      'featured',
+      'published',
+    ],
     listSearchableFields: ['title', 'medium', 'shortDescription'],
     description:
       'Every artwork lives here. Published + featured paintings appear in homepage Five Rooms; all paintings are surfaced via /collection (ArtworkArchive embed).',
@@ -141,7 +153,12 @@ export const Paintings: CollectionConfig = {
       hooks: {
         beforeValidate: [
           ({ data, value }) => {
-            if (value) return value;
+            // ALWAYS normalize. Previous version only slugified when value
+            // was empty, which left spaces/uppercase in slugs Rushit had
+            // already saved (e.g. "When The Light Stayed" instead of
+            // "when-the-light-stayed"). Now: anything non-empty gets
+            // slugified, anything empty derives from the title.
+            if (value) return slugify(String(value));
             if (data?.title) return slugify(String(data.title));
             return value;
           },
